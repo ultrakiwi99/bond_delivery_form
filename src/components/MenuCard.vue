@@ -1,24 +1,26 @@
 <template>
     <section class="card">
-        <section @click="isVisible = !isVisible">
-            <h3>
-                <div>{{ product.name }}</div>
-                <div v-if="isInCart">{{ product.inCart }}</div>
-            </h3>
-        </section>
-        <section v-show="isVisible">
-            <section v-if="product.comment && product.comment.length">
-                <section type="success">{{ product.comment }}</section>
-            </section>
-            <MenuCardModifiers :modifiers="product.modifiers"/>
-            <strong>Стоимость напитка:</strong> {{ totalPrice }} р.
-            <section>
-                <button @click="$emit('toCart', product)">
-                    <span v-if="isInCart">Добавить еще!</span>
-                    <span v-else>Добавить</span>
-                </button>
-            </section>
-        </section>
+        <h3 class="head" @click="$emit('makeVisible', product.id)">
+            <span>{{ product.name }}</span>
+            <span v-if="isInCart">{{ product.inCart }}</span>
+        </h3>
+        <transition name="fade">
+            <div v-show="product.visible">
+                <section class="section">
+                    <div class="container">
+                        <span class="comment" v-if="hasComment">{{ product.comment }}</span>
+                        <MenuCardModifiers :modifiers="product.modifiers"/>
+                        <h4>Стоимость напитка: <span class="secondary">{{ totalPrice }} р.</span></h4>
+                    </div>
+                </section>
+                <section>
+                    <button class="btn" @click="$emit('toCart', product)">
+                        <span v-if="isInCart">Добавить еще!</span>
+                        <span v-else>Добавить</span>
+                    </button>
+                </section>
+            </div>
+        </transition>
     </section>
 </template>
 
@@ -45,20 +47,21 @@
                             return carry;
                         }, 0);
             },
-            hasComment() {
-                return this.product.comment && this.product.comment.length;
-            },
             isInCart() {
                 return this.product.inCart > 0;
+            },
+            hasComment() {
+                return this.product.comment && this.product.comment.length;
             }
         }
     }
 </script>
 
 <style scoped>
-    h3 {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .7s;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
     }
 </style>

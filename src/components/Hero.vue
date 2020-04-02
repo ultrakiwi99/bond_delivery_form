@@ -1,5 +1,5 @@
 <template>
-    <h1 style="text-align: center">{{ title }}</h1>
+    <h1>{{ title }}</h1>
 </template>
 
 <script>
@@ -12,5 +12,7 @@
 </script>
 
 <style scoped>
-
+    h1 {
+        text-align: center;
+    }
 </style>

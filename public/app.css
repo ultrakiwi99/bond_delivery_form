@@ -1,0 +1,91 @@
+html {
+    font-family: 'Lato', sans-serif;
+}
+
+
+.btn {
+    display: block;
+    border: 1px;
+    padding: 0.5rem 1rem;
+    border-radius: .3rem;
+    color: white;
+    background: blueviolet;
+    min-width: 140px;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #4a148c;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card {
+    width: 360px;
+    margin: 0.2rem;
+    padding: 0.5rem;
+}
+
+.card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .comment {
+    width: 100%;
+    border-left: 0.3rem solid lightgray;
+    padding-left: 0.3rem;
+    font-size: smaller;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+.cart-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-row .remove {
+    display: block;
+    color: darkred;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+.cart-row .remove:hover {
+    background: blue;
+    color: white;
+    text-decoration: underline;
+}
+
+.mod {
+    margin: 1rem 0;
+}
+.mod input {
+    margin-right: 0.3rem;
+}
+
+.fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

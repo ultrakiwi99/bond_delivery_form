@@ -1,14 +1,19 @@
 <template>
-    <section class="container">
-        <section class="col">
-            <Hero title="КофеБон"/>
+    <section>
+        <Hero title="КофеБон"/>
+        <section class="container">
             <MenuCard
                     v-for="product in menu"
                     :key="product.name"
                     :product="product"
                     @toCart="addToCart"
+                    @makeVisible="makeVisibleCard"
             />
+        </section>
+        <section class="container">
             <Cart v-if="cartHasProducts" :cart-products="cart" @fromCart="removeFromCart"/>
+        </section>
+        <section class="container">
             <Checkout v-if="cartHasProducts" :client="client"/>
         </section>
     </section>
@@ -43,7 +48,8 @@
                             comment: 'Пишите в комментарий заказа сколько ложек.'
                         }
                     ],
-                    inCart: 0
+                    inCart: 0,
+                    visible: false
                 },
                 {
                     id: '1234-aab-4443',
@@ -61,7 +67,8 @@
                             selected: false
                         }
                     ],
-                    inCart: 0
+                    inCart: 0,
+                    visible: false
                 },
                 {
                     id: '1334-4aa-3f33',
@@ -79,7 +86,8 @@
                             selected: false
                         }
                     ],
-                    inCart: 0
+                    inCart: 0,
+                    visible: false
                 }
             ],
             cart: [],
@@ -109,6 +117,9 @@
                     this.cart.push({id, name, total, qty: 1, itemTotal: total});
                 }
                 this.addOneToMenu(product.id);
+            },
+            makeVisibleCard(productId) {
+                this.menu.forEach(product => product.visible = product.id === productId);
             },
             removeFromCart(product) {
                 this.cart = this.cart.filter(cartProduct => cartProduct.id !== product.id);

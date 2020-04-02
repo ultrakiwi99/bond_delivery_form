@@ -1,12 +1,9 @@
 <template>
-    <section>
-        <h4 style="color: gray">Добавить</h4>
-        <div v-for="(mod, idx) in modifiers" :key="mod.name">
-            <input
-                    :label="`${mod.name} ${modPrice(mod)}`"
-                    @click="$emit('toggleMod', idx)"
-                    v-model="modifiers[idx].selected"/>
-            <div>
+    <section style="width: 100%">
+        <h5>Добавить</h5>
+        <div v-for="(mod) in modifiers" :key="mod.name" class="mod">
+            <label><input type="checkbox"/>{{ mod.name }}</label>
+            <div class="mod-comment">
                 <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
             </div>
         </div>
@@ -28,5 +25,15 @@
 </script>
 
 <style scoped>
+    label {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
 
+    .mod-comment {
+        max-width: 80%;
+        margin-left: 2.2rem;
+        color: gray;
+    }
 </style>

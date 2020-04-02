@@ -1,24 +1,25 @@
 <template>
-    <v-container>
-        <v-card>
-            <v-card-title @click="isVisible = !isVisible">
-                <h3>
-                    <div>{{ product.name }}</div>
-                    <div v-if="product.inCart > 0">{{ product.inCart }}</div>
-                </h3>
-            </v-card-title>
-            <v-card-text v-show="isVisible">
-                <v-container v-if="product.comment && product.comment.length">
-                    <v-chip type="success">{{ product.comment }}</v-chip>
-                </v-container>
-                <MenuCardModifiers :modifiers="product.modifiers"/>
-                <strong>Стоимость напитка:</strong> {{ totalPrice }} р.
-                <v-container>
-                    <v-btn @click="$emit('toCart', product)">Добавить</v-btn>
-                </v-container>
-            </v-card-text>
-        </v-card>
-    </v-container>
+    <section class="card">
+        <section @click="isVisible = !isVisible">
+            <h3>
+                <div>{{ product.name }}</div>
+                <div v-if="isInCart">{{ product.inCart }}</div>
+            </h3>
+        </section>
+        <section v-show="isVisible">
+            <section v-if="product.comment && product.comment.length">
+                <section type="success">{{ product.comment }}</section>
+            </section>
+            <MenuCardModifiers :modifiers="product.modifiers"/>
+            <strong>Стоимость напитка:</strong> {{ totalPrice }} р.
+            <section>
+                <button @click="$emit('toCart', product)">
+                    <span v-if="isInCart">Добавить еще!</span>
+                    <span v-else>Добавить</span>
+                </button>
+            </section>
+        </section>
+    </section>
 </template>
 
 <script>
@@ -46,6 +47,9 @@
             },
             hasComment() {
                 return this.product.comment && this.product.comment.length;
+            },
+            isInCart() {
+                return this.product.inCart > 0;
             }
         }
     }

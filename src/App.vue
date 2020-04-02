@@ -1,15 +1,17 @@
 <template>
-    <v-container>
-        <Hero title="КофеБон"/>
-        <MenuCard
-                v-for="product in menu"
-                :key="product.name"
-                :product="product"
-                @toCart="addToCart"
-        />
-        <Cart :cart-products="cart" @fromCart="removeFromCart"/>
-        <Checkout v-if="cart.length > 0"/>
-    </v-container>
+    <section class="container">
+        <section class="col">
+            <Hero title="КофеБон"/>
+            <MenuCard
+                    v-for="product in menu"
+                    :key="product.name"
+                    :product="product"
+                    @toCart="addToCart"
+            />
+            <Cart v-if="cartHasProducts" :cart-products="cart" @fromCart="removeFromCart"/>
+            <Checkout v-if="cartHasProducts" :client="client"/>
+        </section>
+    </section>
 </template>
 
 <script>
@@ -80,7 +82,12 @@
                     inCart: 0
                 }
             ],
-            cart: []
+            cart: [],
+            client: {
+                name: null,
+                address: null,
+                comment: null
+            }
         }),
         methods: {
             addToCart(product) {
@@ -99,7 +106,7 @@
                     }
                 }
                 if (!inCart) {
-                    this.cart.push({id, name, total, qty: 1, itemTotal: total });
+                    this.cart.push({id, name, total, qty: 1, itemTotal: total});
                 }
                 this.addOneToMenu(product.id);
             },
@@ -120,6 +127,11 @@
                         this.menu[idx].inCart = 0;
                     }
                 }
+            }
+        },
+        computed: {
+            cartHasProducts() {
+                return this.cart.length > 0;
             }
         }
     };

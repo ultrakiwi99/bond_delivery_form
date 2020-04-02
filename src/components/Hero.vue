@@ -1,7 +1,5 @@
 <template>
-    <v-container>
-        <h1 style="text-align: center">{{ title }}</h1>
-    </v-container>
+    <h1 style="text-align: center">{{ title }}</h1>
 </template>
 
 <script>

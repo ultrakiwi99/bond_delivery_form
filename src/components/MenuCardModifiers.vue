@@ -1,8 +1,8 @@
 <template>
-    <v-container>
+    <section>
         <h4 style="color: gray">Добавить</h4>
         <div v-for="(mod, idx) in modifiers" :key="mod.name">
-            <v-checkbox
+            <input
                     :label="`${mod.name} ${modPrice(mod)}`"
                     @click="$emit('toggleMod', idx)"
                     v-model="modifiers[idx].selected"/>
@@ -10,7 +10,7 @@
                 <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
             </div>
         </div>
-    </v-container>
+    </section>
 </template>
 
 <script>

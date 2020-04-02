@@ -7,7 +7,7 @@
                 :product="product"
                 @toCart="addToCart"
         />
-        <Cart/>
+        <Cart :cart-products="cart" @fromCart="removeFromCart"/>
         <Checkout/>
     </v-container>
 </template>
@@ -24,6 +24,7 @@
         data: () => ({
             menu: [
                 {
+                    id: '1234-aaa-3333',
                     name: 'Americano',
                     price: 17,
                     comment: 'Комментарий к продукту.',
@@ -43,6 +44,7 @@
                     inCart: 0
                 },
                 {
+                    id: '1234-aab-4443',
                     name: 'Capuchino',
                     price: 20,
                     modifiers: [
@@ -60,6 +62,7 @@
                     inCart: 0
                 },
                 {
+                    id: '1334-4aa-3f33',
                     name: 'Espresso',
                     price: 15,
                     modifiers: [
@@ -81,11 +84,42 @@
         }),
         methods: {
             addToCart(product) {
-                const {name} = product;
-                const total  = product.price
+                const {id, name} = product;
+                const total = product.price
                     + product.modifiers
                         .reduce((carry, mod) => mod.selected ? carry + mod.price : carry, 0);
-                
+                let inCart = false;
+
+
+                for (let cartProduct of this.cart) {
+                    if (cartProduct.id === id) {
+                        cartProduct.qty++;
+                        cartProduct.itemTotal += total;
+                        inCart = true;
+                    }
+                }
+                if (!inCart) {
+                    this.cart.push({id, name, total, qty: 1, itemTotal: total });
+                }
+                this.addOneToMenu(product.id);
+            },
+            removeFromCart(product) {
+                this.cart = this.cart.filter(cartProduct => cartProduct.id !== product.id);
+                this.removeOneFromMenu(product.id);
+            },
+            addOneToMenu(id) {
+                for (let idx in this.menu) {
+                    if (this.menu[idx].id === id) {
+                        this.menu[idx].inCart++;
+                    }
+                }
+            },
+            removeOneFromMenu(id) {
+                for (let idx in this.menu) {
+                    if (this.menu[idx].id === id && this.menu[idx] > 1) {
+                        this.menu[idx].inCart = 0;
+                    }
+                }
             }
         }
     };

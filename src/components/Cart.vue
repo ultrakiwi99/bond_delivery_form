@@ -2,9 +2,11 @@
     <v-container>
         <h3>Заказ</h3>
         <v-container>
-            <div v-for="(product, idx) in cartProducts" :key="idx">
-                <span>product.name</span>
-                <span><v-icon>fas fa-bin</v-icon></span>
+            <div class="cart-row" v-for="(product, id) in cartProducts" :key="id">
+                <span>{{ product.name }}</span>
+                <span>{{ product.qty}} x {{ product.itemTotal }}&nbsp;&nbsp;
+                    <strong style="cursor: pointer" @click="$emit('fromCart', product)">&times;</strong>
+                </span>
             </div>
         </v-container>
     </v-container>
@@ -20,5 +22,9 @@
 </script>
 
 <style scoped>
-
+    .cart-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>

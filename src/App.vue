@@ -8,7 +8,7 @@
                 @toCart="addToCart"
         />
         <Cart :cart-products="cart" @fromCart="removeFromCart"/>
-        <Checkout/>
+        <Checkout v-if="cart.length > 0"/>
     </v-container>
 </template>
 
@@ -116,7 +116,7 @@
             },
             removeOneFromMenu(id) {
                 for (let idx in this.menu) {
-                    if (this.menu[idx].id === id && this.menu[idx] > 1) {
+                    if (this.menu[idx].id === id) {
                         this.menu[idx].inCart = 0;
                     }
                 }

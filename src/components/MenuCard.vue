@@ -2,7 +2,10 @@
     <v-container>
         <v-card>
             <v-card-title @click="isVisible = !isVisible">
-                <h3>{{ product.name }}</h3>
+                <h3>
+                    <div>{{ product.name }}</div>
+                    <div v-if="product.inCart > 0">{{ product.inCart }}</div>
+                </h3>
             </v-card-title>
             <v-card-text v-show="isVisible">
                 <v-container v-if="product.comment && product.comment.length">
@@ -49,5 +52,9 @@
 </script>
 
 <style scoped>
-
+    h3 {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
 </style>

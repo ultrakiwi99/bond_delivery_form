@@ -129,7 +129,13 @@
                 this.addOneToMenu(product.id);
             },
             makeVisibleCard(productId) {
-                this.menu.forEach(product => product.visible = product.id === productId);
+                this.menu.forEach(product => {
+                    if (product.id === productId) {
+                        product.visible = !product.visible;
+                    } else {
+                        product.visible = false;
+                    }
+                });
             },
             removeFromCart(product) {
                 this.cart = this.cart.filter(cartProduct => cartProduct.id !== product.id);
@@ -157,3 +163,13 @@
         }
     };
 </script>
+
+<style>
+    .primary-text {
+        color: #1976d2;
+    }
+
+    .secondary-text {
+        color: lightslategrey;
+    }
+</style>

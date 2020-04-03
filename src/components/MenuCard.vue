@@ -1,24 +1,27 @@
 <template>
-    <section class="card">
-        <h3 class="head" @click="$emit('makeVisible', product.id)">
-            <span>{{ product.name }}</span>
-            <span v-if="isInCart">{{ product.inCart }}</span>
-        </h3>
+    <section class="card fluid">
+        <div @click="$emit('makeVisible', product.id)"
+             class="section"
+             style="cursor: pointer">
+            <div style="display: flex; justify-content: space-between; align-items: center">
+                <span><strong>{{ product.name }}</strong></span>
+                <span v-if="isInCart">{{ product.inCart }}</span>
+            </div>
+        </div>
         <transition name="fade">
-            <div v-show="product.visible">
-                <section class="section">
+            <div class="section" v-show="product.visible">
+                <div class="container" style="margin-top: 1rem">
+                    <SizeSelector/>
+                    <ModifierSelector/>
+                    <MenuCardModifiers :modifiers="product.modifiers"/>
                     <div class="container">
-                        <span class="comment" v-if="hasComment">{{ product.comment }}</span>
-                        <MenuCardModifiers :modifiers="product.modifiers"/>
-                        <h4>Стоимость напитка: <span class="secondary">{{ totalPrice }} р.</span></h4>
+                        <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
                     </div>
-                </section>
-                <section>
                     <button class="btn" @click="$emit('toCart', product)">
                         <span v-if="isInCart">Добавить еще!</span>
                         <span v-else>Добавить</span>
                     </button>
-                </section>
+                </div>
             </div>
         </transition>
     </section>
@@ -26,10 +29,12 @@
 
 <script>
     import MenuCardModifiers from "@/components/MenuCardModifiers";
+    import SizeSelector from "@/components/SizeSelector";
+    import ModifierSelector from "@/components/ModifierSelector";
 
     export default {
         name: "MenuCard",
-        components: {MenuCardModifiers},
+        components: {ModifierSelector, SizeSelector, MenuCardModifiers},
         props: {
             product: Object
         },
@@ -59,8 +64,9 @@
 
 <style scoped>
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .7s;
+        transition: opacity .4s;
     }
+
     .fade-enter, .fade-leave-to {
         opacity: 0;
     }

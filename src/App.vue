@@ -1,22 +1,32 @@
 <template>
-    <section>
-        <Hero title="КофеБон"/>
-        <section class="container">
-            <MenuCard
-                    v-for="product in menu"
-                    :key="product.name"
-                    :product="product"
-                    @toCart="addToCart"
-                    @makeVisible="makeVisibleCard"
-            />
-        </section>
-        <section class="container">
-            <Cart v-if="cartHasProducts" :cart-products="cart" @fromCart="removeFromCart"/>
-        </section>
-        <section class="container">
-            <Checkout v-if="cartHasProducts" :client="client"/>
-        </section>
-    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <Hero title="КофеБон"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <MenuCard
+                        :key="product.name"
+                        :product="product"
+                        @makeVisible="makeVisibleCard"
+                        @toCart="addToCart"
+                        v-for="product in menu"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <Cart :cart-products="cart" @fromCart="removeFromCart" v-if="cartHasProducts"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <Checkout :client="client" v-if="cartHasProducts"/>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>

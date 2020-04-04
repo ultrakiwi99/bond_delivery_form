@@ -4,7 +4,9 @@
             <span class="secondary-text">Добавить</span>
         </SingleRowContainer>
         <div :key="mod.name" v-for="(mod) in modifiers">
-            <label><input style="margin-right: 1rem" type="checkbox"/>{{ mod.name }}</label>
+            <label><input :checked="isSelected(mod)" @input="select(mod)" style="margin-right: 1rem" type="checkbox"/>
+                {{ mod.name }}
+            </label>
             <div class="secondary-text">
                 <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
             </div>
@@ -19,11 +21,15 @@
         name: "MenuCardModifiers",
         components: {SingleRowContainer},
         props: {
-            modifiers: Array
+            modifiers: Array,
+            selected: Array
         },
         methods: {
-            modPrice(mod) {
-                return mod.selected ? '+' + mod.price + ' р.' : '';
+            isSelected(modToCheck) {
+                return !this.modifiers.find(mod => mod.name === modToCheck.name);
+            },
+            select(mod) {
+                this.$emit('select', mod);
             }
         }
     }

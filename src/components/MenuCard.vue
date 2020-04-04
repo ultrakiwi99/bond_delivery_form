@@ -15,8 +15,11 @@
                 </SingleRowContainer>
                 <div class="container" style="margin-top: 1rem">
                     <SizeSelector :selected="sizeSelected" :sizes="product.sizes" @select="selectSize"/>
-                    <ModifierSelector :milks="product.milks" v-if="product.milks"/>
-                    <MenuCardModifiers :modifiers="product.modifiers"/>
+                    <ModifierSelector :mods="product.milks"
+                                      :selected="milkSelected"
+                                      @select="selectMilk"
+                                      v-if="product.milks"/>
+                    <MenuCardModifiers :modifiers="product.modifiers" :selected="modsSelected" @select="selectMod"/>
                     <div class="container">
                         <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
                     </div>
@@ -56,11 +59,27 @@
         methods: {
             selectSize(size) {
                 this.sizeSelected = size;
+            },
+            selectMilk(milkName) {
+                this.milkSelected = this.product.milks.find(milk => milk.name === milkName);
+            },
+            selectMod(mod) {
+                for (let modIdx in this.modsSelected) {
+                    if (this.modsSelected[modIdx].name === mod.name) {
+                        this.modsSelected = this.modsSelected.filter(modSelected => modSelected.name !== mod.name);
+                        return;
+                    }
+                }
+                this.modsSelected.push(mod);
             }
         },
         computed: {
             totalPrice() {
-                return this.sizeSelected.price
+                const milkPrice = this.milkSelected && this.milkSelected.price && this.milkSelected.price
+                    ? this.milkSelected.price
+                    : 0;
+
+                return this.sizeSelected.price + milkPrice;
             },
             isInCart() {
                 return this.qtyInCart > 0;

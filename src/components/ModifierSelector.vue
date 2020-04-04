@@ -4,10 +4,9 @@
             <span class="secondary-text">Молоко</span>
         </SingleRowContainer>
         <label>
-            <select v-model="selected">
-                <option :value="null" selected>Без молока</option>
-                <option :key="milk.name" :value="milk" v-for="milk in milks">
-                    {{ milk.name }}
+            <select @input="select">
+                <option :key="mod.name" v-for="mod in mods">
+                    {{ mod.name }}
                 </option>
             </select>
             <span class="primary-text" style="margin-left: 1rem" v-if="selected && selected.price > 0">
@@ -23,14 +22,15 @@
     export default {
         name: "ModifierSelector",
         components: {SingleRowContainer},
-        data: () => ({
-            milks: [
-                {name: 'Банановое', price: 20},
-                {name: 'Кокосовое', price: 30},
-                {name: 'Соевое', price: 40},
-            ],
-            selected: null
-        })
+        props: {
+            mods: Array,
+            selected: Object
+        },
+        methods: {
+            select(event) {
+                this.$emit('select', event.target.value);
+            }
+        }
     }
 </script>
 

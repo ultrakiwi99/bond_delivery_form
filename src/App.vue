@@ -43,14 +43,40 @@
                 {
                     id: '1234-aaa-3333',
                     name: 'Americano',
-                    price: 17,
                     comment: 'Комментарий к продукту.',
-                    modifiers: [
+                    sizes: [
                         {
-                            name: 'Молоко',
-                            price: 10,
-                            selected: false
+                            short: "S",
+                            name: "Маленький",
+                            price: 110
                         },
+                        {
+                            short: "M",
+                            name: "Средний",
+                            price: 120
+                        },
+                        {
+                            short: "L",
+                            name: "Большой",
+                            price: 150
+                        }
+                    ],
+                    milks: [
+                        {
+                            name: "Обычное",
+                            price: 0
+                        },
+                        {
+                            name: "Банановое",
+                            price: 40
+                        },
+                        {
+                            name: "Овсяное",
+                            price: 60
+                        }
+                    ],
+                    syrup: [],
+                    modifiers: [
                         {
                             name: 'Сахар',
                             price: 10,
@@ -64,7 +90,37 @@
                 {
                     id: '1234-aab-4443',
                     name: 'Capuchino',
-                    price: 20,
+                    milks: [
+                        {
+                            name: "Обычное",
+                            price: 0
+                        },
+                        {
+                            name: "Банановое",
+                            price: 40
+                        },
+                        {
+                            name: "Овсяное",
+                            price: 60
+                        }
+                    ],
+                    sizes: [
+                        {
+                            short: "S",
+                            name: "Маленький",
+                            price: 110
+                        },
+                        {
+                            short: "M",
+                            name: "Средний",
+                            price: 120
+                        },
+                        {
+                            short: "L",
+                            name: "Большой",
+                            price: 150
+                        }
+                    ],
                     modifiers: [
                         {
                             name: 'Маршмеллоу',
@@ -83,7 +139,23 @@
                 {
                     id: '1334-4aa-3f33',
                     name: 'Espresso',
-                    price: 15,
+                    sizes: [
+                        {
+                            short: "S",
+                            name: "Маленький",
+                            price: 110
+                        },
+                        {
+                            short: "M",
+                            name: "Средний",
+                            price: 120
+                        },
+                        {
+                            short: "L",
+                            name: "Большой",
+                            price: 150
+                        }
+                    ],
                     modifiers: [
                         {
                             name: 'Молоко',

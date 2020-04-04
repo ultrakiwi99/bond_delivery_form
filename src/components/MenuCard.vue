@@ -17,7 +17,7 @@
                     <div class="container">
                         <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
                     </div>
-                    <button class="btn" @click="$emit('toCart', product)">
+                    <button @click="$emit('toCart', product)" class="btn primary">
                         <span v-if="isInCart">Добавить еще!</span>
                         <span v-else>Добавить</span>
                     </button>

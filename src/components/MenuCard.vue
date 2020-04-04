@@ -5,14 +5,17 @@
              style="cursor: pointer">
             <div style="display: flex; justify-content: space-between; align-items: center">
                 <span><strong>{{ product.name }}</strong></span>
-                <span v-if="isInCart">{{ product.inCart }}</span>
+                <span v-if="isInCart">{{ qtyInCart }} на {{ sumInCart }} р.</span>
             </div>
         </div>
         <transition name="fade">
             <div class="section" v-show="product.visible">
+                <SingleRowContainer v-if="hasComment">
+                    {{ product.comment }}
+                </SingleRowContainer>
                 <div class="container" style="margin-top: 1rem">
-                    <SizeSelector/>
-                    <ModifierSelector/>
+                    <SizeSelector :selected="sizeSelected" :sizes="product.sizes" @select="selectSize"/>
+                    <ModifierSelector :milks="product.milks" v-if="product.milks"/>
                     <MenuCardModifiers :modifiers="product.modifiers"/>
                     <div class="container">
                         <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
@@ -31,29 +34,36 @@
     import MenuCardModifiers from "@/components/MenuCardModifiers";
     import SizeSelector from "@/components/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
+    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
 
     export default {
         name: "MenuCard",
-        components: {ModifierSelector, SizeSelector, MenuCardModifiers},
+        components: {SingleRowContainer, ModifierSelector, SizeSelector, MenuCardModifiers},
         props: {
-            product: Object
+            product: Object,
+            qtyInCart: Number,
+            sumInCart: Number
+        },
+        beforeMount() {
+            this.sizeSelected = this.product.sizes[0];
         },
         data: () => ({
-            isVisible: false
+            isVisible: false,
+            sizeSelected: null,
+            milkSelected: null,
+            modsSelected: []
         }),
+        methods: {
+            selectSize(size) {
+                this.sizeSelected = size;
+            }
+        },
         computed: {
             totalPrice() {
-                return this.product.price
-                    + this.product.modifiers
-                        .reduce((carry, mod) => {
-                            if (mod.selected) {
-                                carry = carry + mod.price
-                            }
-                            return carry;
-                        }, 0);
+                return this.sizeSelected.price
             },
             isInCart() {
-                return this.product.inCart > 0;
+                return this.qtyInCart > 0;
             },
             hasComment() {
                 return this.product.comment && this.product.comment.length;

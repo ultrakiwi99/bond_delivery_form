@@ -3,25 +3,16 @@
         <SingleRowContainer>
             <span class="secondary-text">Размер</span><br>
         </SingleRowContainer>
-        <button :class="{primary: sizes[0].selected}"
-                @click="selectSize(sizes[0].name)"
-                style="margin-right: 1px; padding: 0.2rem 1.2rem"
-        >
-            {{sizes[0].name}}
-        </button>
-        <button :class="{primary: sizes[1].selected}"
-                @click="selectSize(sizes[1].name)"
-                style="margin: 1px auto; padding: 0.2rem 1.2rem"
-        >
-            {{sizes[1].name}}
-        </button>
-        <button :class="{primary: sizes[2].selected}"
-                @click="selectSize(sizes[2].name)"
-                style="margin-left: 1px; padding: 0.2rem 1.2rem"
-        >
-            {{sizes[2].name}}
-        </button>
-        <span class="primary-text">{{ selectedSize.price }} р.</span>
+        <div class="buttons">
+            <button :class="{primary: size.short === selected.short}"
+                    :key="size.short"
+                    @click="selectSize(size)"
+                    v-for="size in sizes"
+            >
+                {{size.short}}
+            </button>
+            <span class="primary-text" style="margin-left: 1rem">{{ selected.price }} р.</span>
+        </div>
     </section>
 </template>
 
@@ -31,26 +22,22 @@
     export default {
         name: "SizeSelector",
         components: {SingleRowContainer},
-        data: () => ({
-            sizes: [
-                {name: 'S', price: 100, selected: true},
-                {name: 'M', price: 120, selected: false},
-                {name: 'L', price: 140, selected: false}
-            ]
-        }),
+        props: {
+            sizes: Array,
+            selected: Object
+        },
         methods: {
-            selectSize(sizeName) {
-                this.sizes.forEach(size => size.selected = size.name === sizeName)
+            selectSize(size) {
+                this.$emit('select', size);
             }
         },
-        computed: {
-            selectedSize() {
-                return this.sizes.filter(size => size.selected).pop();
-            }
-        }
     }
 </script>
 
 <style scoped>
-
+    .buttons button {
+        margin: 1px;
+        padding: 10px 20px;
+        border: 0;
+    }
 </style>

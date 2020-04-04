@@ -8,12 +8,13 @@
         <div class="row">
             <div class="col-sm">
                 <MenuCard
+                        :qty-in-cart="qtyInCart(product)"
+                        :sum-in-cart="sumInCart(product)"
                         :key="product.name"
                         :product="product"
                         @makeVisible="makeVisibleCard"
                         @toCart="addToCart"
-                        v-for="product in menu"
-                />
+                        v-for="product in menu"/>
             </div>
         </div>
         <div class="row">
@@ -43,22 +44,25 @@
                 {
                     id: '1234-aaa-3333',
                     name: 'Americano',
-                    comment: 'Комментарий к продукту.',
+                    comment: 'Кофе. Вкусный как мясо, берите не пожалеете!',
                     sizes: [
                         {
                             short: "S",
                             name: "Маленький",
-                            price: 110
+                            price: 110,
+                            selected: true
                         },
                         {
                             short: "M",
                             name: "Средний",
-                            price: 120
+                            price: 120,
+                            selected: false
                         },
                         {
                             short: "L",
                             name: "Большой",
-                            price: 150
+                            price: 150,
+                            selected: false
                         }
                     ],
                     milks: [
@@ -75,16 +79,20 @@
                             price: 60
                         }
                     ],
-                    syrup: [],
                     modifiers: [
                         {
                             name: 'Сахар',
                             price: 10,
                             selected: false,
                             comment: 'Пишите в комментарий заказа сколько ложек.'
+                        },
+                        {
+                            name: 'Сироп',
+                            price: 50,
+                            selected: false,
+                            comment: 'Кленовый, бананаовый, карамельный - пишите в комментарий какой.'
                         }
                     ],
-                    inCart: 0,
                     visible: false
                 },
                 {
@@ -108,17 +116,26 @@
                         {
                             short: "S",
                             name: "Маленький",
-                            price: 110
+                            price: 110,
+                            selected: true
                         },
                         {
                             short: "M",
                             name: "Средний",
-                            price: 120
+                            price: 120,
+                            selected: false
                         },
                         {
                             short: "L",
                             name: "Большой",
-                            price: 150
+                            price: 150,
+                            selected: false
+                        },
+                        {
+                            short: "G",
+                            name: "Гранде",
+                            price: 180,
+                            selected: false
                         }
                     ],
                     modifiers: [
@@ -133,7 +150,6 @@
                             selected: false
                         }
                     ],
-                    inCart: 0,
                     visible: false
                 },
                 {
@@ -143,32 +159,23 @@
                         {
                             short: "S",
                             name: "Маленький",
-                            price: 110
+                            price: 110,
+                            selected: true
                         },
                         {
                             short: "M",
                             name: "Средний",
-                            price: 120
-                        },
-                        {
-                            short: "L",
-                            name: "Большой",
-                            price: 150
+                            price: 120,
+                            selected: false
                         }
                     ],
                     modifiers: [
-                        {
-                            name: 'Молоко',
-                            price: 10,
-                            selected: false
-                        },
                         {
                             name: 'Сахар',
                             price: 10,
                             selected: false
                         }
                     ],
-                    inCart: 0,
                     visible: false
                 }
             ],
@@ -226,6 +233,18 @@
                         this.menu[idx].inCart = 0;
                     }
                 }
+            },
+            cartProductsByProduct(product) {
+                return this.cart.filter(cartProduct => cartProduct.name === product.name)
+            },
+            isInCart(product) {
+                return this.qtyInCart(product) > 0;
+            },
+            qtyInCart(product) {
+                return this.cartProductsByProduct(product).length;
+            },
+            sumInCart(product) {
+                return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             }
         },
         computed: {

@@ -5,7 +5,7 @@
         </SingleRowContainer>
         <div :key="mod.name" v-for="(mod) in modifiers">
             <label><input :checked="isSelected(mod)" @input="select(mod)" style="margin-right: 1rem" type="checkbox"/>
-                {{ mod.name }}
+                {{ mod.name }} <span class="primary-text" style="margin-left: 1rem">{{ mod.price}} р.</span>
             </label>
             <div class="secondary-text">
                 <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>

@@ -78,8 +78,10 @@
                 const milkPrice = this.milkSelected && this.milkSelected.price && this.milkSelected.price
                     ? this.milkSelected.price
                     : 0;
+                const modsPrice = this.modsSelected.reduce((carry, mod) => carry + mod.price, 0);
 
-                return this.sizeSelected.price + milkPrice;
+
+                return this.sizeSelected.price + milkPrice + modsPrice;
             },
             isInCart() {
                 return this.qtyInCart > 0;

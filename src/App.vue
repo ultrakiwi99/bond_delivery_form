@@ -1,32 +1,16 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <Hero title="КофеБон"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <MenuCard
-                        :qty-in-cart="qtyInCart(product)"
-                        :sum-in-cart="sumInCart(product)"
-                        :key="product.name"
-                        :product="product"
-                        @makeVisible="makeVisibleCard"
-                        @toCart="addToCart"
-                        v-for="product in menu"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <Cart :cart-products="cart" @fromCart="removeFromCart" v-if="cartHasProducts"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <Checkout :client="client" v-if="cartHasProducts"/>
-            </div>
-        </div>
+        <Hero title="КофеБон"/>
+        <MenuCard
+                :key="product.name"
+                :product="product"
+                :qty-in-cart="qtyInCart(product)"
+                :sum-in-cart="sumInCart(product)"
+                @makeVisible="makeVisibleCard"
+                @toCart="addToCart"
+                v-for="product in menu"/>
+        <Cart :cart-products="cart" v-if="cartHasProducts"/>
+        <Checkout :client="client" v-if="cartHasProducts"/>
     </div>
 </template>
 
@@ -43,7 +27,7 @@
             menu: [
                 {
                     id: '1234-aaa-3333',
-                    name: 'Americano',
+                    name: 'Американо',
                     comment: 'Кофе. Вкусный как мясо, берите не пожалеете!',
                     sizes: [
                         {
@@ -101,7 +85,7 @@
                 },
                 {
                     id: '1234-aab-4443',
-                    name: 'Capuchino',
+                    name: 'Капучино',
                     milks: [
                         {
                             name: "Обычное",
@@ -158,7 +142,7 @@
                 },
                 {
                     id: '1334-4aa-3f33',
-                    name: 'Espresso',
+                    name: 'Эспрессо',
                     sizes: [
                         {
                             short: "S",
@@ -192,24 +176,7 @@
         }),
         methods: {
             addToCart(product) {
-                const {id, name} = product;
-                const total = product.price
-                    + product.modifiers
-                        .reduce((carry, mod) => mod.selected ? carry + mod.price : carry, 0);
-                let inCart = false;
-
-
-                for (let cartProduct of this.cart) {
-                    if (cartProduct.id === id) {
-                        cartProduct.qty++;
-                        cartProduct.itemTotal += total;
-                        inCart = true;
-                    }
-                }
-                if (!inCart) {
-                    this.cart.push({id, name, total, qty: 1, itemTotal: total});
-                }
-                this.addOneToMenu(product.id);
+                this.cart.push(product);
             },
             makeVisibleCard(productId) {
                 this.menu.forEach(product => {
@@ -219,24 +186,6 @@
                         product.visible = false;
                     }
                 });
-            },
-            removeFromCart(product) {
-                this.cart = this.cart.filter(cartProduct => cartProduct.id !== product.id);
-                this.removeOneFromMenu(product.id);
-            },
-            addOneToMenu(id) {
-                for (let idx in this.menu) {
-                    if (this.menu[idx].id === id) {
-                        this.menu[idx].inCart++;
-                    }
-                }
-            },
-            removeOneFromMenu(id) {
-                for (let idx in this.menu) {
-                    if (this.menu[idx].id === id) {
-                        this.menu[idx].inCart = 0;
-                    }
-                }
             },
             cartProductsByProduct(product) {
                 return this.cart.filter(cartProduct => cartProduct.name === product.name)

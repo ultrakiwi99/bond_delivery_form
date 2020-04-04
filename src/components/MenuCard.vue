@@ -23,7 +23,7 @@
                     <div class="container">
                         <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
                     </div>
-                    <button @click="$emit('toCart', product)" class="btn primary">
+                    <button @click="toCart" class="btn primary">
                         <span v-if="isInCart">Добавить еще!</span>
                         <span v-else>Добавить</span>
                     </button>
@@ -49,6 +49,9 @@
         },
         beforeMount() {
             this.sizeSelected = this.product.sizes[0];
+            if (this.product.milks) {
+                this.milkSelected = this.product.milks[0];
+            }
         },
         data: () => ({
             isVisible: false,
@@ -71,6 +74,15 @@
                     }
                 }
                 this.modsSelected.push(mod);
+            },
+            toCart() {
+                this.$emit('toCart', {
+                    name: this.product.name,
+                    milk: this.milkSelected,
+                    size: this.sizeSelected,
+                    mods: this.modsSelected,
+                    price: this.totalPrice
+                })
             }
         },
         computed: {
@@ -78,7 +90,9 @@
                 const milkPrice = this.milkSelected && this.milkSelected.price && this.milkSelected.price
                     ? this.milkSelected.price
                     : 0;
-                const modsPrice = this.modsSelected.reduce((carry, mod) => carry + mod.price, 0);
+                const modsPrice = this.modsSelected
+                    ? this.modsSelected.reduce((carry, mod) => carry + mod.price, 0)
+                    : 0;
 
 
                 return this.sizeSelected.price + milkPrice + modsPrice;

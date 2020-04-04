@@ -1,9 +1,11 @@
 <template>
-    <form>
-        <v-text-field v-model="client.name" placeholder="Ваше имя/Марка машины"/>
-        <v-text-field v-model="client.address" placeholder="Адрес"/>
-        <v-text-field v-model="client.phone" placeholder="Телефон"/>
-        <v-textarea v-model="client.comment" placeholder="Комментарий"/>
+    <form @submit.prevent="$emit('makeOrder')">
+        <h3>Данные заказа</h3>
+        <input placeholder="Ваше имя/Марка машины" required type="text" v-model="client.name"/>
+        <input placeholder="Адрес" required type="text" v-model="client.address"/>
+        <input placeholder="Телефон" required type="tel" v-model="client.phone"/>
+        <textarea placeholder="Комментарий" required v-model="client.comment"></textarea>
+        <button role="button" type="submit">Заказать</button>
     </form>
 </template>
 

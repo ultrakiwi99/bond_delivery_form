@@ -14,13 +14,14 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
+                <div @click="$emit('remove', idx)" class="col-sm-3" style="cursor: pointer">
                     <span class="primary-text">{{ product.price }} р.</span>
+                    <span class="danger-text">&times;</span>
                 </div>
             </div>
         </div>
         <hr>
-        <h4>Итого: 300 р.</h4>
+        <h4>Итого: {{ total }} р.</h4>
     </SingleRowContainer>
 </template>
 
@@ -32,6 +33,11 @@
         components: {SingleRowContainer},
         props: {
             cartProducts: Array
+        },
+        computed: {
+            total() {
+                return this.cartProducts.reduce((carry, product) => carry + product.price, 0);
+            }
         }
     }
 </script>

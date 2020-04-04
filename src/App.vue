@@ -9,7 +9,7 @@
                 @makeVisible="makeVisibleCard"
                 @toCart="addToCart"
                 v-for="product in menu"/>
-        <Cart :cart-products="cart" v-if="cartHasProducts"/>
+        <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
         <Checkout :client="client" v-if="cartHasProducts"/>
     </div>
 </template>
@@ -178,6 +178,9 @@
             addToCart(product) {
                 this.cart.push(product);
             },
+            removeFromCart(removeIdx) {
+                this.cart = this.cart.filter((prod, idx) => idx !== removeIdx);
+            },
             makeVisibleCard(productId) {
                 this.menu.forEach(product => {
                     if (product.id === productId) {
@@ -215,5 +218,9 @@
 
     .secondary-text {
         color: lightslategrey;
+    }
+
+    .danger-text {
+        color: darkred;
     }
 </style>

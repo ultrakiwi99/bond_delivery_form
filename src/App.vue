@@ -10,7 +10,7 @@
                 @toCart="addToCart"
                 v-for="product in menu"/>
         <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-        <StoreSelector :selected="store" @select="setStore"/>
+        <StoreSelector :selected="store" @select="setStore" v-if="cartHasProducts"/>
         <Checkout :client="client" v-if="cartHasProducts"/>
     </div>
 </template>

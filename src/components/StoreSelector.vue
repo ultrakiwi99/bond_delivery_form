@@ -9,6 +9,19 @@
         <div class="container" v-if="selected">
             <a :href="selectedStoreMap" class="primary-text" target="_blank">КАРТА</a>
         </div>
+        <div class="container">
+            <ul>
+                <li>
+                    Доставка до адреса - 80р.
+                </li>
+                <li>
+                    При заказе от 400р. доставка - БЕСПЛАТНО
+                </li>
+                <li>
+                    Если курьер сделал менее 20 шагов до места доставки - доставка бесплатно!
+                </li>
+            </ul>
+        </div>
     </form>
 </template>
 

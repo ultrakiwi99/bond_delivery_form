@@ -4,7 +4,7 @@
         <input placeholder="Ваше имя" required type="text" v-model="client.name"/>
         <input placeholder="Адрес" required type="text" v-model="client.address"/>
         <input placeholder="Телефон" required type="tel" v-model="client.phone"/>
-        <textarea cols="80" placeholder="Комментарий" required v-model="client.comment"></textarea>
+        <textarea cols="80" placeholder="Комментарий" v-model="client.comment"></textarea>
         <button role="button" type="submit">Заказать</button>
     </form>
 </template>

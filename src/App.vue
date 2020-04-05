@@ -10,6 +10,7 @@
                 @toCart="addToCart"
                 v-for="product in menu"/>
         <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
+        <StoreSelector :selected="store" @select="setStore"/>
         <Checkout :client="client" v-if="cartHasProducts"/>
     </div>
 </template>
@@ -19,10 +20,11 @@
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
     import Checkout from "@/components/Checkout";
+    import StoreSelector from "@/components/StoreSelector";
 
     export default {
         name: 'App',
-        components: {Checkout, Cart, Hero, MenuCard},
+        components: {StoreSelector, Checkout, Cart, Hero, MenuCard},
         data: () => ({
             menu: [
                 {
@@ -168,6 +170,7 @@
                 }
             ],
             cart: [],
+            store: null,
             client: {
                 name: null,
                 address: null,
@@ -201,6 +204,9 @@
             },
             sumInCart(product) {
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
+            },
+            setStore(store) {
+                this.store = store;
             }
         },
         computed: {

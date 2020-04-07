@@ -191,7 +191,7 @@
                 address: null,
                 comment: null
             },
-            message: 'Какое-то сообщение об успешной доставке заказа.'
+            message: null
         }),
         methods: {
             reset() {
@@ -243,7 +243,7 @@
                         if (json.result === 'error') {
                             throw Error(json.message);
                         }
-                        this.message = json.result;
+                        this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
                     })
                     .catch(error => this.message = error.message);
             }

@@ -11,7 +11,7 @@
                 v-for="product in menu"/>
         <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
         <StoreSelector :selected="store" @select="setStore"/>
-        <Checkout :client="client" v-if="cartHasProducts"/>
+        <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
     </div>
 </template>
 
@@ -218,6 +218,16 @@
             },
             setStore(store) {
                 this.store = store;
+            },
+            sendOrderEmail() {
+                fetch('http://portal.coffeebon.ru:8084/api/delivery/send/mail', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        client: {...this.client},
+                        order: [...this.cart],
+                        store: {...this.store}
+                    })
+                })
             }
         },
         computed: {

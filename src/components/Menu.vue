@@ -1,17 +1,20 @@
 <template>
     <div class="container">
-        <Hero title="КофеБон"/>
-        <MenuCard
-                :key="product.name"
-                :product="product"
-                :qty-in-cart="qtyInCart(product)"
-                :sum-in-cart="sumInCart(product)"
-                @makeVisible="makeVisibleCard"
-                @toCart="addToCart"
-                v-for="product in menu"/>
-        <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-        <StoreSelector :selected="store" @select="setStore"/>
-        <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
+        <SendEmailResult :message="message" @reset="reset" v-if="message"/>
+        <div v-else>
+            <Hero title="КофеБон"/>
+            <MenuCard
+                    :key="product.name"
+                    :product="product"
+                    :qty-in-cart="qtyInCart(product)"
+                    :sum-in-cart="sumInCart(product)"
+                    @makeVisible="makeVisibleCard"
+                    @toCart="addToCart"
+                    v-for="product in menu"/>
+            <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
+            <StoreSelector :selected="store" @select="setStore"/>
+            <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
+        </div>
     </div>
 </template>
 
@@ -21,10 +24,11 @@
     import Cart from "@/components/Cart";
     import Checkout from "@/components/Checkout";
     import StoreSelector from "@/components/StoreSelector";
+    import SendEmailResult from "@/components/SendEmailResult";
 
     export default {
         name: 'Menu',
-        components: {StoreSelector, Checkout, Cart, Hero, MenuCard},
+        components: {StoreSelector, Checkout, Cart, Hero, MenuCard, SendEmailResult},
         mounted() {
             if (this.$route.query) {
                 const query = this.$route.query;
@@ -186,9 +190,15 @@
                 phone: null,
                 address: null,
                 comment: null
-            }
+            },
+            message: 'Какое-то сообщение об успешной доставке заказа.'
         }),
         methods: {
+            reset() {
+                this.cart = [];
+                this.store = null;
+                this.message = null;
+            },
             addToCart(product) {
                 this.cart.push(product);
             },
@@ -228,6 +238,14 @@
                         store: {...this.store}
                     })
                 })
+                    .then(response => response.json())
+                    .then(json => {
+                        if (json.result === 'error') {
+                            throw Error(json.message);
+                        }
+                        this.message = json.result;
+                    })
+                    .catch(error => this.message = error.message);
             }
         },
         computed: {

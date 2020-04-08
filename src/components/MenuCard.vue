@@ -18,10 +18,10 @@
                                       @select="selectMilk"
                                       v-if="product.milks"/>
                     <MenuCardModifiers :modifiers="product.modifiers" :selected="modsSelected" @select="selectMod"/>
-                    <div class="container">
+                    <SingleRowContainer>
                         <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
-                    </div>
-                    <button @click="toCart" class="btn primary">
+                    </SingleRowContainer>
+                    <button @click="toCart" class="btn primary" style="margin-left: 1rem">
                         <span v-if="isInCart">Добавить еще!</span>
                         <span v-else>Добавить</span>
                     </button>
@@ -36,10 +36,11 @@
     import SizeSelector from "@/components/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
     import {CollapseTransition} from "vue2-transitions";
+    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
 
     export default {
         name: "MenuCard",
-        components: {ModifierSelector, SizeSelector, MenuCardModifiers, CollapseTransition},
+        components: {SingleRowContainer, ModifierSelector, SizeSelector, MenuCardModifiers, CollapseTransition},
         props: {
             product: Object,
             qtyInCart: Number,

@@ -1,8 +1,6 @@
 <template>
-    <section>
-        <SingleRowContainer>
-            <span class="secondary-text">Размер</span><br>
-        </SingleRowContainer>
+    <SingleRowContainer>
+        <span class="secondary-text">Размер</span><br>
         <div class="buttons">
             <button :class="{primary: size.short === selected.short}"
                     :key="size.short"
@@ -13,7 +11,7 @@
             </button>
             <span class="primary-text" style="margin-left: 1rem">{{ selected.price }} р.</span>
         </div>
-    </section>
+    </SingleRowContainer>
 </template>
 
 <script>

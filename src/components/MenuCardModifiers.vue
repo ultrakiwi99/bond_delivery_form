@@ -1,6 +1,8 @@
 <template>
     <section class="menu-mods">
-        <span class="secondary-text">Добавить</span>
+        <SingleRowContainer>
+            <span class="secondary-text">Добавить</span>
+        </SingleRowContainer>
         <div :key="mod.name" v-for="(mod,idx) in modifiers">
             <label class="mod-select">
                 <input :checked="isSelected(mod)"
@@ -21,8 +23,11 @@
 </template>
 
 <script>
+    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
+
     export default {
         name: "MenuCardModifiers",
+        components: {SingleRowContainer},
         props: {
             modifiers: Array,
             selected: Array

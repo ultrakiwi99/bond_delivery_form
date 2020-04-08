@@ -1,24 +1,27 @@
 <template>
     <SingleRowContainer>
-        <h3>Заказ</h3>
-        <div :key="idx" v-for="(product, idx) in cartProducts">
-            <div class="row" style="margin-bottom: 1rem">
-                <div class="col-sm-9">
-                    {{ product.size.name }} {{ product.name }}
-                    <span v-if="product.milk && product.milk.name !== 'Без молока'">
-                        <br>Молоко: {{ product.milk.name}}<br>
-                    </span>
-                    <ul v-if="product.mods && product.mods.length > 0">
-                        <li :key="idx" v-for="(mod, idx) in product.mods">
-                            {{ mod.name }}
-                        </li>
-                    </ul>
-                </div>
-                <div @click="$emit('remove', idx)" class="col-sm-3" style="cursor: pointer">
-                    <span class="primary-text">{{ product.price }} р.</span>
-                    <span class="danger-text">&times;</span>
-                </div>
-            </div>
+        <div class="cart">
+            <h3>Заказ</h3>
+            <ul class="products">
+                <li :key="idx" v-for="(product,idx) in cartProducts">
+                    <div class="product-row">
+                        <div class="product">
+                            <ProductName :product="product"/>
+                            <div v-if="product.mods.length > 0">
+                                <ul class="mods">
+                                    <li :key="idx" v-for="(mod,idx) in product.mods">
+                                        {{ mod.name }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <span>{{ product.price }}</span>
+                            <span @click="$emit('remove', idx)" class="delete-icon">&times;</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
         <hr>
         <h4>Итого: {{ total }} р.</h4>
@@ -27,10 +30,11 @@
 
 <script>
     import SingleRowContainer from "@/components/Visual/SingleRowContainer";
+    import ProductName from "@/components/Visual/ProductName";
 
     export default {
         name: "Cart",
-        components: {SingleRowContainer},
+        components: {ProductName, SingleRowContainer},
         props: {
             cartProducts: Array
         },
@@ -42,6 +46,37 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .cart {
+        .product-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
 
+            .mods {
+                list-style: none;
+
+                li {
+                    font-size: 0.8rem;
+                    color: lightslategrey;
+                }
+            }
+
+            .price {
+                width: 25%;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+
+                .delete-icon {
+                    display: block;
+                    font-size: 1.5rem;
+                    line-height: 2rem;
+                    cursor: pointer;
+                    color: darkred;
+                }
+            }
+
+        }
+    }
 </style>

@@ -114,8 +114,8 @@
                     comment: '',
                     sizes: [
                         { short: "UNO",    name: "Маленький",  price: 69,  selected: false },
-                        { short: "DOUBLE",  name: "Средний",   price: 89, selected: true },
-                        { short: "QUATRO", name: "Большой",    price: 128, selected: false }
+                        { short: "DBL",  name: "Средний",   price: 89, selected: true },
+                        { short: "QTR", name: "Большой",    price: 128, selected: false }
                     ],
                     modifiers: [
                         { name: 'Сливки (50 гр)', price: 29, selected: false, comment: '' },

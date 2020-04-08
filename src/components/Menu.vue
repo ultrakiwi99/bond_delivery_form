@@ -140,7 +140,7 @@
                         { name: "Овсяное",   price: 59 }
                     ],
                     modifiers: [
-                        { name: 'Сироп (обязателен)', price: 0, selected: true, comment: 'В комментариях укажите какой сироп.' },
+                        { name: 'Сироп', price: 0, selected: true, comment: 'В комментариях укажите какой сироп.' },
                         { name: 'Взбитые сливки', price: 29, selected: false, comment: '' },
                         { name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: '' },
                         { name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: '' },
@@ -188,7 +188,6 @@
                         { name: "Овсяное",   price: 59 }
                     ],
                     modifiers: [
-                        { name: 'Взбитые сливки', price: 29, selected: false, comment: '' },
                         { name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: '' },
                         { name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: '' },
                         { name: 'Доп. эспрессо', price: 39, selected: false, comment: '' },

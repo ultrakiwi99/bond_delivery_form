@@ -8,8 +8,8 @@
                 <span v-if="isInCart">{{ qtyInCart }} на {{ sumInCart }} р.</span>
             </div>
         </div>
-        <transition name="fade">
-            <div class="section" v-show="product.visible">
+        <CollapseTransition>
+            <div class="section product-details" v-show="product.visible">
                 <SingleRowContainer v-if="hasComment">
                     {{ product.comment }}
                 </SingleRowContainer>
@@ -29,7 +29,7 @@
                     </button>
                 </div>
             </div>
-        </transition>
+        </CollapseTransition>
     </section>
 </template>
 
@@ -38,10 +38,11 @@
     import SizeSelector from "@/components/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
     import SingleRowContainer from "@/components/Visual/SingleRowContainer";
+    import {CollapseTransition} from "vue2-transitions";
 
     export default {
         name: "MenuCard",
-        components: {SingleRowContainer, ModifierSelector, SizeSelector, MenuCardModifiers},
+        components: {SingleRowContainer, ModifierSelector, SizeSelector, MenuCardModifiers, CollapseTransition},
         props: {
             product: Object,
             qtyInCart: Number,
@@ -106,13 +107,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .4s;
-    }
-
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
-</style>

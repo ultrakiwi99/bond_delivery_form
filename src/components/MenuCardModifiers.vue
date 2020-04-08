@@ -1,13 +1,19 @@
 <template>
     <section class="menu-mods">
         <span class="secondary-text">Добавить</span>
-        <div :key="mod.name" class="mod-select" v-for="(mod) in modifiers">
-            <input :checked="isSelected(mod)" @input="select(mod)" style="margin-right: 1rem" type="checkbox"/>
-            <label>
-                <span>{{ mod.name }}</span>
-                <span>{{ mod.price }} р.</span>
+        <div :key="mod.name" v-for="(mod,idx) in modifiers">
+            <label class="mod-select">
+                <input :checked="isSelected(mod)"
+                       :id="'id-' + mod.price + idx"
+                       @input="select(mod)"
+                       style="margin-right: 1rem"
+                       type="checkbox"/>
+                <span class="mod-details">
+                    <span>{{ mod.name }}</span>
+                    <span class="mod-price primary-text">{{ mod.price }}р.</span>
+                </span>
             </label>
-            <div class="secondary-text">
+            <div class="secondary-text" style="padding-left: 1rem">
                 <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
             </div>
         </div>
@@ -34,10 +40,18 @@
 
 <style lang="scss" scoped>
     .mod-select {
-        .mod-select {
-            display: inline-flex;
+        display: flex;
+        align-items: center;
+
+        .mod-details {
+            width: 100%;
+            display: flex;
             justify-content: start;
             align-items: baseline;
+
+            .mod-price {
+                margin-left: 1rem;
+            }
         }
     }
 </style>

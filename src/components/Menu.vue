@@ -2,7 +2,7 @@
     <div>
         <SendEmailResult :message="message" @reset="reset" v-if="message"/>
         <div v-else>
-            <Hero title="Заказ"/>
+            <Hero title="Заказ Доставки"/>
             <MenuCard
                     :key="product.name"
                     :product="product"

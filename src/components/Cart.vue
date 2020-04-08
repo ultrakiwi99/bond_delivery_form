@@ -1,40 +1,37 @@
 <template>
-    <SingleRowContainer>
-        <div class="cart">
-            <h3>Заказ</h3>
-            <ul class="products">
-                <li :key="idx" v-for="(product,idx) in cartProducts">
-                    <div class="product-row">
-                        <div class="product">
-                            <ProductName :product="product"/>
-                            <div v-if="product.mods.length > 0">
-                                <ul class="mods">
-                                    <li :key="idx" v-for="(mod,idx) in product.mods">
-                                        {{ mod.name }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="price">
-                            <span>{{ product.price }}</span>
-                            <span @click="$emit('remove', idx)" class="delete-icon">&times;</span>
+    <div class="cart app-section">
+        <h3>Заказ</h3>
+        <ul class="products">
+            <li :key="idx" v-for="(product,idx) in cartProducts">
+                <div class="product-row">
+                    <div class="product">
+                        <ProductName :product="product"/>
+                        <div v-if="product.mods.length > 0">
+                            <ul class="mods">
+                                <li :key="idx" v-for="(mod,idx) in product.mods">
+                                    {{ mod.name }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </li>
-            </ul>
-        </div>
+                    <div class="price">
+                        <span>{{ product.price }}</span>
+                        <span @click="$emit('remove', idx)" class="delete-icon">&times;</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
         <hr>
         <h4>Итого: {{ total }} р.</h4>
-    </SingleRowContainer>
+    </div>
 </template>
 
 <script>
-    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
     import ProductName from "@/components/Visual/ProductName";
 
     export default {
         name: "Cart",
-        components: {ProductName, SingleRowContainer},
+        components: {ProductName},
         props: {
             cartProducts: Array
         },

@@ -1,11 +1,11 @@
 <template>
-    <section class="container">
-        <SingleRowContainer>
-            <span class="secondary-text">Добавить</span>
-        </SingleRowContainer>
-        <div :key="mod.name" v-for="(mod) in modifiers">
-            <label><input :checked="isSelected(mod)" @input="select(mod)" style="margin-right: 1rem" type="checkbox"/>
-                {{ mod.name }} <span class="primary-text" style="margin-left: 1rem">{{ mod.price}} р.</span>
+    <section class="menu-mods">
+        <span class="secondary-text">Добавить</span>
+        <div :key="mod.name" class="mod-select" v-for="(mod) in modifiers">
+            <input :checked="isSelected(mod)" @input="select(mod)" style="margin-right: 1rem" type="checkbox"/>
+            <label>
+                <span>{{ mod.name }}</span>
+                <span>{{ mod.price }} р.</span>
             </label>
             <div class="secondary-text">
                 <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
@@ -15,11 +15,8 @@
 </template>
 
 <script>
-    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
-
     export default {
         name: "MenuCardModifiers",
-        components: {SingleRowContainer},
         props: {
             modifiers: Array,
             selected: Array
@@ -35,10 +32,12 @@
     }
 </script>
 
-<style scoped>
-    label {
-        display: flex;
-        justify-content: start;
-        align-items: center;
+<style lang="scss" scoped>
+    .mod-select {
+        .mod-select {
+            display: inline-flex;
+            justify-content: start;
+            align-items: baseline;
+        }
     }
 </style>

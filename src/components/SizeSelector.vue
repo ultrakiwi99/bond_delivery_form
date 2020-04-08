@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section>
         <SingleRowContainer>
             <span class="secondary-text">Размер</span><br>
         </SingleRowContainer>

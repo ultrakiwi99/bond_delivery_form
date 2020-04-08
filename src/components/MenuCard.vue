@@ -1,5 +1,5 @@
 <template>
-    <section class="card fluid">
+    <section class="card fluid app-section">
         <div @click="$emit('makeVisible', product.id)"
              class="section"
              style="cursor: pointer">
@@ -10,10 +10,8 @@
         </div>
         <CollapseTransition>
             <div class="section product-details" v-show="product.visible">
-                <SingleRowContainer v-if="hasComment">
-                    {{ product.comment }}
-                </SingleRowContainer>
-                <div class="container" style="margin-top: 1rem">
+                {{ product.comment }}
+                <div style="margin-top: 1rem">
                     <SizeSelector :selected="sizeSelected" :sizes="product.sizes" @select="selectSize"/>
                     <ModifierSelector :mods="product.milks"
                                       :selected="milkSelected"
@@ -37,12 +35,11 @@
     import MenuCardModifiers from "@/components/MenuCardModifiers";
     import SizeSelector from "@/components/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
-    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
     import {CollapseTransition} from "vue2-transitions";
 
     export default {
         name: "MenuCard",
-        components: {SingleRowContainer, ModifierSelector, SizeSelector, MenuCardModifiers, CollapseTransition},
+        components: {ModifierSelector, SizeSelector, MenuCardModifiers, CollapseTransition},
         props: {
             product: Object,
             qtyInCart: Number,
@@ -107,3 +104,8 @@
         }
     }
 </script>
+<style lang="scss">
+    .app-section {
+        margin: 0 0.2rem;
+    }
+</style>

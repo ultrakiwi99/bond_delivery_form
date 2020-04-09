@@ -35,4 +35,11 @@
       }
     }
   }
+
+  [type="checkbox"]:checked:before {
+    content: '\2732';
+    font-size: 12px;
+    margin-top: 8px;
+    margin-left: 1px;
+  }
 </style>

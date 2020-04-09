@@ -1,5 +1,5 @@
 <template>
-    <SingleRowContainer>
+    <div>
         <span class="secondary-text">Размер</span><br>
         <div class="buttons">
             <button :class="{primary: size.short === selected.short}"
@@ -11,15 +11,12 @@
             </button>
             <span class="primary-text" style="margin-left: 1rem">{{ selected.price }} р.</span>
         </div>
-    </SingleRowContainer>
+    </div>
 </template>
 
 <script>
-    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
-
     export default {
         name: "SizeSelector",
-        components: {SingleRowContainer},
         props: {
             sizes: Array,
             selected: Object

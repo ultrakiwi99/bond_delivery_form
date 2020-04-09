@@ -1,8 +1,6 @@
 <template>
-    <section>
-        <SingleRowContainer>
-            <span class="secondary-text">Молоко</span>
-        </SingleRowContainer>
+    <div>
+        <span class="secondary-text">Молоко</span>
         <label>
             <select @input="select">
                 <option :key="mod.name" v-for="mod in mods">
@@ -13,15 +11,12 @@
                 {{ selected.price }} р.
             </span>
         </label>
-    </section>
+    </div>
 </template>
 
 <script>
-    import SingleRowContainer from "@/components/Visual/SingleRowContainer";
-
     export default {
         name: "ModifierSelector",
-        components: {SingleRowContainer},
         props: {
             mods: Array,
             selected: Object

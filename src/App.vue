@@ -19,6 +19,10 @@
     padding: 1rem 0;
   }
 
+  .margin-bottom {
+    margin-bottom: 1.5rem;
+  }
+
   #nav {
     padding: 30px;
 

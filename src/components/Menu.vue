@@ -30,12 +30,13 @@
         name: 'Menu',
         components: {StoreSelector, Checkout, Cart, Hero, MenuCard, SendEmailResult},
         mounted() {
-            if (this.$route.query) {
-                const query = this.$route.query;
+            const queryString = window.location.search;
 
-                this.client.card = query.client_card ? query.client_card : null;
-                this.client.name = query.client_name ? query.client_name : null;
-                this.client.phone = query.client_phone ? query.client_phone : null;
+            if (queryString) {
+                const urlParams = new URLSearchParams(queryString);
+                this.client.card = urlParams.get('client_card');
+                this.client.name = urlParams.get('client_name');
+                this.client.phone = urlParams.get('client_phone');
             }
         },
         data: () => ({

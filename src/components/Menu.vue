@@ -5,13 +5,17 @@
             <Hero title="Заказ Доставки"/>
             <Categories :category-names="categoryNames" @select="selectCategory">
                 <MenuCard
-                        :key="product.name"
-                        :product="product"
+                        :idx="idx"
                         :qty-in-cart="qtyInCart(product)"
                         :sum-in-cart="sumInCart(product)"
-                        @makeVisible="makeVisibleCard"
-                        @toCart="addToCart"
-                        v-for="product in menu[categoryIdx].products"/>
+                        :key="idx"
+                        :name="product.name"
+                        @select="selectProduct"
+                        v-for="(product, idx) in menu[categoryIdx].products">
+                    <Collapsable :selected-idx="idx" :visible-idx="productIdx">
+                        <MenuDetails :product="product" @toCart="addToCart"/>
+                    </Collapsable>
+                </MenuCard>
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
             <StoreSelector :selected="store" @select="setStore"/>
@@ -21,17 +25,29 @@
 </template>
 
 <script>
-    import MenuCard from "@/components/MenuCard";
+    import MenuCard from "@/components/Menu/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
     import Checkout from "@/components/Checkout";
     import StoreSelector from "@/components/StoreSelector";
     import SendEmailResult from "@/components/SendEmailResult";
     import Categories from "@/components/Categories/Categories";
+    import Collapsable from "@/components/Visual/Collapsable";
+    import MenuDetails from "@/components/Menu/MenuDetails";
 
     export default {
         name: 'Menu',
-        components: {Categories, StoreSelector, Checkout, Cart, Hero, MenuCard, SendEmailResult},
+        components: {
+            MenuDetails,
+            Collapsable,
+            Categories,
+            StoreSelector,
+            Checkout,
+            Cart,
+            Hero,
+            MenuCard,
+            SendEmailResult
+        },
         mounted() {
             const queryString = window.location.search;
 
@@ -564,6 +580,7 @@
                 }
             ],
             categoryIdx: 0,
+            productIdx: 0,
             cart: [],
             store: null,
             client: {
@@ -583,6 +600,9 @@
             },
             selectCategory(idx) {
                 this.categoryIdx = idx;
+            },
+            selectProduct(idx) {
+                this.productIdx = idx;
             },
             addToCart(product) {
                 this.cart.push(product);

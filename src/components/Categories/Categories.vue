@@ -3,8 +3,7 @@
         <div class="categories">
             <div class="wrapper">
                 <span :data-idx="idx"
-                      :key="name"
-                      :ref="`category-${idx}`"
+                      :key="idx"
                       @click="setCategory"
                       class="category-name"
                       v-for="(name,idx) in categoryNames">
@@ -24,11 +23,13 @@
         },
         methods: {
             setCategory(event) {
-                event.target.scrollIntoView({
+                const categoryElement = event.target;
+                categoryElement.scrollIntoView({
                     behavior: "smooth",
                     block: "center",
                     inline: "center"
                 });
+                this.$emit('select', categoryElement.dataset.idx);
             }
         }
     }
@@ -47,6 +48,7 @@
                 margin: 0.2rem;
                 border-radius: 1rem;
                 background: greenyellow;
+                cursor: pointer;
             }
         }
     }

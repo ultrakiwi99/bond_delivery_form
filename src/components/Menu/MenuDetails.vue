@@ -101,6 +101,12 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .product-details {
+        margin: 0 0.6rem;
 
+        button {
+            margin-left: 0;
+        }
+    }
 </style>

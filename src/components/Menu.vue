@@ -580,7 +580,7 @@
                 }
             ],
             categoryIdx: 0,
-            productIdx: 0,
+            productIdx: null,
             cart: [],
             store: null,
             client: {
@@ -599,10 +599,11 @@
                 this.message = null;
             },
             selectCategory(idx) {
+                this.productIdx = null;
                 this.categoryIdx = idx;
             },
             selectProduct(idx) {
-                this.productIdx = idx;
+                this.productIdx = idx === this.productIdx ? null : idx;
             },
             addToCart(product) {
                 this.cart.push(product);

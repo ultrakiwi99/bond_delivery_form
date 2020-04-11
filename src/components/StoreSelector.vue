@@ -7,7 +7,8 @@
             </option>
         </select>
         <div class="container" v-if="selected">
-            <a :href="selectedStoreMap" class="primary-text" target="_blank">КАРТА</a>
+            <div @click="mapVisible = !mapVisible" class="primary-text">{{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ КАРТУ'}}</div>
+            <img v-if="mapVisible" :src="selectedStoreMap" />
         </div>
         <div class="container">
             <ul>
@@ -32,6 +33,7 @@
             selected: Object
         },
         data: () => ({
+            mapVisible: false,
             stores: [
                 {
                     name: `м. Черная Речка, Карельский пер., 3Б`,

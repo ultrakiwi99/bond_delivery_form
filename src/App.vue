@@ -17,6 +17,7 @@
     text-align: left;
     color: #2c3e50;
     padding: 1rem 0;
+    overflow: hidden;
   }
 
   .margin-bottom {

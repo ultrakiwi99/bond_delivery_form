@@ -23,15 +23,19 @@
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
     import Checkout from "@/components/Checkout";
-    import StoreSelector from "@/components/StoreSelector";
+    import StoreSelector from "@/components/Store/StoreSelector";
     import SendEmailResult from "@/components/SendEmailResult";
 
     export default {
         name: 'Menu',
         components: {StoreSelector, Checkout, Cart, Hero, MenuCard, SendEmailResult},
         mounted() {
-            const queryString = window.location.search;
+            const savedStore = localStorage.getItem('lastSelectedStore');
+            if (savedStore) {
+                this.store = JSON.parse(savedStore);
+            }
 
+            const queryString = window.location.search;
             if (queryString) {
                 const urlParams = new URLSearchParams(queryString);
                 this.client.card = urlParams.get('client_card');

@@ -26,9 +26,9 @@ describe('SizeSelector', () => {
                 }
             }
         });
-
-        const expectedHtml = `<button class="primary">S</button><button class="selected">M</button><button class="primary">L</button>`;
-
-        expect(wrapper.html()).toContain(expectedHtml);
+        expect(wrapper.html()).toContain('<button class="primary">S')
+        expect(wrapper.html()).toContain('<button class="selected">M')
+        expect(wrapper.html()).toContain('<button class="primary">L')
+        expect(wrapper.html()).toMatchSnapshot();
     });
 });

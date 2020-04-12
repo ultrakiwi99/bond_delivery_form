@@ -40,7 +40,7 @@
                     link: `http://www.coffeebon.ru/delivery/img/kb6.jpg`
                 },
                 {
-                    name: `м. Финляндский Вокзал, ул. Академика Лебедева, 7`,
+                    name: `м. Площадь Ленина, ул. Академика Лебедева, 7`,
                     link: `http://www.coffeebon.ru/delivery/img/kb10.jpg`
                 },
                 {
@@ -50,10 +50,6 @@
                 {
                     name: `м. Автово, Автовская ул., 3`,
                     link: `http://www.coffeebon.ru/delivery/img/kb28.jpg`
-                },
-                {
-                    name: `м. Адмиралтейская, ул. Декабристов, 46`,
-                    link: `http://www.coffeebon.ru/delivery/img/kb33.jpg`
                 },
                 {
                     name: `м. Московские Ворота, Московский пр., 130`,

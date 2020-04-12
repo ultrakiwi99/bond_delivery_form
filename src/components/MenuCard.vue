@@ -45,7 +45,7 @@
 
 <script>
     import MenuCardModifiers from "@/components/MenuCardModifiers";
-    import SizeSelector from "@/components/SizeSelector";
+    import SizeSelector from "@/components/Size/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
     import {CollapseTransition} from "vue2-transitions";
 
@@ -58,7 +58,7 @@
             sumInCart: Number
         },
         beforeMount() {
-            this.sizeSelected = this.product.sizes[0];
+            this.sizeSelected = this.product.sizes.find(size => size.selected);
             if (this.product.milks) {
                 this.milkSelected = this.product.milks[0];
             }

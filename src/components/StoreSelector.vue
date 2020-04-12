@@ -31,6 +31,12 @@
         props: {
             selected: Object
         },
+        mounted() {
+            const lastSelectedStoreJson = localStorage.getItem('lastSelectedStore');
+            if (lastSelectedStoreJson) {
+                this.$emit('select', JSON.parse(lastSelectedStoreJson));
+            }
+        },
         data: () => ({
             stores: [
                 {
@@ -142,11 +148,12 @@
         methods: {
             selectStore(event) {
                 const name = event.target.value;
-                console.log(name);
                 if (name === null) {
                     return;
                 }
-                this.$emit('select', this.stores.find(store => store.name === name));
+                const store = this.stores.find(store => store.name === name);
+                localStorage.setItem('lastSelectedStore', JSON.stringify(store));
+                this.$emit('select', store);
             }
         },
         computed: {
@@ -156,7 +163,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

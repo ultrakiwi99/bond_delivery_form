@@ -12,7 +12,7 @@
                     @toCart="addToCart"
                     v-for="product in menu"/>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-            <StoreSelector :selected="store" @select="setStore"/>
+            <StoreSelector v-model="store"/>
             <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
         </div>
     </div>
@@ -314,9 +314,6 @@
             },
             sumInCart(product) {
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
-            },
-            setStore(store) {
-                this.store = store;
             },
             sendOrderEmail() {
                 fetch('http://portal.coffeebon.ru:8084/api/delivery/send/mail', {

@@ -22,7 +22,7 @@
     import MenuCard from "@/components/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
-    import Checkout from "@/components/Checkout";
+    import Checkout from "@/components/Checkout/Checkout";
     import StoreSelector from "@/components/Store/StoreSelector";
     import SendEmailResult from "@/components/SendEmailResult";
 
@@ -33,6 +33,11 @@
             const savedStore = localStorage.getItem('lastSelectedStore');
             if (savedStore) {
                 this.store = JSON.parse(savedStore);
+            }
+
+            const savedAddress = localStorage.getItem('lastClientAddress');
+            if (savedAddress) {
+                this.client.address = savedAddress;
             }
 
             const queryString = window.location.search;
@@ -289,7 +294,6 @@
         methods: {
             reset() {
                 this.cart = [];
-                this.store = null;
                 this.message = null;
             },
             addToCart(product) {
@@ -320,6 +324,7 @@
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             },
             sendOrderEmail() {
+                localStorage.setItem('lastClientAddress', this.client.address);
                 fetch('http://portal.coffeebon.ru:8084/api/delivery/send/mail', {
                     method: 'POST',
                     body: JSON.stringify({

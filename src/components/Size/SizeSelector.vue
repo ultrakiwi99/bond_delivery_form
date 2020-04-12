@@ -4,8 +4,7 @@
                 :class="{'selected': isSelected(size), 'primary': !isSelected(size)}"
                 :key="idx"
                 @click="selectSize(size)"
-                v-for="(size, idx) in sizes"
-        >{{ size.short }}
+                v-for="(size, idx) in sizes">{{ size.short }}
         </button>
     </div>
 </template>

@@ -12,7 +12,7 @@
                     @toCart="addToCart"
                     v-for="product in menu"/>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-            <StoreSelector :selected="store" @select="setStore"/>
+            <StoreSelector v-model="store"/>
             <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
         </div>
     </div>
@@ -22,16 +22,25 @@
     import MenuCard from "@/components/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
-    import Checkout from "@/components/Checkout";
-    import StoreSelector from "@/components/StoreSelector";
+    import Checkout from "@/components/Checkout/Checkout";
+    import StoreSelector from "@/components/Store/StoreSelector";
     import SendEmailResult from "@/components/SendEmailResult";
 
     export default {
         name: 'Menu',
         components: {StoreSelector, Checkout, Cart, Hero, MenuCard, SendEmailResult},
         mounted() {
-            const queryString = window.location.search;
+            const savedStore = localStorage.getItem('lastSelectedStore');
+            if (savedStore) {
+                this.store = JSON.parse(savedStore);
+            }
 
+            const savedAddress = localStorage.getItem('lastClientAddress');
+            if (savedAddress) {
+                this.client.address = savedAddress;
+            }
+
+            const queryString = window.location.search;
             if (queryString) {
                 const urlParams = new URLSearchParams(queryString);
                 this.client.card = urlParams.get('client_card');
@@ -285,7 +294,6 @@
         methods: {
             reset() {
                 this.cart = [];
-                this.store = null;
                 this.message = null;
             },
             addToCart(product) {
@@ -315,10 +323,8 @@
             sumInCart(product) {
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             },
-            setStore(store) {
-                this.store = store;
-            },
             sendOrderEmail() {
+                localStorage.setItem('lastClientAddress', this.client.address);
                 fetch('http://portal.coffeebon.ru:8084/api/delivery/send/mail', {
                     method: 'POST',
                     body: JSON.stringify({

@@ -1,13 +1,13 @@
 <template>
     <form>
-        <select @input="selectStore" required style="width: 100%;">
-            <option :selected="!selected" :value="null">Кофейня не выбрана</option>
-            <option :key="idx" v-for="(store, idx) in stores">
+        <select :value="selectedName" @input="selectStore" id="store-select" required style="width: 100%;">
+            <option selected>Кофейня не выбрана</option>
+            <option :key="idx" :selected="store.name === selectedName" v-for="(store, idx) in stores">
                 {{ store.name }}
             </option>
         </select>
-        <div class="container" v-if="selected">
-            <a :href="selectedStoreMap" class="primary-text" target="_blank">КАРТА</a>
+        <div class="container" v-if="value">
+            <a :href="value.link" class="primary-text" target="_blank">КАРТА</a>
         </div>
         <div class="container">
             <ul>
@@ -29,7 +29,10 @@
     export default {
         name: "StoreSelector",
         props: {
-            selected: Object
+            value: {
+                type: Object,
+                default: null
+            }
         },
         data: () => ({
             stores: [
@@ -142,21 +145,18 @@
         methods: {
             selectStore(event) {
                 const name = event.target.value;
-                console.log(name);
-                if (name === null) {
-                    return;
+                if (name) {
+                    const store = this.stores.find(store => store.name === name);
+                    localStorage.setItem('lastSelectedStore', JSON.stringify(store));
+                    this.$emit('input', store);
                 }
-                this.$emit('select', this.stores.find(store => store.name === name));
+
             }
         },
         computed: {
-            selectedStoreMap() {
-                return this.selected.link;
+            selectedName() {
+                return this.value ? this.value.name : null;
             }
         }
     }
 </script>
-
-<style scoped>
-
-</style>

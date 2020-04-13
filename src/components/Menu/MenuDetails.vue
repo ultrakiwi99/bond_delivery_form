@@ -16,11 +16,9 @@
                     class="margin-bottom"
                     v-if="product.milks"/>
 
-            <Modifiers
-                    :modifiers="product.modifiers"
-                    :selected="modsSelected"
-                    @select="selectMod"
-                    class="margin-bottom"/>
+            <ModifiersList>
+                <Modifier :key="idx" :mod="mod" @select="selectMod" v-for="(mod, idx) in product.modifiers"/>
+            </ModifiersList>
 
             <div>
                 <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
@@ -35,13 +33,14 @@
 </template>
 
 <script>
-    import Modifiers from "@/components/Menu/Modifiers/Modifiers";
     import SizeSelector from "@/components/Size/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
+    import ModifiersList from "@/components/Menu/Modifiers/ModifiersList";
+    import Modifier from "@/components/Menu/Modifiers/Modifier";
 
     export default {
         name: "MenuDetails",
-        components: {ModifierSelector, SizeSelector, Modifiers},
+        components: {Modifier, ModifierSelector, SizeSelector, ModifiersList},
         props: {
             product: Object
         },

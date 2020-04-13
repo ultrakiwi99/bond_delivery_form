@@ -1,61 +1,48 @@
 <template>
-    <section class="card fluid app-section">
-        <div @click="$emit('makeVisible', product.id)" class="section" style="cursor: pointer">
-            <div style="display: flex; justify-content: space-between; align-items: center">
-                <span><strong>{{ product.name }}</strong></span>
-                <span v-if="isInCart">{{ qtyInCart }} на {{ sumInCart }} р.</span>
+    <div class="section product-details">
+        {{ product.comment }}
+        <div class="margin-bottom">
+            <SizeSelector
+                    :selected="sizeSelected"
+                    :sizes="product.sizes"
+                    @select="selectSize"
+                    class="margin-bottom"/>
+
+            <ModifierSelector
+                    :mods="product.milks"
+                    :selected="milkSelected"
+                    @select="selectMilk"
+                    class="margin-bottom"
+                    v-if="product.milks"/>
+
+            <MenuCardModifiers
+                    :modifiers="product.modifiers"
+                    :selected="modsSelected"
+                    @select="selectMod"
+                    class="margin-bottom"/>
+
+            <div>
+                <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
             </div>
+
+            <button @click="toCart" class="btn primary">
+                <span v-if="isInCart">Добавить еще!</span>
+                <span v-else>Добавить</span>
+            </button>
         </div>
-        <CollapseTransition>
-            <div class="section product-details" v-show="product.visible">
-                {{ product.comment }}
-                <div class="margin-bottom">
-                    <SizeSelector
-                            :selected="sizeSelected"
-                            :sizes="product.sizes"
-                            @select="selectSize"
-                            class="margin-bottom"/>
-
-                    <ModifierSelector
-                            :mods="product.milks"
-                            :selected="milkSelected"
-                            @select="selectMilk"
-                            class="margin-bottom"
-                            v-if="product.milks"/>
-
-                    <MenuCardModifiers
-                            :modifiers="product.modifiers"
-                            :selected="modsSelected"
-                            @select="selectMod"
-                            class="margin-bottom"/>
-
-                    <div>
-                        <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
-                    </div>
-
-                    <button @click="toCart" class="btn primary">
-                        <span v-if="isInCart">Добавить еще!</span>
-                        <span v-else>Добавить</span>
-                    </button>
-                </div>
-            </div>
-        </CollapseTransition>
-    </section>
+    </div>
 </template>
 
 <script>
     import MenuCardModifiers from "@/components/MenuCardModifiers";
     import SizeSelector from "@/components/Size/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
-    import {CollapseTransition} from "vue2-transitions";
 
     export default {
-        name: "MenuCard",
-        components: {ModifierSelector, SizeSelector, MenuCardModifiers, CollapseTransition},
+        name: "MenuDetails",
+        components: {ModifierSelector, SizeSelector, MenuCardModifiers},
         props: {
-            product: Object,
-            qtyInCart: Number,
-            sumInCart: Number
+            product: Object
         },
         beforeMount() {
             this.sizeSelected = this.product.sizes.find(size => size.selected);
@@ -113,12 +100,11 @@
         }
     }
 </script>
-<style lang="scss">
-    .app-section {
-        margin: 0 0.2rem;
-    }
 
+<style lang="scss" scoped>
     .product-details {
+        margin: 0 0.6rem;
+
         button {
             margin-left: 0;
         }

@@ -19,3 +19,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+/tests/unit/__snapshots__/SizeSelector.spec.js.snap
+/tests/unit/__snapshots__/StoreSelector.spec.js.snap

@@ -16,7 +16,7 @@
                     class="margin-bottom"
                     v-if="product.milks"/>
 
-            <MenuCardModifiers
+            <Modifiers
                     :modifiers="product.modifiers"
                     :selected="modsSelected"
                     @select="selectMod"
@@ -35,13 +35,13 @@
 </template>
 
 <script>
-    import MenuCardModifiers from "@/components/MenuCardModifiers";
+    import Modifiers from "@/components/Menu/Modifiers/Modifiers";
     import SizeSelector from "@/components/Size/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
 
     export default {
         name: "MenuDetails",
-        components: {ModifierSelector, SizeSelector, MenuCardModifiers},
+        components: {ModifierSelector, SizeSelector, Modifiers},
         props: {
             product: Object
         },

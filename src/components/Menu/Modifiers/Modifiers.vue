@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        name: "MenuCardModifiers",
+        name: "Modifiers",
         props: {
             modifiers: Array,
             selected: Array

@@ -349,22 +349,18 @@
                     ]
                 },
                 {
-                    name: 'Сезонное меню',
+                    name: 'Фирменное меню',
                     products: [
                         {
-                            id: '1234-aaa-3338',
-                            name: 'Флэт Уайт',
-                            comment: '',
+                            id: '1234-ffff-3338',
+                            name: 'Пряный Капучино',
+                            comment: 'Эспрессо, Молоко, Сироп Фисташка, Карамон, Соль',
                             sizes: [
-                                {short: "UNO", name: "Маленький", price: 118, selected: false},
-                                {short: "MEDIA", name: "Средний", price: 138, selected: true},
+                                {short: "MEDIA", name: "Средний", price: 168, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
                             ],
                             milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
@@ -381,47 +377,15 @@
                             visible: false
                         },
                         {
-                            id: '1234-aaa-3339',
-                            name: 'Кофе по-Венски',
-                            comment: '',
+                            id: '1234-ffff-3339',
+                            name: 'Ежевика в Шоколаде',
+                            comment: 'Эспрессо, Молоко, Какао, Сиропы: Ежевика и Шоколадное Печенье',
                             sizes: [
-                                {short: "MEDIA", name: "Средний", price: 159, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 188, selected: false}
+                                {short: "MEDIA", name: "Средний", price: 168, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
                             ],
                             milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
-                            ],
-                            modifiers: [
-                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
-                                {
-                                    name: 'Сироп',
-                                    price: 29,
-                                    selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
-                                }
-                            ],
-                            visible: false
-                        },
-                        {
-                            id: '1234-aaa-3340',
-                            name: 'Кофе Мокко',
-                            comment: '',
-                            sizes: [
-                                {short: "MEDIA", name: "Средний", price: 159, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 188, selected: false}
-                            ],
-                            milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
@@ -438,20 +402,15 @@
                             visible: false
                         },
                         {
-                            id: '1234-aaa-3341',
-                            name: 'Какао',
-                            comment: '',
+                            id: '1234-ffff-33340',
+                            name: 'Латте Сливочный Банан',
+                            comment: 'Эспрессо, Молоко, Сливки, Взбитые сливки, Сиропы Банан и Брауни',
                             sizes: [
-                                {short: "UNO", name: "Маленький", price: 99, selected: false},
-                                {short: "MEDIA", name: "Средний", price: 129, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 149, selected: false}
+                                {short: "MEDIA", name: "Средний", price: 168, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
                             ],
                             milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
@@ -468,20 +427,15 @@
                             visible: false
                         },
                         {
-                            id: '1234-aaa-3342',
-                            name: 'Горячий шоколад',
-                            comment: '',
+                            id: '1234-ffff-3341',
+                            name: 'Ванильный Крем-Латте',
+                            comment: 'Эспрессо, Молоко, Сливки, Сиропы Персик и Французская ваниль',
                             sizes: [
-                                {short: "UNO", name: "Маленький", price: 149, selected: false},
-                                {short: "MEDIA", name: "Средний", price: 178, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 197, selected: false}
+                                {short: "MEDIA", name: "Средний", price: 168, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
                             ],
                             milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
@@ -496,27 +450,145 @@
                                 }
                             ],
                             visible: false
-                        }
+                        },
+                        {
+                            id: '1234-ffff-3342',
+                            name: 'Флэт Кортадо Бон',
+                            comment: 'Два Эспрессо, Топлёное молоко, Сироп Нуга',
+                            sizes: [
+                                {short: "MEDIA", name: "Средний", price: 188, selected: true},
+                            ],
+                            milks: [
+                                {name: "Топлёное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                            ],
+                            modifiers: [
+                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
+                                {
+                                    name: 'Сироп',
+                                    price: 29,
+                                    selected: false,
+                                    comment: 'В комментариях укажите какой сироп.'
+                                }
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-ffff-3343',
+                            name: 'Баунти Флэт',
+                            comment: 'Два Эспрессо, Молоко, Какао, Сироп кокос, Кокосовая Стружка',
+                            sizes: [
+                                {short: "MEDIA", name: "Средний", price: 188, selected: true},
+                            ],
+                            milks: [
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                            ],
+                            modifiers: [
+                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
+                                {
+                                    name: 'Сироп',
+                                    price: 29,
+                                    selected: false,
+                                    comment: 'В комментариях укажите какой сироп.'
+                                }
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-ffff-3344',
+                            name: 'РАФ Канзас',
+                            comment: 'Эспрессо, Молоко, Арахисовая Паста, Сироп Поп-Корн',
+                            sizes: [
+                                {short: "MEDIA", name: "Средний", price: 168, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
+                            ],
+                            milks: [
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                            ],
+                            modifiers: [
+                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
+                                {
+                                    name: 'Сироп',
+                                    price: 29,
+                                    selected: false,
+                                    comment: 'В комментариях укажите какой сироп.'
+                                }
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-ffff-3345',
+                            name: 'РАФ Классический',
+                            comment: 'Эспрессо, Молоко, Сливки, Ванильный Сахар',
+                            sizes: [
+                                {short: "MEDIA", name: "Средний", price: 168, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
+                            ],
+                            milks: [
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                            ],
+                            modifiers: [
+                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
+                                {
+                                    name: 'Сироп',
+                                    price: 29,
+                                    selected: false,
+                                    comment: 'В комментариях укажите какой сироп.'
+                                }
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-ffff-3346',
+                            name: 'Матча Латте',
+                            comment: 'Молоко, Сиропы Матча и Фисташка',
+                            sizes: [
+                                {short: "MEDIA", name: "Средний", price: 128, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 157, selected: true},
+                            ],
+                            milks: [
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                            ],
+                            modifiers: [
+                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
+                                {
+                                    name: 'Сироп',
+                                    price: 29,
+                                    selected: false,
+                                    comment: 'В комментариях укажите какой сироп.'
+                                }
+                            ],
+                            visible: false
+                        },
                     ]
                 },
                 {
-                    name: 'Еще какое-то меню',
+                    name: 'Сезонное Меню',
                     products: [
                         {
-                            id: '1234-aaa-3333',
-                            name: 'Капучино',
+                            id: '1234-ssss-3346',
+                            name: 'Неправильные Пчёлы',
                             comment: '',
                             sizes: [
-                                {short: "UNO", name: "Маленький", price: 99, selected: false},
-                                {short: "MEDIA", name: "Средний", price: 128, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 157, selected: false}
+                                {short: "MEDIA", name: "Средний", price: 158, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 179, selected: true},
                             ],
                             milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
@@ -533,20 +605,15 @@
                             visible: false
                         },
                         {
-                            id: '1234-aaa-3334',
-                            name: 'Латте',
+                            id: '1234-ssss-3348',
+                            name: 'Инди-Латтэ',
                             comment: '',
                             sizes: [
-                                {short: "UNO", name: "Маленький", price: 99, selected: false},
-                                {short: "MEDIA", name: "Средний", price: 128, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 157, selected: false}
+                                {short: "MEDIA", name: "Средний", price: 138, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 169, selected: true},
                             ],
                             milks: [
-                                {name: "Обычное", price: 0},
-                                {name: "Банановое", price: 59},
-                                {name: "Кокосовое", price: 59},
-                                {name: "Соевое", price: 59},
-                                {name: "Овсяное", price: 59}
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
@@ -563,18 +630,20 @@
                             visible: false
                         },
                         {
-                            id: '1234-aaa-3335',
-                            name: 'Американо',
+                            id: '1234-ssss-3347',
+                            name: 'Клуб Романтики',
                             comment: '',
                             sizes: [
-                                {short: "UNO", name: "Маленький", price: 79, selected: false},
-                                {short: "MEDIA", name: "Средний", price: 108, selected: true},
-                                {short: "GRANDE", name: "Большой", price: 137, selected: false}
+                                {short: "MEDIA", name: "Средний", price: 178, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 199, selected: true},
+                            ],
+                            milks: [
+                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
-                                {name: 'Сливки (50 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Молоко (50 гр)', price: 19, selected: false, comment: ''},
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
+                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
                                 {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
                                 {
                                     name: 'Сироп',
@@ -585,7 +654,7 @@
                             ],
                             visible: false
                         }
-                    ]
+                    ]  
                 }
             ],
             categoryIdx: 0,

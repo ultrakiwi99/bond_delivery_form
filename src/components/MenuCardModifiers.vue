@@ -1,5 +1,5 @@
 <template>
-    <section class="menu-mods">
+    <section v-if="modifiers.length>0" class="menu-mods">
         <span class="secondary-text">Добавить</span>
         <div :key="mod.name" v-for="(mod,idx) in modifiers">
             <label class="mod-select">

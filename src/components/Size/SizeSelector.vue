@@ -1,6 +1,6 @@
 <template>
     <div class="size-selector">
-        <div class="secondary-text" style="margin-bottom: 0.5rem">Размер</div>
+        <!-- <div class="secondary-text" style="margin-bottom: 0.5rem">Размер</div>-->
         <button
                 :class="{'selected': isSelected(size), 'primary': !isSelected(size)}"
                 :key="idx"

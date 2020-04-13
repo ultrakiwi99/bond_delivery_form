@@ -6,6 +6,7 @@
                     :selected="sizeSelected"
                     :sizes="product.sizes"
                     @select="selectSize"
+                    style="margin-top: 0.5rem"
                     class="margin-bottom"/>
 
             <ModifierSelector

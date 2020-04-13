@@ -7,7 +7,8 @@
             </option>
         </select>
         <div class="container" v-if="value">
-            <a :href="value.link" class="primary-text" target="_blank">КАРТА</a>
+            <div @click="mapVisible = !mapVisible" class="primary-text">{{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ КАРТУ'}}</div>
+            <img v-if="mapVisible" :src="value.link" />
         </div>
         <div class="container">
             <ul>
@@ -35,13 +36,14 @@
             }
         },
         data: () => ({
+            mapVisible: false,
             stores: [
                 {
                     name: `м. Черная Речка, Карельский пер., 3Б`,
                     link: `http://www.coffeebon.ru/delivery/img/kb6.jpg`
                 },
                 {
-                    name: `м. Финляндский Вокзал, ул. Академика Лебедева, 7`,
+                    name: `м. Площадь Ленина, ул. Академика Лебедева, 7`,
                     link: `http://www.coffeebon.ru/delivery/img/kb10.jpg`
                 },
                 {
@@ -51,10 +53,6 @@
                 {
                     name: `м. Автово, Автовская ул., 3`,
                     link: `http://www.coffeebon.ru/delivery/img/kb28.jpg`
-                },
-                {
-                    name: `м. Адмиралтейская, ул. Декабристов, 46`,
-                    link: `http://www.coffeebon.ru/delivery/img/kb33.jpg`
                 },
                 {
                     name: `м. Московские Ворота, Московский пр., 130`,

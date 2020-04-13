@@ -357,10 +357,98 @@
                             comment: 'Вафельное сердечко с нежной варёной сгущенкой, орехами и глазурью.',
                             sizes: [
                                 {short: "Шоколадное", name: "Шоколадное", price: 79, selected: false},
-                                {short: "Розовое", name: "Розовое", price: 79, selected: true},
+                                {short: "Клубничное", name: "Розовое", price: 79, selected: true},
                             ],
                             visible: false
                         },
+                        {
+                            id: '1234-kkkk-0002',
+                            name: 'Вафельная трубочка со сгущенкой',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 55, selected: true},
+                            ],
+                            comment: 'Вафельная трубочка с нежной варёной сгущенкой.',
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0003',
+                            name: 'Орешки со сгущёнкой',
+                            sizes: [
+                                {short: "упаковка 3 шт", name: "упаковка 3 шт", price: 55, selected: true},
+                            ],
+                            comment: 'Три орешка с варёной сгущенкой. Как в детстве!',
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0004',
+                            name: 'Кокосовая печенька',
+                            comment: 'Вкусная печенька из кокосовой стружки. Райское наслаждение!',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 38, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 89, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0005',
+                            name: 'Большое ореховое печенье',
+                            comment: 'Большое печенье с Лесным Орехом и Арахисом.',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 49, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 118, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0006',
+                            name: 'Конфета Кокосовая с Ананасом',
+                            comment: 'Кокосовая с Анонасом в Белой глазури.',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0007',
+                            name: 'Конфета Кокосовая с Клюквой',
+                            comment: 'Конфета Кокосовая с Клюквой в тёмной глазури.',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0008',
+                            name: 'Конфета Кокосовая с Вишней',
+                            comment: 'Конфета Кокосовая с Вишней в тёмной глазури.',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0008',
+                            name: 'Конфета Медовая с Хлопьями',
+                            comment: 'Конфета Медовая с Кукурузными хлопьями в темной глазури.',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-kkkk-0009',
+                            name: 'Конфета Медовая с Орехом',
+                            comment: 'Конфета Медовая с Орехом в тёмной глазури.',
+                            sizes: [
+                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
+                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                            ],
+                            visible: false
+                        }
 
                     ]
                 },

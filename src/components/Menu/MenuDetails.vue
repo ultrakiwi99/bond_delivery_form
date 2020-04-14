@@ -20,6 +20,8 @@
                 <Modifier :key="idx" :mod="mod" @select="selectMod" v-for="(mod, idx) in product.modifiers"/>
             </ModifiersList>
 
+            <textarea placeholder="Комментарий если нужно" rows="3" v-model="optionalComment"></textarea>
+
             <div>
                 <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
             </div>
@@ -54,7 +56,8 @@
             isVisible: false,
             sizeSelected: null,
             milkSelected: null,
-            modsSelected: []
+            modsSelected: [],
+            optionalComment: null
         }),
         methods: {
             selectSize(size) {
@@ -78,7 +81,8 @@
                     milk: this.milkSelected,
                     size: this.sizeSelected,
                     mods: this.modsSelected,
-                    price: this.totalPrice
+                    price: this.totalPrice,
+                    comment: this.optionalComment
                 })
             }
         },
@@ -108,5 +112,9 @@
         button {
             margin-left: 0;
         }
+    }
+
+    textarea {
+        width: 100%;
     }
 </style>

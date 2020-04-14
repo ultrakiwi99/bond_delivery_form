@@ -20,6 +20,9 @@
                         <span @click="$emit('remove', idx)" class="delete-icon">&times;</span>
                     </div>
                 </div>
+                <div class="comment" v-if="product.comment">
+                    {{ product.comment }}
+                </div>
             </li>
         </ul>
         <hr>
@@ -82,7 +85,13 @@
                     color: darkred;
                 }
             }
+        }
 
+        .comment {
+            border-left: lightslategrey 3px solid;
+            padding-left: 0.4rem;
+            font-size: 0.8rem;
+            font-style: italic;
         }
     }
 </style>

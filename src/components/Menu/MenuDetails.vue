@@ -66,11 +66,14 @@
                 this.milkSelected = this.product.milks.find(milk => milk.name === milkName);
             },
             toCart() {
+                const mods = this.product.modifiers
+                    ? this.product.modifiers.filter(mod => mod.selected)
+                    : [];
                 this.$emit('toCart', {
                     name: this.product.name,
                     milk: this.milkSelected,
                     size: this.sizeSelected,
-                    mods: this.product.modifiers.filter(mod => mod.selected),
+                    mods: mods,
                     price: this.totalPrice,
                     comment: this.optionalComment
                 })

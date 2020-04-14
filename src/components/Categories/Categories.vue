@@ -33,9 +33,7 @@
                     inline: "center"
                 });
                 this.selectedIdx = categoryElement.dataset.idx;
-                console.log("Selected category = "+categoryElement.dataset.idx);
                 this.$emit('select', categoryElement.dataset.idx);
-
             }
         }
     }

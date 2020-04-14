@@ -17,7 +17,7 @@
                     v-if="product.milks"/>
 
             <ModifiersList>
-                <Modifier :key="idx" :mod="mod" @select="selectMod" v-for="(mod, idx) in product.modifiers"/>
+                <Modifier :key="idx" :mod="mod" v-for="(mod, idx) in product.modifiers"/>
             </ModifiersList>
 
             <textarea placeholder="Комментарий если нужно" rows="3" v-model="optionalComment"></textarea>
@@ -56,7 +56,6 @@
             isVisible: false,
             sizeSelected: null,
             milkSelected: null,
-            modsSelected: [],
             optionalComment: null
         }),
         methods: {
@@ -66,21 +65,15 @@
             selectMilk(milkName) {
                 this.milkSelected = this.product.milks.find(milk => milk.name === milkName);
             },
-            selectMod(mod) {
-                for (let modIdx in this.modsSelected) {
-                    if (this.modsSelected[modIdx].name === mod.name) {
-                        this.modsSelected = this.modsSelected.filter(modSelected => modSelected.name !== mod.name);
-                        return;
-                    }
-                }
-                this.modsSelected.push(mod);
-            },
             toCart() {
+                const mods = this.product.modifiers
+                    ? this.product.modifiers.filter(mod => mod.selected)
+                    : [];
                 this.$emit('toCart', {
                     name: this.product.name,
                     milk: this.milkSelected,
                     size: this.sizeSelected,
-                    mods: this.modsSelected,
+                    mods: mods,
                     price: this.totalPrice,
                     comment: this.optionalComment
                 })
@@ -91,9 +84,9 @@
                 const milkPrice = this.milkSelected && this.milkSelected.price && this.milkSelected.price
                     ? this.milkSelected.price
                     : 0;
-                const modsPrice = this.modsSelected
-                    ? this.modsSelected.reduce((carry, mod) => carry + mod.price, 0)
-                    : 0;
+                const modsPrice = this.product.modifiers
+                    .filter(mod => mod.selected)
+                    .reduce((carry, mod) => carry + mod.price, 0);
 
 
                 return this.sizeSelected.price + milkPrice + modsPrice;

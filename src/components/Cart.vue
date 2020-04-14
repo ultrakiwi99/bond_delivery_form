@@ -10,6 +10,7 @@
                             <ul class="mods">
                                 <li :key="idx" v-for="(mod,idx) in product.mods">
                                     {{ mod.name }}
+                                    <span v-if="hasVariants(mod)">{{ variantsString(mod) }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -34,6 +35,14 @@
         components: {ProductName},
         props: {
             cartProducts: Array
+        },
+        methods: {
+            hasVariants(mod) {
+                return mod.variants && mod.variants.selected && mod.variants.selected.length > 0;
+            },
+            variantsString(mod) {
+                return `: ` + mod.variants.selected.join(', ');
+            }
         },
         computed: {
             total() {

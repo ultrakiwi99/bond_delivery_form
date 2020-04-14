@@ -47,13 +47,15 @@
             product: Object
         },
         beforeMount() {
-            this.resetToProps();
+            this.sizeSelected = this.product.sizes.find(size => size.selected);
+            if (this.product.milks) {
+                this.milkSelected = this.product.milks[0];
+            }
         },
         data: () => ({
             isVisible: false,
             sizeSelected: null,
             milkSelected: null,
-            modsSelected: [],
             optionalComment: null
         }),
         methods: {
@@ -63,29 +65,12 @@
             selectMilk(milkName) {
                 this.milkSelected = this.product.milks.find(milk => milk.name === milkName);
             },
-            resetToProps() {
-                this.modsSelected = [];
-                this.sizeSelected = this.product.sizes.find(size => size.selected);
-                if (this.product.milks) {
-                    this.milkSelected = this.product.milks[0];
-                }
-            },
-            selectMod(mod) {
-                for (let modIdx in this.modsSelected) {
-                    if (this.modsSelected[modIdx].name === mod.name) {
-                        this.modsSelected = this.modsSelected.filter(modSelected => modSelected.name !== mod.name);
-                        return;
-                    }
-                }
-                this.modsSelected.push(mod);
-            },
             toCart() {
-                this.resetToProps();
                 this.$emit('toCart', {
                     name: this.product.name,
                     milk: this.milkSelected,
                     size: this.sizeSelected,
-                    mods: this.modsSelected,
+                    mods: this.product.modifiers.filter(mod => mod.selected),
                     price: this.totalPrice,
                     comment: this.optionalComment
                 })

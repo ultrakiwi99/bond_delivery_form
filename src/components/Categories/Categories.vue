@@ -5,9 +5,9 @@
                 <span :data-idx="idx"
                       :key="idx"
                       @click="setCategory"
-                      class="category-name"
+                      :class="(idx == selectedIdx) ? 'category-name-selected' : 'category-name'"
                       v-for="(name,idx) in categoryNames">
-                    {{ name }}
+                    {{ name  }}
                 </span>
             </div>
         </div>
@@ -21,6 +21,9 @@
         props: {
             categoryNames: Array
         },
+        data: () => ({
+            selectedIdx: 0
+        }),
         methods: {
             setCategory(event) {
                 const categoryElement = event.target;
@@ -29,7 +32,10 @@
                     block: "center",
                     inline: "center"
                 });
+                this.selectedIdx = categoryElement.dataset.idx;
+                console.log("Selected category = "+categoryElement.dataset.idx);
                 this.$emit('select', categoryElement.dataset.idx);
+
             }
         }
     }
@@ -47,9 +53,19 @@
                 padding: 0.2rem 0.4rem;
                 margin: 0.2rem;
                 border-radius: 1rem;
-                background: greenyellow;
+                background: lightgrey;
                 cursor: pointer;
             }
+
+            .category-name-selected {
+                padding: 0.2rem 0.4rem;
+                margin: 0.2rem;
+                border-radius: 1rem;
+                background: darkviolet;
+                color: white;
+                cursor: pointer;
+            }
+
         }
     }
 </style>

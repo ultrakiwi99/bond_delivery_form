@@ -21,7 +21,7 @@
             </ModifiersList>
 
             <div>
-                <strong>Стоимость напитка: {{ totalPrice }} р.</strong>
+                <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
             </div>
 
             <button @click="toCart" class="btn primary">

@@ -787,15 +787,6 @@
             removeFromCart(removeIdx) {
                 this.cart = this.cart.filter((prod, idx) => idx !== removeIdx);
             },
-            makeVisibleCard(productId) {
-                this.menu.forEach(product => {
-                    if (product.id === productId) {
-                        product.visible = !product.visible;
-                    } else {
-                        product.visible = false;
-                    }
-                });
-            },
             cartProductsByProduct(product) {
                 return this.cart.filter(cartProduct => cartProduct.name === product.name)
             },
@@ -844,17 +835,3 @@
         }
     };
 </script>
-
-<style>
-    .primary-text {
-        color: #1976d2;
-    }
-
-    .secondary-text {
-        color: lightslategrey;
-    }
-
-    .danger-text {
-        color: darkred;
-    }
-</style>

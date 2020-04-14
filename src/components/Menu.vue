@@ -94,17 +94,13 @@
                             ],
                             modifiers: [
                                 {name: 'Взбитые сливки', price: 29, selected: true, comment: ''},
-                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: true, comment: ''},
+                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
                                 {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
                                 {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ['Один', 'Два']
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false

@@ -51,6 +51,10 @@
                     link: `http://www.coffeebon.ru/delivery/img/kb17.jpg`
                 },
                 {
+                    name: `м. Чернышевская, Моховая ул., 26`,
+                    link: `http://www.coffeebon.ru/delivery/img/kb18.jpg`
+                },
+                {
                     name: `м. Автово, Автовская ул., 3`,
                     link: `http://www.coffeebon.ru/delivery/img/kb28.jpg`
                 },

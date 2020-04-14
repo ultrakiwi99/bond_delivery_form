@@ -20,7 +20,7 @@
                 <Modifier :key="idx" :mod="mod" v-for="(mod, idx) in product.modifiers"/>
             </ModifiersList>
 
-            <textarea placeholder="Комментарий если нужно" rows="3" v-model="optionalComment"></textarea>
+            <textarea placeholder="Комментарий к блюду" rows="1" v-model="optionalComment"></textarea>
 
             <div>
                 <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
@@ -109,6 +109,6 @@
     }
 
     textarea {
-        width: 100%;
+        width: 99%;
     }
 </style>

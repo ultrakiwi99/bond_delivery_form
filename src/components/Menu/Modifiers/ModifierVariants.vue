@@ -46,9 +46,11 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: start;
 
         button {
+            font-size: 0.8rem;
+            padding: 5px 5px;
             width: 125px;
             color: white;
         }

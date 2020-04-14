@@ -49,14 +49,18 @@
             SendEmailResult
         },
         mounted() {
-            const savedStore = localStorage.getItem('lastSelectedStore');
-            if (savedStore) {
-                this.store = JSON.parse(savedStore);
-            }
+            try {
+                const savedStore = localStorage.getItem('lastSelectedStore');
+                if (savedStore) {
+                    this.store = JSON.parse(savedStore);
+                }
 
-            const savedAddress = localStorage.getItem('lastClientAddress');
-            if (savedAddress) {
-                this.client.address = savedAddress;
+                const savedAddress = localStorage.getItem('lastClientAddress');
+                if (savedAddress) {
+                    this.client.address = savedAddress;
+                }
+            } catch (e) {
+                console.log('Exception: ', e);
             }
 
             const queryString = window.location.search;
@@ -814,7 +818,13 @@
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             },
             sendOrderEmail() {
-                localStorage.setItem('lastClientAddress', this.client.address);
+
+                try {
+                    localStorage.setItem('lastClientAddress', this.client.address);
+                } catch (e) {
+                    console.log('Exception: ',e);
+                }
+
                 fetch('http://portal.coffeebon.ru:8084/api/delivery/send/mail', {
                     method: 'POST',
                     body: JSON.stringify({

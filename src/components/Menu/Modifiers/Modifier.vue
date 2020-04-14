@@ -9,7 +9,7 @@
         </label>
         <ModifierVariants
                 :variants="mod.variants.list"
-                v-if="mod.variants"
+                v-if="checked && mod.variants"
                 v-model="mod.variants.selected"/>
         <div class="secondary-text">
             <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
@@ -26,8 +26,12 @@
         props: {
             mod: Object
         },
+        data: () => ({
+            checked: false
+        }),
         methods: {
             select(mod) {
+                this.checked = !this.checked;
                 this.$emit('select', mod);
             }
         }

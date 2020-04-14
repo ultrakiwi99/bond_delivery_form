@@ -1,4 +1,4 @@
-<template functional>
+<template>
     <section class="menu-mods">
         <span class="secondary-text">Добавить</span>
         <slot/>

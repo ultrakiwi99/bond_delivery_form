@@ -1,7 +1,7 @@
 <template>
     <div class="modifier">
         <label>
-            <input :checked="checked" @input="select(mod)" type="checkbox"/>
+            <input type="checkbox" v-model="mod.selected"/>
             <span class="details">
                 <span>{{ mod.name }}</span>
                 <span class="price primary-text">{{ mod.price }}р.</span>
@@ -9,7 +9,7 @@
         </label>
         <ModifierVariants
                 :variants="mod.variants.list"
-                v-if="checked && mod.variants"
+                v-if="mod.selected && mod.variants"
                 v-model="mod.variants.selected"/>
         <div class="secondary-text">
             <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
@@ -26,15 +26,8 @@
         props: {
             mod: Object
         },
-        mounted() {
-            this.checked = this.mod.selected;
-        },
-        data: () => ({
-            checked: false
-        }),
         methods: {
             select(mod) {
-                this.checked = !this.checked;
                 this.$emit('select', mod);
             }
         }

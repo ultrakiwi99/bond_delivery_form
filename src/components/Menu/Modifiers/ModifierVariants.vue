@@ -44,14 +44,15 @@
 <style lang="scss" scoped>
     .variants {
         display: flex;
-        justify-content: center;
+        justify-content: left;
         flex-wrap: wrap;
         align-items: start;
 
         button {
+            margin: 3px;
             font-size: 0.8rem;
             padding: 5px 5px;
-            width: 125px;
+            /* width: 125px; */
             color: white;
         }
 

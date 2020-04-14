@@ -1,7 +1,7 @@
 <template>
     <div class="modifier">
         <label>
-            <input @input="select(mod)" type="checkbox"/>
+            <input :checked="checked" @input="select(mod)" type="checkbox"/>
             <span class="details">
                 <span>{{ mod.name }}</span>
                 <span class="price primary-text">{{ mod.price }}р.</span>
@@ -25,6 +25,9 @@
         components: {ModifierVariants},
         props: {
             mod: Object
+        },
+        mounted() {
+            this.checked = this.mod.selected;
         },
         data: () => ({
             checked: false

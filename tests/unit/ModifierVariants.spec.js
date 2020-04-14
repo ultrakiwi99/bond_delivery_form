@@ -5,30 +5,24 @@ describe('ModifierVariants', () => {
     const createWrapper = () => {
         return shallowMount(ModifierVariants, {
             propsData: {
-                value: ["Кленовый", "Черничный"],
+                value: ["Черничный"],
                 variants: ["Кленовый", "Черничный", "Малиновый"]
             }
         });
     };
 
-    it('Shows list of selected variants.', () => {
+    it('Shows list of variants. Selected variants are highlighted.', () => {
         const wrapper = createWrapper();
-        const expectedHtml = `<span>Кленовый</span><span>Черничный</span>`;
+        const expectedHtml = `<button class="secondary">Кленовый</button><button class="selected">Черничный</button><button class="secondary">Малиновый</button>`
 
         expect(wrapper.html()).toContain(expectedHtml);
-    });
-    it('Add button toggles variants list.', () => {
+    })
+    it('When variant is toggled emits input event with new lists of variants', () => {
         const wrapper = createWrapper();
-        const addBtn = wrapper.find('.btn-add-variant');
+        const button = wrapper.find('button');
 
-        expect(addBtn.exists()).toBe(true);
-        expect(wrapper.vm['variantsAreVisible']).toBe(false);
+        button.trigger('click');
 
-        addBtn.trigger('click');
-
-        expect(wrapper.vm['variantsAreVisible']).toBe(true);
-
-        addBtn.trigger('click');
-        expect(wrapper.vm['variantsAreVisible']).toBe(false);
+        expect(wrapper.emitted()['input'][0][0]).toEqual(['Черничный', 'Кленовый']);
     })
 })

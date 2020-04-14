@@ -1,17 +1,12 @@
 <template>
     <div class="variants">
-        <div class="selected">
-            <span :key="idx" @click="remove(name)" v-for="(name, idx) in value">{{name}}</span>
-            <button :class="{'close': variantsAreVisible}"
-                    @click="variantsAreVisible = !variantsAreVisible"
-                    class="btn-add-variant">
-                <strong v-if="!variantsAreVisible">+</strong>
-                <strong v-else>&times;</strong>
-            </button>
-        </div>
-        <div class="list" v-if="variantsAreVisible">
-            <span :key="idx" @click="add(name)" v-for="(name, idx) in variants">{{name}}</span>
-        </div>
+        <button
+                :class="{'selected': isSelected(variant), 'secondary': !isSelected(variant)}"
+                :key="idx"
+                @click="select(variant)"
+                v-for="(variant, idx) in variants"
+        >{{ variant }}
+        </button>
     </div>
 </template>
 
@@ -26,17 +21,15 @@
             variantsAreVisible: false
         }),
         methods: {
-            add(variantName) {
-                const existing = [...this.value];
-                if (!existing.includes(variantName)) {
-                    this.$emit('input', [...existing, variantName]);
+            select(variant) {
+                if (this.value.includes(variant)) {
+                    this.$emit('input', [...this.value.filter(name => name !== variant)]);
+                } else {
+                    this.$emit('input', [...this.value, variant]);
                 }
             },
-            remove(variantName) {
-                const existing = [...this.value];
-                if (existing.includes(variantName)) {
-                    this.$emit('input', [...existing.filter(name => name !== variantName)]);
-                }
+            isSelected(variant) {
+                return !!this.value.find(name => name === variant);
             }
         }
     }

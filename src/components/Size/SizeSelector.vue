@@ -1,12 +1,13 @@
 <template>
     <div class="size-selector">
-        <!-- <div class="secondary-text" style="margin-bottom: 0.5rem">Размер</div>-->
+        <div class="secondary-text" style="margin-bottom: 0.5rem">Размер</div>
         <button
                 :class="{'selected': isSelected(size), 'primary': !isSelected(size)}"
                 :key="idx"
                 @click="selectSize(size)"
                 v-for="(size, idx) in sizes">{{ size.short }}
         </button>
+        <span class="price" v-if="selected">{{ selected.price }} р.</span>
     </div>
 </template>
 
@@ -41,6 +42,11 @@
                 color: white;
                 background-color: #4a148c !important;;
             }
+        }
+
+        .price {
+            margin-left: 1rem;
+            color: #1976d2;
         }
     }
 </style>

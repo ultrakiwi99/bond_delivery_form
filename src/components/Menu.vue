@@ -844,3 +844,17 @@
         }
     };
 </script>
+
+<style>
+    .primary-text {
+        color: #1976d2;
+    }
+
+    .secondary-text {
+        color: lightslategrey;
+    }
+
+    .danger-text {
+        color: darkred;
+    }
+</style>

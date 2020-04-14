@@ -7,7 +7,10 @@
                 <span class="price primary-text">{{ mod.price }}р.</span>
             </span>
         </label>
-        <ModifierVariants :variants="mod.variants.list" v-if="mod.variants" v-model="mod.variants.selected"/>
+        <ModifierVariants
+                :variants="mod.variants.list"
+                v-if="mod.variants"
+                v-model="mod.variants.selected"/>
         <div class="secondary-text">
             <small v-if="mod.comment && mod.comment.length">{{ mod.comment }}</small>
         </div>

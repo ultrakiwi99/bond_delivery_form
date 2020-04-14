@@ -13,9 +13,13 @@ describe('ModifierVariants', () => {
 
     it('Shows list of variants. Selected variants are highlighted.', () => {
         const wrapper = createWrapper();
-        const expectedHtml = `<button class="secondary">Кленовый</button><button class="selected">Черничный</button><button class="secondary">Малиновый</button>`
+        const btn1 = `<button class="secondary">Кленовый</button>`;
+        const btn2 = `<button class="selected">Черничный</button>`;
+        const btn3 = `<button class="secondary">Малиновый</button>`;
 
-        expect(wrapper.html()).toContain(expectedHtml);
+        expect(wrapper.html()).toContain(btn1);
+        expect(wrapper.html()).toContain(btn2);
+        expect(wrapper.html()).toContain(btn3);
     })
     it('When variant is toggled emits input event with new lists of variants', () => {
         const wrapper = createWrapper();

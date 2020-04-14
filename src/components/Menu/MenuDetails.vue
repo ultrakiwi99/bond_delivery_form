@@ -16,11 +16,9 @@
                     class="margin-bottom"
                     v-if="product.milks"/>
 
-            <MenuCardModifiers
-                    :modifiers="product.modifiers"
-                    :selected="modsSelected"
-                    @select="selectMod"
-                    class="margin-bottom"/>
+            <ModifiersList>
+                <Modifier :key="idx" :mod="mod" @select="selectMod" v-for="(mod, idx) in product.modifiers"/>
+            </ModifiersList>
 
             <textarea placeholder="Комментарий если нужно" rows="3" v-model="optionalComment"></textarea>
 
@@ -37,13 +35,14 @@
 </template>
 
 <script>
-    import MenuCardModifiers from "@/components/MenuCardModifiers";
     import SizeSelector from "@/components/Size/SizeSelector";
     import ModifierSelector from "@/components/ModifierSelector";
+    import ModifiersList from "@/components/Menu/Modifiers/ModifiersList";
+    import Modifier from "@/components/Menu/Modifiers/Modifier";
 
     export default {
         name: "MenuDetails",
-        components: {ModifierSelector, SizeSelector, MenuCardModifiers},
+        components: {Modifier, ModifierSelector, SizeSelector, ModifiersList},
         props: {
             product: Object
         },

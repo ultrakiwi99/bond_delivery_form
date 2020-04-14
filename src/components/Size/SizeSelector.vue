@@ -36,10 +36,11 @@
     .size-selector {
         button {
             margin: 1px;
+            background-color: lightslategrey;
 
             &.selected {
                 color: white;
-                background-color: darkviolet;
+                background-color: #4a148c !important;;
             }
         }
 

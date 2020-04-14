@@ -101,7 +101,17 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: [
+                                            "Лавандовый",
+                                            "Черничный",
+                                            "Малиновый",
+                                            "Соевый",
+                                            "Еще другой",
+                                            "Третий"
+                                        ]
+                                    }
                                 }
                             ],
                             visible: false
@@ -131,7 +141,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Лавандовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false
@@ -154,7 +167,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false
@@ -193,9 +209,12 @@
                             modifiers: [
                                 {
                                     name: 'Сироп',
-                                    price: 0,
-                                    selected: true,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    price: 29,
+                                    selected: false,
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 },
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
                                 {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
@@ -228,7 +247,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false
@@ -256,7 +278,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false
@@ -285,7 +310,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false
@@ -315,7 +343,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false
@@ -345,7 +376,10 @@
                                     name: 'Сироп',
                                     price: 29,
                                     selected: false,
-                                    comment: 'В комментариях укажите какой сироп.'
+                                    variants: {
+                                        selected: [],
+                                        list: ["Кленовый", "Черничный", "Малиновый"]
+                                    }
                                 }
                             ],
                             visible: false

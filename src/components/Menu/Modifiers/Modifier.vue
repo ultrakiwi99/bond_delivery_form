@@ -25,11 +25,6 @@
         components: {ModifierVariants},
         props: {
             mod: Object
-        },
-        methods: {
-            select(mod) {
-                this.$emit('select', mod);
-            }
         }
     }
 </script>

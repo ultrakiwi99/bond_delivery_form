@@ -85,9 +85,10 @@
                     ? this.milkSelected.price
                     : 0;
                 const modsPrice = this.product.modifiers
-                    .filter(mod => mod.selected)
-                    .reduce((carry, mod) => carry + mod.price, 0);
-
+                    ? this.product.modifiers
+                        .filter(mod => mod.selected)
+                        .reduce((carry, mod) => carry + mod.price, 0)
+                    : 0;
 
                 return this.sizeSelected.price + milkPrice + modsPrice;
             },

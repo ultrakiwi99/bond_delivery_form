@@ -100,18 +100,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: [
-                                            "Лавандовый",
-                                            "Черничный",
-                                            "Малиновый",
-                                            "Соевый",
-                                            "Еще другой",
-                                            "Третий"
-                                        ]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -140,11 +129,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Лавандовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -166,11 +151,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -210,11 +191,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 },
                                 {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
                                 {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
@@ -246,11 +223,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -277,11 +250,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -309,11 +278,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -342,11 +307,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false
@@ -375,11 +336,7 @@
                                 {
                                     name: 'Сироп',
                                     price: 29,
-                                    selected: false,
-                                    variants: {
-                                        selected: [],
-                                        list: ["Кленовый", "Черничный", "Малиновый"]
-                                    }
+                                    selected: false
                                 }
                             ],
                             visible: false

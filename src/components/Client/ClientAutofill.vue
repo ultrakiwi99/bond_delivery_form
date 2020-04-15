@@ -8,32 +8,30 @@
     export default {
         name: "ClientAutofill",
         props: {
-            value: Object
+            client: Object
         },
-        mounted() {
+        beforeMount() {
             const queryString = window.location.search;
-            if (queryString) {
-                const urlParams = new URLSearchParams(queryString);
+            const urlParams = new URLSearchParams(queryString);
+            const card = urlParams.get('client_card');
+            const name = urlParams.get('client_name');
+            const phone = urlParams.get('client_phone');
 
-                this.$emit('input', {
-                    ...this.value,
-                    card: urlParams.get('client_card'),
-                    name: urlParams.get('client_name'),
-                    phone: urlParams.get('client_phone')
-                });
-            }
+            const clientInfo = {...this.client, card, name, phone};
+
+            this.$emit('fill', clientInfo);
+
             if (localStorage) {
                 const savedAddress = localStorage.getItem('lastClientAddress');
                 if (savedAddress) {
-                    this.$emit('input', {...this.value, address: savedAddress});
+                    this.$emit('fill', {...clientInfo, address: savedAddress});
                 }
             }
-            if (this.value.card) {
+
+            if (card) {
                 this.$api
-                    .getGuestInfo(this.value.card)
-                    .then(result => {
-                        console.log(result);
-                    })
+                    .getGuestInfo(card)
+                    .then(result => console.log(result))
                     .catch(error => console.log(error));
             }
         },

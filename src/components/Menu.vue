@@ -21,8 +21,8 @@
             <StoreAutofill v-model="store">
                 <StoreSelector v-model="store"/>
             </StoreAutofill>
-            <ClientAutofill v-model="client">
-                <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
+            <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
+                <Checkout :client="client" @makeOrder="sendOrderEmail"/>
             </ClientAutofill>
         </div>
     </div>
@@ -804,6 +804,9 @@
                         }
                     })
                     .catch(error => this.message = error.message);
+            },
+            setClient(client) {
+                this.client = client;
             }
         },
         computed: {

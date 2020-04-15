@@ -18,10 +18,8 @@
                 </MenuCard>
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-            <StoreAutofill v-model="store">
-                <StoreSelector v-model="store"/>
-            </StoreAutofill>
             <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
+                <StoreSelector v-model="store"/>
                 <Checkout :client="client" @makeOrder="sendOrderEmail"/>
             </ClientAutofill>
         </div>
@@ -39,7 +37,6 @@
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
     import ClientAutofill from "@/components/Client/ClientAutofill";
-    import StoreAutofill from "@/components/Client/StoreAutofill";
 
     export default {
         name: 'Menu',
@@ -53,8 +50,7 @@
             Hero,
             MenuCard,
             SendEmailResult,
-            ClientAutofill,
-            StoreAutofill
+            ClientAutofill
         },
         data: () => ({
             menu: [
@@ -759,7 +755,8 @@
                 name: null,
                 phone: null,
                 address: null,
-                comment: null
+                comment: null,
+                lastStore: null
             },
             message: null
         }),
@@ -802,12 +799,15 @@
                             localStorage.setItem('lastClientAddress', this.client.address);
                             localStorage.setItem('lastSelectedStore', JSON.stringify(this.store));
                         }
-                        this.$api.refreshUserInfo({...this.client});
+                        this.$api.refreshUserInfo({...this.client, lastStore: JSON.stringify(this.store)});
                     })
                     .catch(error => this.message = error.message);
             },
             setClient(client) {
                 this.client = client;
+                if (client.lastStore) {
+                    this.store = client.lastStore;
+                }
             }
         },
         computed: {

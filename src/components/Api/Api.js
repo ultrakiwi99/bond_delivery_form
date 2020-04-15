@@ -20,10 +20,10 @@ export default class Api {
         }));
     }
 
-    refreshUserInfo({card, name, phone, address}) {
+    refreshUserInfo({card, name, phone, address, lastStore}) {
         return this.makeApiCall(fetch(`${this.baseUrl}/delivery/guest/${card}`, {
             method: 'POST',
-            body: JSON.stringify({name, phone, address})
+            body: JSON.stringify({name, phone, address, lastStore})
         }));
     }
 

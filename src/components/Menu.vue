@@ -813,24 +813,12 @@
                 try {
                     localStorage.setItem('lastClientAddress', this.client.address);
                 } catch (e) {
-                    console.log('Exception: ',e);
+                    console.log('Exception: ', e);
                 }
 
-                fetch('http://portal.coffeebon.ru:8084/api/delivery/send/mail', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        client: {...this.client},
-                        order: [...this.cart],
-                        store: {...this.store}
-                    })
-                })
-                    .then(response => response.json())
-                    .then(json => {
-                        if (json.result === 'error') {
-                            throw Error(json.message);
-                        }
-                        this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
-                    })
+                this.$api
+                    .sendOrder(this.client, this.store, this.cart)
+                    .then(() => this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.')
                     .catch(error => this.message = error.message);
             }
         },

@@ -149,13 +149,6 @@
                 const name = event.target.value;
                 if (name) {
                     const store = this.stores.find(store => store.name === name);
-
-                    try {
-                        localStorage.setItem('lastSelectedStore', JSON.stringify(store));
-                    } catch(e) {
-                        console.log('Exception: ', e)
-                    }
-
                     this.$emit('input', store);
                 }
 

@@ -44,7 +44,7 @@
         margin-bottom: 1rem;
 
         .wrapper {
-            overflow-y: hidden;
+            overflow-y: scroll;
             overflow-scrolling: touch;
             -webkit-overflow-scrolling: touch;
             white-space: nowrap;

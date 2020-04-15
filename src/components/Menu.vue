@@ -18,8 +18,12 @@
                 </MenuCard>
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-            <StoreSelector v-model="store"/>
-            <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
+            <StoreAutofill v-model="store">
+                <StoreSelector v-model="store"/>
+            </StoreAutofill>
+            <ClientAutofill v-model="client">
+                <Checkout :client="client" @makeOrder="sendOrderEmail" v-if="cartHasProducts"/>
+            </ClientAutofill>
         </div>
     </div>
 </template>
@@ -34,6 +38,8 @@
     import Categories from "@/components/Categories/Categories";
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
+    import ClientAutofill from "@/components/Client/ClientAutofill";
+    import StoreAutofill from "@/components/Client/StoreAutofill";
 
     export default {
         name: 'Menu',
@@ -46,30 +52,9 @@
             Cart,
             Hero,
             MenuCard,
-            SendEmailResult
-        },
-        mounted() {
-            try {
-                const savedStore = localStorage.getItem('lastSelectedStore');
-                if (savedStore) {
-                    this.store = JSON.parse(savedStore);
-                }
-
-                const savedAddress = localStorage.getItem('lastClientAddress');
-                if (savedAddress) {
-                    this.client.address = savedAddress;
-                }
-            } catch (e) {
-                console.log('Exception: ', e);
-            }
-
-            const queryString = window.location.search;
-            if (queryString) {
-                const urlParams = new URLSearchParams(queryString);
-                this.client.card = urlParams.get('client_card');
-                this.client.name = urlParams.get('client_name');
-                this.client.phone = urlParams.get('client_phone');
-            }
+            SendEmailResult,
+            ClientAutofill,
+            StoreAutofill
         },
         data: () => ({
             menu: [
@@ -813,9 +798,9 @@
                     .sendOrder(this.client, this.store, this.cart)
                     .then(() => {
                         this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
-
                         if (localStorage) {
                             localStorage.setItem('lastClientAddress', this.client.address);
+                            localStorage.setItem('lastSelectedStore', JSON.stringify(this.store));
                         }
                     })
                     .catch(error => this.message = error.message);

@@ -4,7 +4,7 @@ export default class Api {
     }
 
     sendOrder(client, store, cart) {
-        return fetch(this.baseUrl + '/delivery/send/mail', {
+        return fetch(`${this.baseUrl}/delivery/send/mail`, {
             method: 'POST',
             body: JSON.stringify({
                 client: {...client},
@@ -19,5 +19,11 @@ export default class Api {
                 }
                 return json;
             });
+    }
+
+    getGuestInfo(cardId) {
+        return fetch(`${this.baseUrl}/delivery/guest/${cardId}`, {
+            method: 'GET'
+        });
     }
 }

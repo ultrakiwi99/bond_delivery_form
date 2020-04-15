@@ -14,6 +14,7 @@
             const queryString = window.location.search;
             if (queryString) {
                 const urlParams = new URLSearchParams(queryString);
+
                 this.$emit('input', {
                     ...this.value,
                     card: urlParams.get('client_card'),
@@ -26,6 +27,14 @@
                 if (savedAddress) {
                     this.$emit('input', {...this.value, address: savedAddress});
                 }
+            }
+            if (this.value.card) {
+                this.$api
+                    .getGuestInfo(this.value.card)
+                    .then(result => {
+                        console.log(result);
+                    })
+                    .catch(error => console.log(error));
             }
         },
     }

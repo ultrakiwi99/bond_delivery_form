@@ -66,9 +66,15 @@
                 this.milkSelected = this.product.milks.find(milk => milk.name === milkName);
             },
             toCart() {
-                const mods = this.product.modifiers
-                    ? this.product.modifiers.filter(mod => mod.selected)
-                    : [];
+                const mods = JSON.parse(JSON.stringify(this.product.modifiers.filter(mod => mod.selected)));
+                if (mods.length > 0) {
+                    const modsWithNoSelectedVariants = mods.filter(
+                        mod => mod.variants && mod.variants.selected.length < 1
+                    );
+                    if (modsWithNoSelectedVariants.length > 0) {
+                        return;
+                    }
+                }
                 this.$emit('toCart', {
                     name: this.product.name,
                     milk: this.milkSelected,

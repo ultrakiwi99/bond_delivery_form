@@ -802,6 +802,7 @@
                             localStorage.setItem('lastClientAddress', this.client.address);
                             localStorage.setItem('lastSelectedStore', JSON.stringify(this.store));
                         }
+                        this.$api.refreshUserInfo({...this.client});
                     })
                     .catch(error => this.message = error.message);
             },

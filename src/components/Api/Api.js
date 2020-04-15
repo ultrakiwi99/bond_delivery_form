@@ -4,24 +4,33 @@ export default class Api {
     }
 
     sendOrder(client, store, cart) {
-        return fetch(`${this.baseUrl}/delivery/send/mail`, {
+        return this.makeApiCall(fetch(`${this.baseUrl}/delivery/send/mail`, {
             method: 'POST',
             body: JSON.stringify({
                 client: {...client},
                 order: [...cart],
                 store: {...store}
             })
-        })
-            .then(response => response.json())
-            .then(json => this.validResult(json));
+        }));
     }
 
     getGuestInfo(cardId) {
-        return fetch(`${this.baseUrl}/delivery/guest/${cardId}`, {
+        return this.makeApiCall(fetch(`${this.baseUrl}/delivery/guest/${cardId}`, {
             method: 'GET'
-        })
+        }));
+    }
+
+    refreshUserInfo({card, name, phone, address}) {
+        return this.makeApiCall(fetch(`${this.baseUrl}/delivery/guest/${card}`, {
+            method: 'POST',
+            body: JSON.stringify({name, phone, address})
+        }));
+    }
+
+    makeApiCall(call) {
+        return call
             .then(response => response.json())
-            .then(json => this.validResult(json));
+            .then(json => this.validResult(json))
     }
 
     validResult(json) {

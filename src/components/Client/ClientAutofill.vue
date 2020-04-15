@@ -31,7 +31,7 @@
             if (card) {
                 this.$api
                     .getGuestInfo(card)
-                    .then(result => console.log(result))
+                    .then(client => this.$emit('fill', {...clientInfo, address: client.address}))
                     .catch(error => console.log(error));
             }
         },

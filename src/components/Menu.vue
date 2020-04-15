@@ -809,16 +809,15 @@
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             },
             sendOrderEmail() {
-
-                try {
-                    localStorage.setItem('lastClientAddress', this.client.address);
-                } catch (e) {
-                    console.log('Exception: ', e);
-                }
-
                 this.$api
                     .sendOrder(this.client, this.store, this.cart)
-                    .then(() => this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.')
+                    .then(() => {
+                        this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
+
+                        if (localStorage) {
+                            localStorage.setItem('lastClientAddress', this.client.address);
+                        }
+                    })
                     .catch(error => this.message = error.message);
             }
         },

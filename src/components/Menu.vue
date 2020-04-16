@@ -802,6 +802,10 @@
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             },
             sendOrderEmail() {
+                if (!this.store) {
+                    return;
+                }
+
                 this.$api
                     .sendOrder(this.client, this.store, this.cart)
                     .then(() => {

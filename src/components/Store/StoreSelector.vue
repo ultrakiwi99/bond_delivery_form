@@ -1,14 +1,15 @@
 <template>
     <form>
-        <select :value="selectedName" @input="selectStore" id="store-select" required style="width: 100%;">
-            <option :value="null" selected>Кофейня не выбрана</option>
-            <option :key="idx" :selected="store.name === selectedName" v-for="(store, idx) in stores">
-                {{ store.name }}
-            </option>
-        </select>
-        <div class="container" v-if="value">
-            <div @click="mapVisible = !mapVisible" class="primary-text">{{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ КАРТУ'}}</div>
-            <img v-if="mapVisible" :src="value.link" />
+        <VueSingleSelect
+                :options="stores.map(store => store.name)"
+                :placeholder="`Выберите кофейню`"
+                :requred="true"
+                v-model="selected"/>
+        <div class="container" v-if="selected">
+            <div @click="mapVisible = !mapVisible" class="primary-text">
+                {{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ КАРТУ'}}
+            </div>
+            <img :src="selectedStore.link" alt="Карта доставки КБ" v-if="mapVisible"/>
         </div>
         <div class="container">
             <ul>
@@ -27,8 +28,11 @@
 </template>
 
 <script>
+    import VueSingleSelect from "vue-single-select";
+
     export default {
         name: "StoreSelector",
+        components: {VueSingleSelect},
         props: {
             value: {
                 type: Object,
@@ -36,6 +40,7 @@
             }
         },
         data: () => ({
+            selected: null,
             mapVisible: false,
             stores: [
                 {
@@ -144,20 +149,22 @@
                 }
             ]
         }),
-        methods: {
-            selectStore(event) {
-                const name = event.target.value;
-                if (name) {
-                    const store = this.stores.find(store => store.name === name);
-                    this.$emit('input', store);
-                }
-
+        computed: {
+            selectedStore() {
+                return this.selected ? this.stores.find(store => store.name === this.selected) : null;
             }
         },
-        computed: {
-            selectedName() {
-                return this.value ? this.value.name : null;
+        watch: {
+            value() {
+                if (this.value) {
+                    this.selected = this.value.name;
+                }
+            },
+            selected() {
+                if (this.selected) {
+                    this.$emit('input', this.selectedStore);
+                }
             }
-        }
+        },
     }
 </script>

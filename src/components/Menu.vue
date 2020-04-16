@@ -12,9 +12,18 @@
                         :name="product.name"
                         @select="selectProduct"
                         v-for="(product, idx) in menu[categoryIdx].products">
-                    <Collapsable :selected-idx="idx" :visible-idx="productIdx">
-                        <MenuDetails :product="product" @toCart="addToCart"/>
-                    </Collapsable>
+                    <template v-slot:qty>
+                        <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                    </template>
+                    <template v-slot:default>
+                        <Collapsable :selected-idx="idx" :visible-idx="productIdx">
+                            <MenuDetails :product="product" @toCart="addToCart">
+                                <template v-slot:qty>
+                                    <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                                </template>
+                            </MenuDetails>
+                        </Collapsable>
+                    </template>
                 </MenuCard>
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
@@ -37,10 +46,12 @@
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
     import ClientAutofill from "@/components/Client/ClientAutofill";
+    import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
 
     export default {
         name: 'Menu',
         components: {
+            MenuQtyInCart,
             MenuDetails,
             Collapsable,
             Categories,
@@ -791,12 +802,16 @@
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
             },
             sendOrderEmail() {
+                if (!this.store) {
+                    return;
+                }
+
                 this.$api
                     .sendOrder(this.client, this.store, this.cart)
                     .then(() => {
                         this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
                         if (localStorage) {
-                            localStorage.setItem('lastClientAddress', this.client.address);
+                            localStorage.setItem('lastClientInfo', JSON.stringify(this.client));
                             localStorage.setItem('lastSelectedStore', JSON.stringify(this.store));
                         }
                         this.$api.refreshUserInfo({...this.client, lastStore: JSON.stringify(this.store)});

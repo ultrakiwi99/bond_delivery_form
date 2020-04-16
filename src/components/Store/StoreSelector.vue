@@ -1,7 +1,7 @@
 <template>
     <form>
         <select :value="selectedName" @input="selectStore" id="store-select" required style="width: 100%;">
-            <option selected>Кофейня не выбрана</option>
+            <option :value="null" selected>Кофейня не выбрана</option>
             <option :key="idx" :selected="store.name === selectedName" v-for="(store, idx) in stores">
                 {{ store.name }}
             </option>

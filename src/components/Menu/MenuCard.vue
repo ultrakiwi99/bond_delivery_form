@@ -3,7 +3,7 @@
         <div @click="$emit('select', idx)" class="section" style="cursor: pointer">
             <div style="display: flex; justify-content: space-between; align-items: center">
                 <span><strong>{{ name }}</strong></span>
-                <span v-if="qtyInCart > 0">{{ qtyInCart }} на {{ sumInCart }} р.</span>
+                <slot name="qty"></slot>
             </div>
         </div>
         <slot/>

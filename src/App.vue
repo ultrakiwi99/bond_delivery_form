@@ -6,7 +6,8 @@
 
 <style lang="scss">
     html {
-        width: 100vw;
+        width: 98vw;
+        margin: 0 auto;
         height: 100vh;
     }
 

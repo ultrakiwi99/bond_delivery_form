@@ -1,7 +1,7 @@
 <template>
     <div class="section product-details">
         {{ product.comment }}
-        <div class="margin-bottom">
+        <div>
             <SizeSelector
                     :selected="sizeSelected"
                     :sizes="product.sizes"
@@ -21,11 +21,11 @@
             </ModifiersList>
 
             <textarea
+                    class="fluid"
                     :rows="commentRows"
                     @click="commentClick"
                     @mouseleave="commentLeave"
                     placeholder="Комментарий к блюду"
-                    style="max-width: 400px"
                     v-model="optionalComment"></textarea>
 
             <div>

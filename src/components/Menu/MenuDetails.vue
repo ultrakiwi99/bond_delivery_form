@@ -1,7 +1,7 @@
 <template>
     <div class="section product-details">
         {{ product.comment }}
-        <div class="margin-bottom">
+        <div>
             <SizeSelector
                     :selected="sizeSelected"
                     :sizes="product.sizes"
@@ -20,7 +20,13 @@
                 <Modifier :key="idx" :mod="mod" v-for="(mod, idx) in product.modifiers"/>
             </ModifiersList>
 
-            <textarea placeholder="Комментарий к блюду" rows="1" v-model="optionalComment"></textarea>
+            <textarea
+                    class="fluid"
+                    :rows="commentRows"
+                    @click="commentClick"
+                    @mouseleave="commentLeave"
+                    placeholder="Комментарий к блюду"
+                    v-model="optionalComment"></textarea>
 
             <div>
                 <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
@@ -62,9 +68,16 @@
             isVisible: false,
             sizeSelected: null,
             milkSelected: null,
-            optionalComment: null
+            optionalComment: null,
+            commentRows: 1
         }),
         methods: {
+            commentClick() {
+                this.commentRows = 3;
+            },
+            commentLeave() {
+                this.commentRows = 1;
+            },
             selectSize(size) {
                 this.sizeSelected = size;
             },

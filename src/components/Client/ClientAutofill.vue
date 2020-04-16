@@ -25,12 +25,12 @@
                 const savedClient = localStorage.getItem('lastClientInfo');
                 if (savedClient) {
                     const savedClientInfo = JSON.parse(savedClient);
-                    console.log(savedClientInfo);
                     this.$emit('fill', {
                         ...clientInfo,
                         name: savedClientInfo.name,
                         phone: savedClientInfo.phone,
-                        address: savedClientInfo.address
+                        address: savedClientInfo.address,
+                        lastStore: JSON.parse(savedClientInfo.lastStore)
                     });
                 }
             }

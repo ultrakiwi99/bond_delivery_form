@@ -810,11 +810,11 @@
                     .sendOrder(this.client, this.store, this.cart)
                     .then(() => {
                         this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
+                        this.client.lastStore = JSON.stringify(this.store);
                         if (localStorage) {
                             localStorage.setItem('lastClientInfo', JSON.stringify(this.client));
-                            localStorage.setItem('lastSelectedStore', JSON.stringify(this.store));
                         }
-                        this.$api.refreshUserInfo({...this.client, lastStore: JSON.stringify(this.store)});
+                        this.$api.refreshUserInfo({...this.client});
                     })
                     .catch(error => this.message = error.message);
             },

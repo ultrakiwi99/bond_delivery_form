@@ -39,7 +39,7 @@
     }
 
     [type="checkbox"]:checked:before {
-        content: '\2732';
+        content: '\2713';
         font-size: 12px;
         margin-top: 8px;
         margin-left: 1px;

@@ -12,9 +12,18 @@
                         :name="product.name"
                         @select="selectProduct"
                         v-for="(product, idx) in menu[categoryIdx].products">
-                    <Collapsable :selected-idx="idx" :visible-idx="productIdx">
-                        <MenuDetails :product="product" @toCart="addToCart"/>
-                    </Collapsable>
+                    <template v-slot:qty>
+                        <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                    </template>
+                    <template v-slot:default>
+                        <Collapsable :selected-idx="idx" :visible-idx="productIdx">
+                            <MenuDetails :product="product" @toCart="addToCart">
+                                <template v-slot:qty>
+                                    <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                                </template>
+                            </MenuDetails>
+                        </Collapsable>
+                    </template>
                 </MenuCard>
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
@@ -37,10 +46,12 @@
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
     import ClientAutofill from "@/components/Client/ClientAutofill";
+    import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
 
     export default {
         name: 'Menu',
         components: {
+            MenuQtyInCart,
             MenuDetails,
             Collapsable,
             Categories,

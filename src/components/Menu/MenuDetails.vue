@@ -26,10 +26,12 @@
                 <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
             </div>
 
-            <button @click="toCart" class="btn primary">
-                <span v-if="isInCart">Добавить еще!</span>
-                <span v-else>Добавить</span>
-            </button>
+            <div class="buttons">
+                <button @click="toCart" class="btn primary">
+                    <span>Добавить</span>
+                </button>
+                <slot name="qty"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -44,7 +46,11 @@
         name: "MenuDetails",
         components: {Modifier, ModifierSelector, SizeSelector, ModifiersList},
         props: {
-            product: Object
+            product: Object,
+            qtyInCart: {
+                type: Number,
+                default: 0
+            }
         },
         beforeMount() {
             this.sizeSelected = this.product.sizes.find(size => size.selected);
@@ -66,7 +72,10 @@
                 this.milkSelected = this.product.milks.find(milk => milk.name === milkName);
             },
             toCart() {
-                const mods = JSON.parse(JSON.stringify(this.product.modifiers.filter(mod => mod.selected)));
+                const mods = this.product.modifiers
+                    ? JSON.parse(JSON.stringify(this.product.modifiers.filter(mod => mod.selected)))
+                    : [];
+
                 if (mods.length > 0) {
                     const modsWithNoSelectedVariants = mods.filter(
                         mod => mod.variants && mod.variants.selected.length < 1
@@ -75,11 +84,12 @@
                         return;
                     }
                 }
+
                 this.$emit('toCart', {
                     name: this.product.name,
                     milk: this.milkSelected,
                     size: this.sizeSelected,
-                    mods: mods,
+                    mods: mods ? mods : [],
                     price: this.totalPrice,
                     comment: this.optionalComment
                 })
@@ -112,6 +122,12 @@
         button {
             margin-left: 0;
         }
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     textarea {

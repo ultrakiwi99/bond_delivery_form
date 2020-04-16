@@ -29,7 +29,7 @@
                 const categoryElement = event.target;
                 categoryElement.scrollIntoView({
                     behavior: "smooth",
-                    block: "center",
+                    block: "nearest",
                     inline: "center"
                 });
                 this.selectedIdx = categoryElement.dataset.idx;

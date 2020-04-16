@@ -6,8 +6,8 @@
                 :requred="true"
                 v-model="selected"/>
         <div class="container" v-if="selected">
-            <div @click="mapVisible = !mapVisible" class="primary-text">{{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ
-                КАРТУ'}}
+            <div @click="mapVisible = !mapVisible" class="primary-text">
+                {{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ КАРТУ'}}
             </div>
             <img :src="selectedStore.link" alt="Карта доставки КБ" v-if="mapVisible"/>
         </div>

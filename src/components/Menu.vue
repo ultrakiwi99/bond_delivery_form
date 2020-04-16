@@ -811,7 +811,7 @@
                     .then(() => {
                         this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
                         if (localStorage) {
-                            localStorage.setItem('lastClientAddress', this.client.address);
+                            localStorage.setItem('lastClientInfo', JSON.stringify(this.client));
                             localStorage.setItem('lastSelectedStore', JSON.stringify(this.store));
                         }
                         this.$api.refreshUserInfo({...this.client, lastStore: JSON.stringify(this.store)});

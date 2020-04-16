@@ -22,9 +22,16 @@
             this.$emit('fill', clientInfo);
 
             if (localStorage) {
-                const savedAddress = localStorage.getItem('lastClientAddress');
-                if (savedAddress) {
-                    this.$emit('fill', {...clientInfo, address: savedAddress});
+                const savedClient = localStorage.getItem('lastClientInfo');
+                if (savedClient) {
+                    const savedClientInfo = JSON.parse(savedClient);
+                    console.log(savedClientInfo);
+                    this.$emit('fill', {
+                        ...clientInfo,
+                        name: savedClientInfo.name,
+                        phone: savedClientInfo.phone,
+                        address: savedClientInfo.address
+                    });
                 }
             }
 

@@ -7,6 +7,11 @@
                 <span class="price primary-text">{{ mod.price }}р.</span>
             </span>
         </label>
+
+        <CollapseTransition>
+            <div v-if="showVariantsError">Выберите от 1 до 3 вариантов</div>
+        </CollapseTransition>
+
         <ModifierVariants
                 :variants="mod.variants.list"
                 v-if="mod.selected && mod.variants"
@@ -19,12 +24,20 @@
 
 <script>
     import ModifierVariants from "@/components/Menu/Modifiers/ModifierVariants";
+    import {CollapseTransition} from "vue2-transitions";
 
     export default {
         name: "Modifier",
-        components: {ModifierVariants},
+        components: {ModifierVariants, CollapseTransition},
         props: {
             mod: Object
+        },
+        computed: {
+            showVariantsError() {
+                return this.mod.selected
+                    && this.mod.variants
+                    && this.mod.variants.selected.length === 0;
+            }
         }
     }
 </script>

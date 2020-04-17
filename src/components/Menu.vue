@@ -27,6 +27,7 @@
                 </MenuCard>
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
+            <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
             <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
                 <StoreSelector v-model="store"/>
                 <Checkout :client="client" @makeOrder="sendOrderEmail"/>
@@ -47,10 +48,12 @@
     import MenuDetails from "@/components/Menu/MenuDetails";
     import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
+    import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
 
     export default {
         name: 'Menu',
         components: {
+            FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,
             Collapsable,
@@ -769,7 +772,8 @@
                 comment: null,
                 lastStore: null
             },
-            message: null
+            message: null,
+            shouldSuggestCompProducts: false
         }),
         methods: {
             reset() {
@@ -828,6 +832,9 @@
         computed: {
             cartHasProducts() {
                 return this.cart.length > 0;
+            },
+            cartTotal() {
+                return this.cart.reduce((carry, product) => carry + product.price, 0);
             },
             categoryNames() {
                 return this.menu.map(category => category.name);

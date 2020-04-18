@@ -65,7 +65,7 @@
                 padding: 0.2rem 0.4rem;
                 margin: 0.2rem;
                 border-radius: 1rem;
-                background: darkviolet;
+                background: crimson;
                 color: white;
                 cursor: pointer;
             }

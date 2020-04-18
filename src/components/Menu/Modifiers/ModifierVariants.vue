@@ -61,7 +61,7 @@
         }
 
         button.selected {
-            background-color: #4a148c !important;
+            background-color: crimson !important;
         }
     }
 </style>

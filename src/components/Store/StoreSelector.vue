@@ -43,6 +43,7 @@
             selected: null,
             mapVisible: false,
             stores: [
+
                 {
                     name: `м. Черная Речка, Карельский пер., 3Б`,
                     link: `http://www.coffeebon.ru/delivery/img/kb6.jpg`
@@ -60,6 +61,14 @@
                     link: `http://www.coffeebon.ru/delivery/img/kb18.jpg`
                 },
                 {
+                    name: `м. Невский проспект, Ломоносова ул., 1`,
+                    link: `http://www.coffeebon.ru/delivery/img/kb16.jpg`
+                },
+                {
+                    name: `м. Сенная площадь, ул. Декабристов, 46`,
+                    link: `http://www.coffeebon.ru/delivery/img/kb33.jpg`
+                },
+                {
                     name: `м. Автово, Автовская ул., 3`,
                     link: `http://www.coffeebon.ru/delivery/img/kb28.jpg`
                 },
@@ -74,6 +83,10 @@
                 {
                     name: `м. Лесная, Большой Сампсониевский пр., 80`,
                     link: `http://www.coffeebon.ru/delivery/img/kb23.jpg`
+                },
+                {
+                    name: `м. Комендантский пр, ул. Шаврова 9А`,
+                    link: `http://www.coffeebon.ru/delivery/img/kb12.jpg`
                 },
                 {
                     name: `м. Комендантский пр, ул. Уточкина, 6`,
@@ -94,6 +107,10 @@
                 {
                     name: `м. Горьковская, ул. Малая Посадская, 19`,
                     link: `http://www.coffeebon.ru/delivery/img/kb3.jpg`
+                },
+                {
+                    name: `м. Горьковская, ул. Чапаева 15`,
+                    link: `http://www.coffeebon.ru/delivery/img/kb21.jpg`
                 },
                 {
                     name: `м. Чкаловская, Пионерская, 21`,

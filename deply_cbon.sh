@@ -6,12 +6,12 @@ if [ -d dist_cbon ]; then
 fi
 
 cp -r dist/ dist_cbon
-cd dist_cbon
+cd dist_cbon || exit 1
 
 sed -i -e 's/href=\//href=\/delivery\//g' index.html
 sed -i -e 's/src=\//src=\/delivery\//g' index.html
 
-scp -r * root@192.168.25.9:/www/coffeebon/delivery/
+scp -r -P 8022 ./* root@81.94.19.25:/www/coffeebon/delivery
 
 cd ..
 

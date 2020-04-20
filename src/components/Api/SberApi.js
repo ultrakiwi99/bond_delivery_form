@@ -5,7 +5,7 @@ export default class SberApi {
         this.password = 'coffeebon';
     }
 
-    getRegisterUrl() {
+    getRegisterUrl(amount) {
         return fetch(this.registerUrl, {
             method: 'POST',
             headers: {
@@ -13,7 +13,9 @@ export default class SberApi {
             },
             body: JSON.stringify({
                 userName: this.userName,
-                password: this.password
+                password: this.password,
+                amount: amount,
+                returnUrl: 'coffeebon.ru'
             })
         });
     }

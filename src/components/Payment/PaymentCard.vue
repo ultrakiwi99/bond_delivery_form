@@ -1,20 +1,42 @@
 <template>
     <div>
         <div class="payment-description">
-            It is a long established fact that a reader will be distracted by the readable content of a page when
-            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
-            letters, as opposed to using 'Content here, content here', making it look like readable English. Many
-            desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a
-            search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
-            over the years, sometimes by accident, sometimes on purpose (injected humour and the like)...
+            <p>
+                Для оплаты (ввода реквизитов Вашей карты) Вы будете перенаправлены на платёжный шлюз ПАО СБЕРБАНК.
+                Соединение с платёжным шлюзом и передача информации осуществляется в защищённом режиме с использованием
+                протокола шифрования SSL. В случае если Ваш банк поддерживает технологию безопасного проведения
+                интернет-платежей Verified By Visa, MasterCard SecureCode, MIR Accept, J-Secure для проведения платежа
+                также
+                может потребоваться ввод специального пароля.
+            </p>
+            <p>
+                Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации
+                обеспечивается ПАО СБЕРБАНК. Введённая информация не будет предоставлена третьим лицам за исключением
+                случаев, предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в
+                строгом соответствии с требованиями платёжных систем МИР, Visa Int., MasterCard Europe Sprl, JCB.
+            </p>
         </div>
-        <a :href="'#'" class="button primary">Оплатить</a>
+        <button :disabled="!this.registerUrl" @click="goToPayment" class="primary">Оплатить</button>
     </div>
 </template>
 
 <script>
     export default {
-        name: "PaymentCard"
+        name: "PaymentCard",
+        beforeMount() {
+            this.$sber
+                .getRegisterUrl()
+                .then(result => result.json())
+                .then(json => console.log(json));
+        },
+        data: () => ({
+            registerUrl: null
+        }),
+        methods: {
+            goToPayment() {
+                window.location.href = this.registerUrl;
+            }
+        }
     }
 </script>
 

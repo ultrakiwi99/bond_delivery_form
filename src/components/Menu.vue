@@ -30,11 +30,11 @@
             <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
             <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
                 <StoreSelector v-model="store"/>
-                <Checkout :client="client" @makeOrder="sendOrderEmail"/>
+                <Checkout :client="client"/>
             </ClientAutofill>
             <PaymentFrom>
                 <PaymentSelector v-model="paymentType">
-                    <PaymentOffline v-if="paymentType === 'offline'"/>
+                    <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>
                     <PaymentCard v-if="paymentType === 'online'"/>
                 </PaymentSelector>
             </PaymentFrom>

@@ -1,5 +1,5 @@
 <template>
-    <button>Оформить заказ</button>
+    <button @click="$emit('makeOrder')" role="button">Заказать</button>
 </template>
 
 <script>
@@ -7,7 +7,3 @@
         name: "PaymentOffline"
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -29,6 +29,12 @@
                 .then(result => result.json())
                 .then(json => console.log(json));
         },
+        props: {
+            amount: {
+                type: Number,
+                default: null
+            }
+        },
         data: () => ({
             registerUrl: null
         }),

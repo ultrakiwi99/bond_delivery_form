@@ -35,7 +35,7 @@
             <PaymentFrom>
                 <PaymentSelector v-model="paymentType">
                     <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>
-                    <PaymentCard v-if="paymentType === 'online'"/>
+                    <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>
                 </PaymentSelector>
             </PaymentFrom>
         </div>

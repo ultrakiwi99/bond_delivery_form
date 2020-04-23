@@ -30,8 +30,14 @@
             <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
             <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
                 <StoreSelector v-model="store"/>
-                <Checkout :client="client" @makeOrder="sendOrderEmail"/>
+                <Checkout :client="client"/>
             </ClientAutofill>
+            <PaymentFrom>
+                <PaymentSelector v-model="paymentType">
+                    <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>
+                    <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>
+                </PaymentSelector>
+            </PaymentFrom>
         </div>
     </div>
 </template>
@@ -49,10 +55,18 @@
     import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
     import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
+    import PaymentFrom from "@/components/Payment/PaymentFrom";
+    import PaymentSelector from "@/components/Payment/PaymentSelector";
+    import PaymentOffline from "@/components/Payment/PaymentOffline";
+    import PaymentCard from "@/components/Payment/PaymentCard";
 
     export default {
         name: 'Menu',
         components: {
+            PaymentCard,
+            PaymentOffline,
+            PaymentSelector,
+            PaymentFrom,
             FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,
@@ -773,7 +787,8 @@
                 lastStore: null
             },
             message: null,
-            shouldSuggestCompProducts: false
+            shouldSuggestCompProducts: false,
+            paymentType: 'offline'
         }),
         methods: {
             reset() {

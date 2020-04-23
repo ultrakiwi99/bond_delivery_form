@@ -32,12 +32,12 @@
                 <StoreSelector v-model="store"/>
                 <Checkout :client="client"/>
             </ClientAutofill>
-            <PaymentFrom>
+            <PaymentForm v-if="this.cartTotal > 0">
                 <PaymentSelector v-model="paymentType">
                     <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>
                     <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>
                 </PaymentSelector>
-            </PaymentFrom>
+            </PaymentForm>
         </div>
     </div>
 </template>
@@ -55,7 +55,7 @@
     import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
     import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
-    import PaymentFrom from "@/components/Payment/PaymentFrom";
+    import PaymentForm from "@/components/Payment/PaymentForm";
     import PaymentSelector from "@/components/Payment/PaymentSelector";
     import PaymentOffline from "@/components/Payment/PaymentOffline";
     import PaymentCard from "@/components/Payment/PaymentCard";
@@ -66,7 +66,7 @@
             PaymentCard,
             PaymentOffline,
             PaymentSelector,
-            PaymentFrom,
+            PaymentForm,
             FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,

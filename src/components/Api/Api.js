@@ -14,6 +14,15 @@ export default class Api {
         }));
     }
 
+    getPaymentUrl(amount) {
+        const orderNumber = Math.round((Math.random() * 100000000));
+        amount = Math.round((amount * 100));
+
+        return this.makeApiCall(
+            fetch(`${this.baseUrl}/payment/sberbank/url?amount=${amount}&orderNumber=${orderNumber}`)
+        )
+    }
+
     getGuestInfo(cardId) {
         return this.makeApiCall(fetch(`${this.baseUrl}/delivery/guest/${cardId}`, {
             method: 'GET'

@@ -1,6 +1,6 @@
 <template>
     <section class="card fluid app-section">
-        <div @click="$emit('select', idx)" class="section" style="cursor: pointer">
+        <div @click="$emit('select', idx)" class="section product-header" style="cursor: pointer">
             <div style="display: flex; justify-content: space-between; align-items: center">
                 <span><strong>{{ name }}</strong></span>
                 <slot name="qty"></slot>

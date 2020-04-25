@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="milk-selector">
         <span class="secondary-text">Молоко</span>
         <label>
             <select @input="select">

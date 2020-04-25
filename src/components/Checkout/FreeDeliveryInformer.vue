@@ -1,6 +1,5 @@
 <template>
-    <section class="card fluid">
-        <div class="section">
+        <section class="card section fluid">
             <div v-if="total < freeDeliverySum">
                 Сумма с доставкой: <strong class="total-with-delivery">{{ total + deliverySum }} р.</strong>
                 <br>
@@ -10,8 +9,7 @@
             <div class="free-delivery-notice" v-else>
                 Доставка бесплатно! )
             </div>
-        </div>
-    </section>
+        </section>
 </template>
 
 <script>

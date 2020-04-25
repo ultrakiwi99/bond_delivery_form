@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="store-selector">
         <select v-model="selected">
             <option :value="null">--- Выберите кофейню</option>
             <option :key="store.name" :value="store" v-for="store in stores">

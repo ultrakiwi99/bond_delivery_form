@@ -30,7 +30,7 @@
             <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
             <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
                 <StoreSelector v-model="store"/>
-                <Checkout :client="client"/>
+                <CheckoutForm :client="client"/>
                 <button @click="sendOrderEmail" role="button">Заказать</button>
             </ClientAutofill>
         </div>
@@ -41,7 +41,7 @@
     import MenuCard from "@/components/Menu/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
-    import Checkout from "@/components/Checkout/Checkout";
+    import CheckoutForm from "@/components/Checkout/CheckoutForm";
     import StoreSelector from "@/components/Store/StoreSelector";
     import SendEmailResult from "@/components/SendEmailResult";
     import Categories from "@/components/Categories/Categories";
@@ -60,7 +60,7 @@
             Collapsable,
             Categories,
             StoreSelector,
-            Checkout,
+            CheckoutForm,
             Cart,
             Hero,
             MenuCard,

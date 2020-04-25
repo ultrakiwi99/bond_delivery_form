@@ -10,7 +10,7 @@
 
 <script>
     export default {
-        name: "Checkout",
+        name: "CheckoutForm",
         props: {
             client: Object
         }

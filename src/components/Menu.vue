@@ -1,44 +1,32 @@
 <template>
     <div>
-        <SendEmailResult :message="message" @reset="reset" v-if="message"/>
-        <div v-else>
-            <Hero title="Заказ Доставки"/>
-            <Categories :category-names="categoryNames" @select="selectCategory">
-                <MenuCard
-                        :idx="idx"
-                        :qty-in-cart="qtyInCart(product)"
-                        :sum-in-cart="sumInCart(product)"
-                        :key="idx"
-                        :name="product.name"
-                        @select="selectProduct"
-                        v-for="(product, idx) in menu[categoryIdx].products">
-                    <template v-slot:qty>
-                        <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
-                    </template>
-                    <template v-slot:default>
-                        <Collapsable :selected-idx="idx" :visible-idx="productIdx">
-                            <MenuDetails :product="product" @toCart="addToCart">
-                                <template v-slot:qty>
-                                    <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
-                                </template>
-                            </MenuDetails>
-                        </Collapsable>
-                    </template>
-                </MenuCard>
-            </Categories>
-            <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-            <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
-            <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
-                <StoreSelector v-model="store"/>
-                <Checkout :client="client"/>
-                <button @click="sendOrderEmail" role="button">Заказать</button>
-            </ClientAutofill>
-            <!--            <PaymentForm v-if="this.cartTotal > 0">-->
-            <!--                <PaymentSelector v-model="paymentType">-->
-            <!--                    <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>-->
-            <!--                    <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>-->
-            <!--                </PaymentSelector>-->
-            <!--            </PaymentForm>-->
+        <Hero title="Заказ Доставки"/>
+        <Categories :category-names="categoryNames" @select="selectCategory">
+            <MenuCard
+                    :idx="idx"
+                    :key="idx"
+                    :name="product.name"
+                    :qty-in-cart="qtyInCart(product)"
+                    :sum-in-cart="sumInCart(product)"
+                    @select="selectProduct"
+                    v-for="(product, idx) in menu[categoryIdx].products">
+                <template v-slot:qty>
+                    <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                </template>
+                <template v-slot:default>
+                    <Collapsable :selected-idx="idx" :visible-idx="productIdx">
+                        <MenuDetails :product="product" @toCart="addToCart">
+                            <template v-slot:qty>
+                                <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                            </template>
+                        </MenuDetails>
+                    </Collapsable>
+                </template>
+            </MenuCard>
+        </Categories>
+        <div class="cart-wrapper" v-if="cart.length > 0">
+            <Cart/>
+            <button @click="$router.push('/checkout')" class="primary">Заказать</button>
         </div>
     </div>
 </template>
@@ -47,39 +35,21 @@
     import MenuCard from "@/components/Menu/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
-    import Checkout from "@/components/Checkout/Checkout";
-    import StoreSelector from "@/components/Store/StoreSelector";
-    import SendEmailResult from "@/components/SendEmailResult";
     import Categories from "@/components/Categories/Categories";
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
-    import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
-    import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
-    // import PaymentForm from "@/components/Payment/PaymentForm";
-    // import PaymentSelector from "@/components/Payment/PaymentSelector";
-    // import PaymentOffline from "@/components/Payment/PaymentOffline";
-    // import PaymentCard from "@/components/Payment/PaymentCard";
 
     export default {
         name: 'Menu',
         components: {
-            // PaymentCard,
-            // PaymentOffline,
-            // PaymentSelector,
-            // PaymentForm,
-            FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,
             Collapsable,
             Categories,
-            StoreSelector,
-            Checkout,
             Cart,
             Hero,
-            MenuCard,
-            SendEmailResult,
-            ClientAutofill
+            MenuCard
         },
         data: () => ({
             menu: [
@@ -777,25 +747,10 @@
             ],
             categoryIdx: 0,
             productIdx: null,
-            cart: [],
-            store: null,
-            client: {
-                card: null,
-                name: null,
-                phone: null,
-                address: null,
-                comment: null,
-                lastStore: null
-            },
             message: null,
             shouldSuggestCompProducts: false,
-            paymentType: 'offline'
         }),
         methods: {
-            reset() {
-                this.cart = [];
-                this.message = null;
-            },
             selectCategory(idx) {
                 this.productIdx = null;
                 this.categoryIdx = idx;
@@ -804,10 +759,7 @@
                 this.productIdx = idx === this.productIdx ? null : idx;
             },
             addToCart(product) {
-                this.cart.push(product);
-            },
-            removeFromCart(removeIdx) {
-                this.cart = this.cart.filter((prod, idx) => idx !== removeIdx);
+                this.$store.commit('pushToCart', product);
             },
             cartProductsByProduct(product) {
                 return this.cart.filter(cartProduct => cartProduct.name === product.name)
@@ -820,40 +772,14 @@
             },
             sumInCart(product) {
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
-            },
-            sendOrderEmail() {
-                if (!this.store) {
-                    return;
-                }
-
-                this.$api
-                    .sendOrder(this.client, this.store, this.cart)
-                    .then(() => {
-                        this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
-                        this.client.lastStore = JSON.stringify(this.store);
-                        if (localStorage) {
-                            localStorage.setItem('lastClientInfo', JSON.stringify(this.client));
-                        }
-                        this.$api.refreshUserInfo({...this.client});
-                    })
-                    .catch(error => this.message = error.message);
-            },
-            setClient(client) {
-                this.client = client;
-                if (client.lastStore) {
-                    this.store = client.lastStore;
-                }
             }
         },
         computed: {
-            cartHasProducts() {
-                return this.cart.length > 0;
-            },
-            cartTotal() {
-                return this.cart.reduce((carry, product) => carry + product.price, 0);
-            },
             categoryNames() {
                 return this.menu.map(category => category.name);
+            },
+            cart() {
+                return this.$store.getters.cart;
             }
         }
     };

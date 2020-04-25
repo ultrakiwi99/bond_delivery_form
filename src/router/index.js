@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Menu from "@/components/Menu";
 import PaymentSuccess from "@/components/Payment/PaymentSuccess";
 import PaymentFailed from "@/components/Payment/PaymentFailed";
+import Checkout from "@/components/Checkout/Checkout";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,12 @@ const routes = [
     path: '/payment_failed',
     name: 'PaymentFailed',
     component: PaymentFailed,
+    props: true
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout,
     props: true
   },
   {

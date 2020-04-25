@@ -37,6 +37,11 @@
                 default: null
             }
         },
+        mounted() {
+            if (this.value) {
+                this.selected = this.value;
+            }
+        },
         data: () => ({
             selected: null,
             mapVisible: false,

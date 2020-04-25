@@ -2,7 +2,7 @@
     <div class="cart app-section">
         <h3>Заказ</h3>
         <ul class="products">
-            <li :key="idx" v-for="(product,idx) in cartProducts">
+            <li :key="idx" v-for="(product,idx) in cart">
                 <div class="product-row">
                     <div class="product">
                         <ProductName :product="product"/>
@@ -17,7 +17,7 @@
                     </div>
                     <div class="price">
                         <span>{{ product.price }}</span>
-                        <span @click="$emit('remove', idx)" class="delete-icon">&times;</span>
+                        <span @click="removeFromCart(product, idx)" class="delete-icon">&times;</span>
                     </div>
                 </div>
                 <div class="comment" v-if="product.comment">
@@ -27,29 +27,43 @@
         </ul>
         <hr>
         <h4>Итого: {{ total }} р.</h4>
+        <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
     </div>
 </template>
 
 <script>
     import ProductName from "@/components/Visual/ProductName";
+    import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
 
     export default {
         name: "Cart",
-        components: {ProductName},
-        props: {
-            cartProducts: Array
-        },
+        components: {ProductName, FreeDeliveryInformer},
         methods: {
             hasVariants(mod) {
                 return mod.variants && mod.variants.selected && mod.variants.selected.length > 0;
             },
             variantsString(mod) {
                 return `: ` + mod.variants.selected.join(', ');
-            }
+            },
+            removeFromCart(product, productIdx) {
+                this.$store.commit('removeFromCart', {product, productIdx});
+            },
         },
         computed: {
             total() {
-                return this.cartProducts.reduce((carry, product) => carry + product.price, 0);
+                return this.cart.reduce((carry, product) => carry + product.price, 0);
+            },
+            cart() {
+                return this.$store.getters.cart;
+            },
+            cartHasProducts() {
+                return this.cart.length > 0;
+            },
+            cartTotal() {
+                return this.cart.reduce((carry, product) => carry + product.price, 0);
+            },
+            categoryNames() {
+                return this.menu.map(category => category.name);
             }
         }
     }

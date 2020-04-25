@@ -1,11 +1,15 @@
 <template>
     <div>
-        <h2>Оформить заказ</h2>
+        <Hero :title="`Оформить заказ`"/>
+        <Cart/>
         <ClientAutofill :client="client" @fill="setClient">
             <StoreSelector v-model="store"/>
             <CheckoutForm :client="client"/>
-            <button @click="sendOrderEmail" role="button">Заказать</button>
         </ClientAutofill>
+        <div class="controls">
+            <button @click="$router.push('/')" class="primary">Меню</button>
+            <button @click="sendOrderEmail" role="button">Заказать</button>
+        </div>
     </div>
 </template>
 
@@ -13,10 +17,11 @@
     import ClientAutofill from "@/components/Client/ClientAutofill";
     import StoreSelector from "@/components/Store/StoreSelector";
     import CheckoutForm from "@/components/Checkout/CheckoutForm";
+    import Hero from "@/components/Hero";
 
     export default {
         name: "Checkout",
-        components: {ClientAutofill, StoreSelector, CheckoutForm},
+        components: {Hero, ClientAutofill, StoreSelector, CheckoutForm},
         data: () => ({
             client: {
                 card: null,
@@ -59,5 +64,11 @@
 <style scoped>
     h2 {
         text-align: center;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
     }
 </style>

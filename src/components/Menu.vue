@@ -1,34 +1,31 @@
 <template>
     <div>
-        <SendEmailResult :message="message" @reset="reset" v-if="message"/>
-        <div v-else>
-            <Hero title="Заказ Доставки"/>
-            <Categories :category-names="categoryNames" @select="selectCategory">
-                <MenuCard
-                        :idx="idx"
-                        :qty-in-cart="qtyInCart(product)"
-                        :sum-in-cart="sumInCart(product)"
-                        :key="idx"
-                        :name="product.name"
-                        @select="selectProduct"
-                        v-for="(product, idx) in menu[categoryIdx].products">
-                    <template v-slot:qty>
-                        <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
-                    </template>
-                    <template v-slot:default>
-                        <Collapsable :selected-idx="idx" :visible-idx="productIdx">
-                            <MenuDetails :product="product" @toCart="addToCart">
-                                <template v-slot:qty>
-                                    <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
-                                </template>
-                            </MenuDetails>
-                        </Collapsable>
-                    </template>
-                </MenuCard>
-            </Categories>
-            <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
-            <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
-        </div>
+        <Hero title="Заказ Доставки"/>
+        <Categories :category-names="categoryNames" @select="selectCategory">
+            <MenuCard
+                    :idx="idx"
+                    :key="idx"
+                    :name="product.name"
+                    :qty-in-cart="qtyInCart(product)"
+                    :sum-in-cart="sumInCart(product)"
+                    @select="selectProduct"
+                    v-for="(product, idx) in menu[categoryIdx].products">
+                <template v-slot:qty>
+                    <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                </template>
+                <template v-slot:default>
+                    <Collapsable :selected-idx="idx" :visible-idx="productIdx">
+                        <MenuDetails :product="product" @toCart="addToCart">
+                            <template v-slot:qty>
+                                <MenuQtyInCart :qty-in-cart="qtyInCart(product)" :sum-in-cart="sumInCart(product)"/>
+                            </template>
+                        </MenuDetails>
+                    </Collapsable>
+                </template>
+            </MenuCard>
+        </Categories>
+        <Cart/>
+        <button @click="$router.push('/checkout')" class="primary">Заказать</button>
     </div>
 </template>
 
@@ -36,25 +33,21 @@
     import MenuCard from "@/components/Menu/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
-    import SendEmailResult from "@/components/SendEmailResult";
     import Categories from "@/components/Categories/Categories";
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
-    import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
 
     export default {
         name: 'Menu',
         components: {
-            FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,
             Collapsable,
             Categories,
             Cart,
             Hero,
-            MenuCard,
-            SendEmailResult
+            MenuCard
         },
         data: () => ({
             menu: [
@@ -756,10 +749,6 @@
             shouldSuggestCompProducts: false,
         }),
         methods: {
-            reset() {
-                this.cart = [];
-                this.message = null;
-            },
             selectCategory(idx) {
                 this.productIdx = null;
                 this.categoryIdx = idx;
@@ -769,9 +758,6 @@
             },
             addToCart(product) {
                 this.$store.commit('pushToCart', product);
-            },
-            removeFromCart(product, productIdx) {
-                this.$store.commit('removeFromCart', {product, productIdx}, productIdx);
             },
             cartProductsByProduct(product) {
                 return this.cart.filter(cartProduct => cartProduct.name === product.name)
@@ -787,15 +773,6 @@
             }
         },
         computed: {
-            cart() {
-                return this.$store.getters.cart;
-            },
-            cartHasProducts() {
-                return this.cart.length > 0;
-            },
-            cartTotal() {
-                return this.cart.reduce((carry, product) => carry + product.price, 0);
-            },
             categoryNames() {
                 return this.menu.map(category => category.name);
             }

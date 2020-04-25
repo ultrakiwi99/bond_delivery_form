@@ -1,10 +1,13 @@
 <template>
-    <h1>{{ title }}</h1>
+    <h1 ref="title">{{ title }}</h1>
 </template>
 
 <script>
     export default {
         name: "Hero",
+        mounted() {
+            this.$refs.title.scrollIntoView(false);
+        },
         props: {
             title: String
         }

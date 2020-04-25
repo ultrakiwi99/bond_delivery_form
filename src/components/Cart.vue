@@ -17,7 +17,7 @@
                     </div>
                     <div class="price">
                         <span>{{ product.price }}</span>
-                        <span @click="$emit('remove', idx)" class="delete-icon">&times;</span>
+                        <span @click="$emit('remove', product, idx)" class="delete-icon">&times;</span>
                     </div>
                 </div>
                 <div class="comment" v-if="product.comment">

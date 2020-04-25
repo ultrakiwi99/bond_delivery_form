@@ -33,12 +33,6 @@
                 <Checkout :client="client"/>
                 <button @click="sendOrderEmail" role="button">Заказать</button>
             </ClientAutofill>
-            <!--            <PaymentForm v-if="this.cartTotal > 0">-->
-            <!--                <PaymentSelector v-model="paymentType">-->
-            <!--                    <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>-->
-            <!--                    <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>-->
-            <!--                </PaymentSelector>-->
-            <!--            </PaymentForm>-->
         </div>
     </div>
 </template>
@@ -56,18 +50,10 @@
     import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
     import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
-    // import PaymentForm from "@/components/Payment/PaymentForm";
-    // import PaymentSelector from "@/components/Payment/PaymentSelector";
-    // import PaymentOffline from "@/components/Payment/PaymentOffline";
-    // import PaymentCard from "@/components/Payment/PaymentCard";
 
     export default {
         name: 'Menu',
         components: {
-            // PaymentCard,
-            // PaymentOffline,
-            // PaymentSelector,
-            // PaymentForm,
             FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,
@@ -777,7 +763,6 @@
             ],
             categoryIdx: 0,
             productIdx: null,
-            cart: [],
             store: null,
             client: {
                 card: null,
@@ -804,10 +789,10 @@
                 this.productIdx = idx === this.productIdx ? null : idx;
             },
             addToCart(product) {
-                this.cart.push(product);
+                this.$store.commit('pushToCart', product);
             },
-            removeFromCart(removeIdx) {
-                this.cart = this.cart.filter((prod, idx) => idx !== removeIdx);
+            removeFromCart(product, productIdx) {
+                this.$store.commit('removeFromCart', {product, productIdx}, productIdx);
             },
             cartProductsByProduct(product) {
                 return this.cart.filter(cartProduct => cartProduct.name === product.name)
@@ -846,6 +831,9 @@
             }
         },
         computed: {
+            cart() {
+                return this.$store.getters.cart;
+            },
             cartHasProducts() {
                 return this.cart.length > 0;
             },

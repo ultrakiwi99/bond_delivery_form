@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "PaymentFrom"
+        name: "PaymentForm"
     }
 </script>
 

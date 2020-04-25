@@ -14,6 +14,16 @@ export default class Api {
         }));
     }
 
+    getPaymentUrl(amount) {
+        const queryString = this.buildQuery({
+            amount: Math.round((amount * 100)),
+            orderNumber: Math.round((Math.random() * 100000000)),
+            successUrl: window.location.href + 'payment_success/#/?',
+            failUrl: window.location.href + 'payment_failed/#/?'
+        });
+        return this.makeApiCall(fetch(`${this.baseUrl}/payment/sberbank/url${queryString}`));
+    }
+
     getGuestInfo(cardId) {
         return this.makeApiCall(fetch(`${this.baseUrl}/delivery/guest/${cardId}`, {
             method: 'GET'
@@ -38,5 +48,9 @@ export default class Api {
             throw Error(json.message);
         }
         return json;
+    }
+
+    buildQuery(param) {
+        return '?' + Object.entries(param).map(pair => pair.map(encodeURIComponent).join('=')).join('&');
     }
 }

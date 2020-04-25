@@ -24,10 +24,12 @@
     export default {
         name: "PaymentCard",
         beforeMount() {
-            this.$sber
-                .getRegisterUrl()
-                .then(result => result.json())
-                .then(json => console.log(json));
+            this.$api
+                .getPaymentUrl(this.amount)
+                .then(result => {
+                    this.registerUrl = result['formUrl'];
+                })
+                .catch(error => console.log(error));
         },
         props: {
             amount: {

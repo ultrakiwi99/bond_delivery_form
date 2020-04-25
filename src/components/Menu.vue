@@ -31,13 +31,14 @@
             <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
                 <StoreSelector v-model="store"/>
                 <Checkout :client="client"/>
+                <button @click="sendOrderEmail" role="button">Заказать</button>
             </ClientAutofill>
-            <PaymentFrom>
-                <PaymentSelector v-model="paymentType">
-                    <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>
-                    <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>
-                </PaymentSelector>
-            </PaymentFrom>
+            <!--            <PaymentForm v-if="this.cartTotal > 0">-->
+            <!--                <PaymentSelector v-model="paymentType">-->
+            <!--                    <PaymentOffline @makeOrder="sendOrderEmail" v-if="paymentType === 'offline'"/>-->
+            <!--                    <PaymentCard :amount="this.cartTotal" v-if="paymentType === 'online'"/>-->
+            <!--                </PaymentSelector>-->
+            <!--            </PaymentForm>-->
         </div>
     </div>
 </template>
@@ -55,18 +56,18 @@
     import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
     import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
-    import PaymentFrom from "@/components/Payment/PaymentFrom";
-    import PaymentSelector from "@/components/Payment/PaymentSelector";
-    import PaymentOffline from "@/components/Payment/PaymentOffline";
-    import PaymentCard from "@/components/Payment/PaymentCard";
+    // import PaymentForm from "@/components/Payment/PaymentForm";
+    // import PaymentSelector from "@/components/Payment/PaymentSelector";
+    // import PaymentOffline from "@/components/Payment/PaymentOffline";
+    // import PaymentCard from "@/components/Payment/PaymentCard";
 
     export default {
         name: 'Menu',
         components: {
-            PaymentCard,
-            PaymentOffline,
-            PaymentSelector,
-            PaymentFrom,
+            // PaymentCard,
+            // PaymentOffline,
+            // PaymentSelector,
+            // PaymentForm,
             FreeDeliveryInformer,
             MenuQtyInCart,
             MenuDetails,

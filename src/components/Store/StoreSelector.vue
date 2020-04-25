@@ -1,15 +1,16 @@
 <template>
     <form>
-        <VueSingleSelect
-                :options="stores.map(store => store.name)"
-                :placeholder="`Выберите кофейню`"
-                :requred="true"
-                v-model="selected"/>
+        <select v-model="selected">
+            <option :value="null">--- Выберите кофейню</option>
+            <option :key="store.name" :value="store" v-for="store in stores">
+                {{ store.name }}
+            </option>
+        </select>
         <div class="container" v-if="selected">
             <div @click="mapVisible = !mapVisible" class="primary-text">
                 {{ mapVisible ? 'СКРЫТЬ КАРТУ' : 'ПОКАЗАТЬ КАРТУ'}}
             </div>
-            <img :src="selectedStore.link" alt="Карта доставки КБ" v-if="mapVisible"/>
+            <img :src="selected.link" alt="Карта доставки КБ" v-if="selected && mapVisible"/>
         </div>
         <div class="container">
             <ul>
@@ -28,11 +29,8 @@
 </template>
 
 <script>
-    import VueSingleSelect from "vue-single-select";
-
     export default {
         name: "StoreSelector",
-        components: {VueSingleSelect},
         props: {
             value: {
                 type: Object,
@@ -43,7 +41,6 @@
             selected: null,
             mapVisible: false,
             stores: [
-
                 {
                     name: `м. Черная Речка, Карельский пер., 3Б`,
                     link: `http://www.coffeebon.ru/delivery/img/kb6.jpg`
@@ -166,20 +163,10 @@
                 }
             ]
         }),
-        computed: {
-            selectedStore() {
-                return this.selected ? this.stores.find(store => store.name === this.selected) : null;
-            }
-        },
         watch: {
-            value() {
-                if (this.value) {
-                    this.selected = this.value.name;
-                }
-            },
             selected() {
                 if (this.selected) {
-                    this.$emit('input', this.selectedStore);
+                    this.$emit('input', this.selected);
                 }
             }
         },

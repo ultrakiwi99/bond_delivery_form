@@ -1,13 +1,10 @@
 <template>
     <div class="payment-success">
-        <h3>
-            Спасибо за оплату.
-        </h3>
         <h5>
             Ваш Заказ принят.<br>
             Ожидайте звонка для подтверждения.
         </h5>
-        <button @click="$router.push('/')" class="primary">
+        <button @click="resetCartAndGoToMenu" class="primary">
             В меню
         </button>
     </div>
@@ -15,7 +12,13 @@
 
 <script>
     export default {
-        name: "PaymentSuccess"
+        name: "PaymentSuccess",
+        methods: {
+            resetCartAndGoToMenu() {
+                this.$store.commit('resetCart');
+                this.$router.push('/');
+            }
+        }
     }
 </script>
 

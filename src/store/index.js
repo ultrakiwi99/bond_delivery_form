@@ -8,7 +8,8 @@ export default new Vuex.Store({
     cart: []
   },
   getters: {
-    cart: state => state.cart
+    cart: state => state.cart,
+    cartHasProducts: state => state.cart.length > 0
   },
   mutations: {
     pushToCart(state, product) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
       state.cart = [...state.cart.filter(
           (cartProd, cartIdx) => !(cartProd.name === product.name && cartIdx === productIdx)
       )];
+    },
+    resetCart(state) {
+      state.cart = [];
     }
   },
   actions: {}

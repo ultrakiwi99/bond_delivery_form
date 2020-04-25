@@ -24,8 +24,10 @@
                 </template>
             </MenuCard>
         </Categories>
-        <Cart/>
-        <button @click="$router.push('/checkout')" class="primary">Заказать</button>
+        <div class="cart-wrapper" v-if="cart.length > 0">
+            <Cart/>
+            <button @click="$router.push('/checkout')" class="primary">Заказать</button>
+        </div>
     </div>
 </template>
 
@@ -775,6 +777,9 @@
         computed: {
             categoryNames() {
                 return this.menu.map(category => category.name);
+            },
+            cart() {
+                return this.$store.getters.cart;
             }
         }
     };

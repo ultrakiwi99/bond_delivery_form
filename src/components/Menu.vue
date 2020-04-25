@@ -28,11 +28,6 @@
             </Categories>
             <Cart :cart-products="cart" @remove="removeFromCart" v-if="cartHasProducts"/>
             <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
-            <ClientAutofill :client="client" @fill="setClient" v-if="cartHasProducts">
-                <StoreSelector v-model="store"/>
-                <CheckoutForm :client="client"/>
-                <button @click="sendOrderEmail" role="button">Заказать</button>
-            </ClientAutofill>
         </div>
     </div>
 </template>
@@ -41,13 +36,10 @@
     import MenuCard from "@/components/Menu/MenuCard";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
-    import CheckoutForm from "@/components/Checkout/CheckoutForm";
-    import StoreSelector from "@/components/Store/StoreSelector";
     import SendEmailResult from "@/components/SendEmailResult";
     import Categories from "@/components/Categories/Categories";
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
-    import ClientAutofill from "@/components/Client/ClientAutofill";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
     import FreeDeliveryInformer from "@/components/Checkout/FreeDeliveryInformer";
 
@@ -59,13 +51,10 @@
             MenuDetails,
             Collapsable,
             Categories,
-            StoreSelector,
-            CheckoutForm,
             Cart,
             Hero,
             MenuCard,
-            SendEmailResult,
-            ClientAutofill
+            SendEmailResult
         },
         data: () => ({
             menu: [
@@ -763,18 +752,8 @@
             ],
             categoryIdx: 0,
             productIdx: null,
-            store: null,
-            client: {
-                card: null,
-                name: null,
-                phone: null,
-                address: null,
-                comment: null,
-                lastStore: null
-            },
             message: null,
             shouldSuggestCompProducts: false,
-            paymentType: 'offline'
         }),
         methods: {
             reset() {
@@ -805,29 +784,6 @@
             },
             sumInCart(product) {
                 return this.cartProductsByProduct(product).reduce((carry, product) => carry + product.price, 0);
-            },
-            sendOrderEmail() {
-                if (!this.store) {
-                    return;
-                }
-
-                this.$api
-                    .sendOrder(this.client, this.store, this.cart)
-                    .then(() => {
-                        this.message = 'Ваш Заказ принят. Ожидайте звонка для подтверждения.';
-                        this.client.lastStore = JSON.stringify(this.store);
-                        if (localStorage) {
-                            localStorage.setItem('lastClientInfo', JSON.stringify(this.client));
-                        }
-                        this.$api.refreshUserInfo({...this.client});
-                    })
-                    .catch(error => this.message = error.message);
-            },
-            setClient(client) {
-                this.client = client;
-                if (client.lastStore) {
-                    this.store = client.lastStore;
-                }
             }
         },
         computed: {

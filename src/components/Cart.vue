@@ -1,7 +1,7 @@
 <template>
     <div class="cart app-section">
         <h3>Заказ</h3>
-        <ul class="products">
+        <ol class="products">
             <li :key="idx" v-for="(product,idx) in cart">
                 <div class="product-row">
                     <div class="product">
@@ -24,7 +24,7 @@
                     {{ product.comment }}
                 </div>
             </li>
-        </ul>
+        </ol>
         <hr>
         <h4>Итого: {{ total }} р.</h4>
         <FreeDeliveryInformer :total="cartTotal" v-if="cartHasProducts"/>
@@ -80,7 +80,7 @@
                 list-style: none;
 
                 li {
-                    font-size: 0.8rem;
+                    //font-size: 0.8rem;
                     color: lightslategrey;
                 }
             }
@@ -104,7 +104,7 @@
         .comment {
             border-left: lightslategrey 3px solid;
             padding-left: 0.4rem;
-            font-size: 0.8rem;
+            //font-size: 0.8rem;
             font-style: italic;
         }
     }

@@ -1,47 +1,15 @@
-<!--
-html {
-    font-family: 'Lato', sans-serif;
-}
--->
-#app .card {
-    border: 1px solid gray;
-    background: #f0f0f0;
-    margin: 0px;
-    padding: 0.5rem;
+
+
+#app {
+    max-width: 600px;
 }
 
-#app .card .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#app * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, sans-serif;
+    line-height: 1.5;
 }
 
-#app .card .comment {
-    width: 100%;
-    border-left: 0.3rem solid lightgray;
-    padding-left: 0.3rem;
-    font-size: smaller;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 0.5rem;
-}
 
-#app .app-section {
-    padding: 0px;
-}
-
-#app .section {
-    padding: 0.5rem;
-}
-
-#app .product-header {
-    background: black;
-    color: white;
-}
-#app .controls {
-    margin-top: 1rem;
-
-}
 
 #app input:not([type]), [type="text"], [type="email"], [type="number"], [type="search"], [type="password"], [type="url"], [type="tel"], [type="checkbox"], [type="radio"], textarea, select {
     box-sizing: border-box;
@@ -65,17 +33,21 @@ html {
 #app ul {
     display: block;
     list-style-type: disc;
-    margin-block-start: 1rem;
-    margin-block-end: 1rem;
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 2rem;
+    padding-inline-start: 0rem;
 }
 
-#app * {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, sans-serif;
-    line-height: 1.5;
+#app ol li {
+    margin-bottom: 0.5rem;
 }
+
+#app ul li {
+    margin-bottom: 0rem;
+}
+
 
 #app button {
     display: inline;
@@ -86,38 +58,10 @@ html {
     cursor: pointer;
 }
 
-#app .store-selector {
-    border: 1px solid gray;
-    background: #f0f0f0;
-    margin: 0.2rem;
-    padding: 0.5rem;
+#app button .primary {
+    background: crimson;
 }
 
-#app .checkout-form {
-    border: 1px solid gray;
-    background: #f0f0f0;
-    margin: 0.2rem;
-    padding: 0.5rem;
-}
-
-#app [type=checkbox]:checked:before {
-    content: unset;
-}
-
-#app .cart-wrapper button {
-    margin-top: 1rem;
-}
-
-#app .menu-mods, #app .margin-bottom {
-    margin-bottom: 1rem;
-}
-#app .product-details {
-    margin: 0px;
-}
-
-.milk-selector span {
-    margin-right: 1rem;
-}
 
 #app select {
     line-height: 1.3;
@@ -156,15 +100,97 @@ html {
 }
 
 
-.btn {
+
+#app .card {
+    border: 1px solid gray;
+    background: #f0f0f0;
+    margin: 0px;
+    padding: 0.5rem;
+}
+
+#app .card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#app .card .comment {
+    width: 100%;
+    border-left: 0.3rem solid lightgray;
+    padding-left: 0.3rem;
+    font-size: smaller;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+#app .app-section {
+    padding: 0px;
+}
+
+#app .section {
+    padding: 0.5rem;
+}
+
+#app .product-header {
+    background: #222222;
+    color: white;
+    box-shadow: 1px 5px 5px black;
+}
+#app .controls {
+    margin-top: 1rem;
+
+}
+
+
+#app .store-selector {
+    border: 1px solid gray;
+    background: #f0f0f0;
+    margin: 0.2rem;
+    padding: 0.5rem;
+}
+
+#app .store-selector ul {
+    padding-inline-start: 1rem;
+}
+
+#app .checkout-form {
+    border: 1px solid gray;
+    background: #f0f0f0;
+    margin: 0.2rem;
+    padding: 0.5rem;
+}
+
+#app [type=checkbox]:checked:before {
+    content: unset;
+}
+
+#app .cart-wrapper button {
+    margin-top: 1rem;
+}
+
+#app .menu-mods, #app .margin-bottom {
+    margin-bottom: 1rem;
+}
+#app .product-details {
+    margin: 0px;
+}
+
+.milk-selector span {
+    margin-right: 1rem;
+}
+
+
+
+#app .btn {
     display: block;
     border: 1px;
     padding: 0.5rem 1rem;
     color: white;
-    background: blueviolet;
+    background: crimson;
     cursor: pointer;
 }
-.btn:hover {
+#app .btn:hover {
     background: #4a148c;
 }
 
@@ -172,6 +198,8 @@ html {
 .store-selector .container {
     font-size: 80%;
     justify-content: left;
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
 }
 
 #app .cart .card {
@@ -200,10 +228,22 @@ html {
     text-decoration: underline;
 }
 
-.mod {
+#app hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 0;
+    border-top: 2px solid #eee;
+}
+
+#app .mods {
+    margin: 0;
+    list-style-type: none;
+}
+
+#app .mod {
     margin: 1rem 0;
 }
-.mod input {
+#app .mod input {
     margin-right: 0.3rem;
 }
 

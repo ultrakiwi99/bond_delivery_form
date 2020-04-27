@@ -8,34 +8,32 @@
     export default {
         name: "ClientAutofill",
         created() {
-            if (this.$store.getters.client) {
-                return;
-            }
-
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const card = urlParams.get('client_card');
             const name = urlParams.get('client_name');
             const phone = urlParams.get('client_phone');
 
-            let clientInfo = {...this.client, card, name, phone};
+            if (this.$store.getters.clientIsEmpty) {
+                let clientInfo = {...this.client, card, name, phone};
 
-            if (localStorage) {
-                clientInfo = this.fromLocalStorage(clientInfo);
+                if (localStorage) {
+                    clientInfo = this.fromLocalStorage(clientInfo);
+                }
+
+                if (card) {
+                    this.$api
+                        .getGuestInfo(card)
+                        .then(client => clientInfo = this.formApiResponse(clientInfo, client))
+                        .catch(error => console.log(error));
+                }
+
+                if (clientInfo.lastStore) {
+                    this.$store.commit('updateStore', clientInfo.lastStore);
+                }
+
+                this.$store.commit('updateClient', clientInfo);
             }
-
-            if (card) {
-                this.$api
-                    .getGuestInfo(card)
-                    .then(client => clientInfo = this.formApiResponse(clientInfo, client))
-                    .catch(error => console.log(error));
-            }
-
-            if (clientInfo.lastStore) {
-                this.$store.commit('updateStore', clientInfo.lastStore);
-            }
-
-            this.$store.commit('updateClient', clientInfo);
         },
         methods: {
             fromLocalStorage(clientInfo) {

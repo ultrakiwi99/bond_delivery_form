@@ -6,13 +6,21 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cart: [],
-    client: null,
+    client: {
+      card: null,
+      name: null,
+      phone: null,
+      address: null,
+      comment: null,
+      lastStore: null
+    },
     lastStore: null
   },
   getters: {
     cart: state => state.cart,
     cartHasProducts: state => state.cart.length > 0,
     client: state => state.client,
+    clientIsEmpty: state => Object.values(state.client).every(entry => entry === null),
     lastStore: state => state.lastStore
   },
   mutations: {

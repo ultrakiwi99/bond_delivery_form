@@ -25,15 +25,15 @@
         components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
         methods: {
             sendOrderEmail() {
+                if (!this.cartHasProducts) {
+                    return;
+                }
+
                 const store = this.$store.getters.lastStore;
                 const client = this.$store.getters.client;
                 const cart = this.$store.getters.cart;
 
-                if (!this.store) {
-                    return;
-                }
-
-                if (!this.cart.length) {
+                if (!store || this.$store.getters.clientIsEmpty) {
                     return;
                 }
 

@@ -20,13 +20,7 @@
                 <Modifier :key="idx" :mod="mod" v-for="(mod, idx) in product.modifiers"/>
             </ModifiersList>
 
-            <textarea
-                    class="fluid"
-                    :rows="commentRows"
-                    @click="commentClick"
-                    @mouseleave="commentLeave"
-                    placeholder="Комментарий к блюду"
-                    v-model="optionalComment"></textarea>
+            <textarea class="fluid" placeholder="Комментарий к блюду" v-model="optionalComment"></textarea>
 
             <div>
                 <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
@@ -72,12 +66,6 @@
             commentRows: 1
         }),
         methods: {
-            commentClick() {
-                this.commentRows = 3;
-            },
-            commentLeave() {
-                this.commentRows = 1;
-            },
             selectSize(size) {
                 this.sizeSelected = size;
             },

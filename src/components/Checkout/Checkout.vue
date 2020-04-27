@@ -1,7 +1,7 @@
 <template>
     <div>
         <Hero :title="`Оформить заказ`"/>
-        <Cart v-if="cartHasProducts"/>
+        <Cart/>
         <ClientAutofill>
             <StoreSelector/>
             <CheckoutForm/>
@@ -25,21 +25,26 @@
         components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
         methods: {
             sendOrderEmail() {
+                const store = this.$store.getters.lastStore;
+                const client = this.$store.getters.client;
+                const cart = this.$store.getters.cart;
+
                 if (!this.store) {
                     return;
                 }
-                if (!this.cartHasProducts) {
+
+                if (!this.cart.length) {
                     return;
                 }
 
                 this.$api
-                    .sendOrder(this.client, this.store, this.cart)
+                    .sendOrder(client, store, cart)
                     .then(() => {
-                        this.client.lastStore = JSON.stringify(this.store);
+                        client.lastStore = JSON.stringify(store);
                         if (localStorage) {
-                            localStorage.setItem('lastClientInfo', JSON.stringify(this.client));
+                            localStorage.setItem('lastClientInfo', JSON.stringify(client));
                         }
-                        this.$api.refreshUserInfo({...this.client});
+                        this.$api.refreshUserInfo({...client});
                         this.$router.push('/payment_success');
                     })
                     .catch(error => this.message = error.message);
@@ -48,12 +53,6 @@
         computed: {
             cartHasProducts() {
                 return this.$store.getters.cartHasProducts;
-            },
-            cart() {
-                return this.$store.getters.cart;
-            },
-            client() {
-                return this.$store.getters.client;
             }
         },
         watch: {

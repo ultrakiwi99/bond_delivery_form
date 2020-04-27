@@ -37,9 +37,10 @@
                 default: null
             }
         },
-        mounted() {
-            if (this.value) {
-                this.selected = this.value;
+        created() {
+            const lastStore = this.$store.getters.lastStore;
+            if (lastStore) {
+                this.selected = lastStore;
             }
         },
         data: () => ({
@@ -171,7 +172,7 @@
         watch: {
             selected() {
                 if (this.selected) {
-                    this.$emit('input', this.selected);
+                    this.$store.commit('updateStore', this.selected);
                 }
             }
         },

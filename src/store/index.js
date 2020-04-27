@@ -21,6 +21,7 @@ export default new Vuex.Store({
     cartHasProducts: state => state.cart.length > 0,
     client: state => state.client,
     clientIsEmpty: state => Object.values(state.client).every(entry => entry === null),
+    clientIsValidToSend: state => ['name', 'phone', 'address'].every(propName => !!state.client[propName]),
     lastStore: state => state.lastStore
   },
   mutations: {

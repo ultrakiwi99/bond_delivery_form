@@ -2,9 +2,9 @@
     <div>
         <Hero :title="`Оформить заказ`"/>
         <Cart v-if="cartHasProducts"/>
-        <ClientAutofill :client="client" @fill="setClient">
-            <StoreSelector v-model="store"/>
-            <CheckoutForm :client="client"/>
+        <ClientAutofill>
+            <StoreSelector/>
+            <CheckoutForm/>
         </ClientAutofill>
         <div class="controls">
             <button @click="$router.push('/')" class="primary">Меню</button>
@@ -23,17 +23,6 @@
     export default {
         name: "Checkout",
         components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
-        data: () => ({
-            client: {
-                card: null,
-                name: null,
-                phone: null,
-                address: null,
-                comment: null,
-                lastStore: null
-            },
-            store: null
-        }),
         methods: {
             sendOrderEmail() {
                 if (!this.store) {
@@ -54,12 +43,6 @@
                         this.$router.push('/payment_success');
                     })
                     .catch(error => this.message = error.message);
-            },
-            setClient(client) {
-                this.client = client;
-                if (client.lastStore) {
-                    this.store = client.lastStore;
-                }
             }
         },
         computed: {
@@ -68,6 +51,9 @@
             },
             cart() {
                 return this.$store.getters.cart;
+            },
+            client() {
+                return this.$store.getters.client;
             }
         },
         watch: {

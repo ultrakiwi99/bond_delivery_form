@@ -11,8 +11,10 @@
 <script>
     export default {
         name: "CheckoutForm",
-        props: {
-            client: Object
+        computed: {
+            client() {
+                return this.$store.getters.client;
+            }
         }
     }
 </script>

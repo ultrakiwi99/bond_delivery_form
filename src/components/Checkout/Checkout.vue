@@ -33,7 +33,7 @@
                 const client = this.$store.getters.client;
                 const cart = this.$store.getters.cart;
 
-                if (!store || this.$store.getters.clientIsEmpty) {
+                if (!store || !this.$store.getters.clientIsValidToSend) {
                     return;
                 }
 

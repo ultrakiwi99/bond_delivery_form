@@ -8,6 +8,10 @@
     export default {
         name: "ClientAutofill",
         created() {
+            if (this.$store.getters.client) {
+                return;
+            }
+
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const card = urlParams.get('client_card');

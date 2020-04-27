@@ -35,7 +35,7 @@ export default new Vuex.Store({
       state.cart = [];
     },
     updateClient(state, client) {
-      state.client = {...client};
+      state.client = {...state.client, ...client};
     },
     updateStore(state, store) {
       state.lastStore = store;

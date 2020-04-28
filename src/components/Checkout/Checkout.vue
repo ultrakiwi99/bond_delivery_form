@@ -6,10 +6,6 @@
             <StoreSelector/>
             <CheckoutForm/>
         </ClientAutofill>
-        <div class="controls">
-            <button @click="$router.push('/')" class="secondary">Меню</button>
-            <button @click="sendOrderEmail" role="button" class="btn">Заказать</button>
-        </div>
     </div>
 </template>
 
@@ -23,31 +19,14 @@
     export default {
         name: "Checkout",
         components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
+        created() {
+            this.returnIfEmptyCart();
+        },
         methods: {
-            sendOrderEmail() {
+            returnIfEmptyCart() {
                 if (!this.cartHasProducts) {
-                    return;
+                    this.$router.push('/');
                 }
-
-                const store = this.$store.getters.lastStore;
-                const client = this.$store.getters.client;
-                const cart = this.$store.getters.cart;
-
-                if (!store || !this.$store.getters.clientIsValidToSend) {
-                    return;
-                }
-
-                this.$api
-                    .sendOrder(client, store, cart)
-                    .then(() => {
-                        client.lastStore = JSON.stringify(store);
-                        if (localStorage) {
-                            localStorage.setItem('lastClientInfo', JSON.stringify(client));
-                        }
-                        this.$api.refreshUserInfo({...client});
-                        this.$router.push('/payment_success');
-                    })
-                    .catch(error => this.message = error.message);
             }
         },
         computed: {
@@ -57,9 +36,7 @@
         },
         watch: {
             cartHasProducts() {
-                if (!this.cartHasProducts) {
-                    this.$router.push('/');
-                }
+                this.returnIfEmptyCart();
             }
         }
     }

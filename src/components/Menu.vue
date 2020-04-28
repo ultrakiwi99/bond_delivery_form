@@ -26,7 +26,7 @@
         </Categories>
         <div class="cart-wrapper" v-if="cart.length > 0">
             <Cart/>
-            <button @click="$router.push('/checkout')" class="primary">Заказать</button>
+            <button @click="$router.push('/checkout')" class="btn">Заказать</button>
         </div>
     </div>
 </template>

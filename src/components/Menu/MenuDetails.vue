@@ -1,6 +1,8 @@
 <template>
     <div class="section product-details">
-        {{ product.comment }}
+        <div v-if="product.comment" class="product-description">
+            {{ product.comment }}
+        </div>
         <div>
             <SizeSelector
                     :selected="sizeSelected"
@@ -22,7 +24,7 @@
 
             <textarea class="fluid" placeholder="Комментарий к блюду" v-model="optionalComment"></textarea>
 
-            <div>
+            <div class="margin-bottom">
                 <strong>Стоимость блюда: {{ totalPrice }} р.</strong>
             </div>
 

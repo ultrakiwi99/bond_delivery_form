@@ -1,10 +1,10 @@
 <template>
-    <form @submit.prevent="">
+    <form class="checkout-form" @submit.prevent="">
         <h3>Данные заказа</h3>
         <input placeholder="Ваше имя" required type="text" v-model="name"/>
         <input placeholder="Адрес" required type="text" v-model="address"/>
         <input placeholder="Телефон" required type="tel" v-model="phone"/>
-        <textarea placeholder="Комментарий" rows="3" style="width: 100%" v-model="comment"></textarea>
+        <textarea placeholder="Комментарий" rows="3" style="width: 99%" v-model="comment"></textarea>
     </form>
 </template>
 

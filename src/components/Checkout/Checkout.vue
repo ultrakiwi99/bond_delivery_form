@@ -7,8 +7,8 @@
             <CheckoutForm/>
         </ClientAutofill>
         <div class="controls">
-            <button @click="$router.push('/')" class="primary">Меню</button>
-            <button @click="sendOrderEmail" role="button">Заказать</button>
+            <button @click="$router.push('/')" class="secondary">Меню</button>
+            <button @click="sendOrderEmail" role="button" class="btn">Заказать</button>
         </div>
     </div>
 </template>

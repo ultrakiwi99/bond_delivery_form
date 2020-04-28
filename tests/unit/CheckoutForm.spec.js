@@ -7,10 +7,19 @@ localVue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        client: {}
+        client: {
+            name: null,
+            address: null,
+            phone: null,
+            lastStore: null,
+            comment: null
+        }
+    },
+    getters: {
+        client: state => state.client
     },
     mutations: {
-        updateClient: state => {
+        updateClient: () => {
         }
     }
 });
@@ -19,10 +28,6 @@ const testName = "Иван Петров";
 const testPhone = "89219583150";
 const testAddress = "Невский 145 оф. 12";
 const testComment = "Тестовый комментарий";
-
-function wrapperFactory() {
-    return shallowMount(CheckoutForm, {store, localVue});
-}
 
 function wrapperInputs(wrapper) {
     return {
@@ -40,7 +45,7 @@ function wrapperInputs(wrapper) {
 describe('CheckoutForm.vue', () => {
 
     it('Позволяет вводить имя, телефон, адрес клиента.', () => {
-        const wrapper = wrapperFactory();
+        const wrapper = shallowMount(CheckoutForm, {store, localVue});
         const inputs = wrapperInputs(wrapper);
 
         inputs.change('name', testName);
@@ -48,26 +53,11 @@ describe('CheckoutForm.vue', () => {
         inputs.change('phone', testPhone);
         inputs.change('comment', testComment);
 
-        expect(wrapper.vm.$data.name).toBe(testName);
-        expect(wrapper.vm.$data.address).toBe(testAddress);
-        expect(wrapper.vm.$data.phone).toBe(testPhone);
-        expect(wrapper.vm.$data.comment).toBe(testComment);
-    });
+        expect(wrapper.vm.$data.client.name).toBe(testName);
+        expect(wrapper.vm.$data.client.address).toBe(testAddress);
+        expect(wrapper.vm.$data.client.phone).toBe(testPhone);
+        expect(wrapper.vm.$data.client.comment).toBe(testComment);
 
-    it('Оставляет отключенной кнопку отправить пока не введены имя, адрес и телефон.', () => {
-        const wrapper = wrapperFactory();
-        const inputs = wrapperInputs(wrapper);
-        const submitButton = wrapper.find('#submit')
-
-        expect(submitButton.element['disabled']).toBeTruthy();
-
-        inputs.change('name', testName);
-        expect(submitButton.element['disabled']).toBeTruthy();
-
-        inputs.change('address', testName);
-        expect(submitButton.element['disabled']).toBeTruthy();
-
-        inputs.change('phone', testPhone);
-        expect(submitButton.element['disabled']).toBeTruthy();
+        wrapper.destroy();
     });
 });

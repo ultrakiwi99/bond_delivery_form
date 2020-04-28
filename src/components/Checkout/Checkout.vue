@@ -19,6 +19,16 @@
     export default {
         name: "Checkout",
         components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
+        created() {
+            this.returnIfEmptyCart();
+        },
+        methods: {
+            returnIfEmptyCart() {
+                if (!this.cartHasProducts) {
+                    this.$router.push('/');
+                }
+            }
+        },
         computed: {
             cartHasProducts() {
                 return this.$store.getters.cartHasProducts;
@@ -26,9 +36,7 @@
         },
         watch: {
             cartHasProducts() {
-                if (!this.cartHasProducts) {
-                    this.$router.push('/');
-                }
+                this.returnIfEmptyCart();
             }
         }
     }

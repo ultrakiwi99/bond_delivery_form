@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss">
+
+/*
     html {
         width: 98vw;
         margin: 0 auto;
@@ -44,4 +46,5 @@
         margin-top: 8px;
         margin-left: 1px;
     }
+ */
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <RedirectToMenu/>
         <Hero :title="`Оформить заказ`"/>
         <Cart/>
         <ClientAutofill>
@@ -15,30 +16,11 @@
     import CheckoutForm from "@/components/Checkout/CheckoutForm";
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
+    import RedirectToMenu from "@/components/Checkout/RedirectToMenu";
 
     export default {
         name: "Checkout",
-        components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
-        created() {
-            this.returnIfEmptyCart();
-        },
-        methods: {
-            returnIfEmptyCart() {
-                if (!this.cartHasProducts) {
-                    this.$router.push('/');
-                }
-            }
-        },
-        computed: {
-            cartHasProducts() {
-                return this.$store.getters.cartHasProducts;
-            }
-        },
-        watch: {
-            cartHasProducts() {
-                this.returnIfEmptyCart();
-            }
-        }
+        components: {RedirectToMenu, Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart}
     }
 </script>
 

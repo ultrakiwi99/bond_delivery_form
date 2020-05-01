@@ -17,18 +17,12 @@
 
     export default {
         name: "Checkout",
-        components: {RedirectToMenu, Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart}
+        components: {RedirectToMenu, Hero, StoreSelector, CheckoutForm, Cart}
     }
 </script>
 
 <style scoped>
     h2 {
         text-align: center;
-    }
-
-    .controls {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
     }
 </style>

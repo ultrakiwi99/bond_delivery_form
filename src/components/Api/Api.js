@@ -22,8 +22,8 @@ export default class Api {
         const queryString = this.buildQuery({
             amount: Math.round((amount * 100)),
             orderNumber: Math.round((Math.random() * 100000000)),
-            successUrl: window.location.href + 'payment_success/#/?',
-            failUrl: window.location.href + 'payment_failed/#/?'
+            successUrl: window.location.origin + 'payment_success/#/?',
+            failUrl: window.location.origin + 'payment_failed/#/?'
         });
         return this.makeApiCall(fetch(`${this.baseUrl}/payment/sberbank/url${queryString}`));
     }

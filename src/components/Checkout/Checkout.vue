@@ -3,15 +3,12 @@
         <RedirectToMenu/>
         <Hero :title="`Оформить заказ`"/>
         <Cart/>
-        <ClientAutofill>
-            <StoreSelector/>
-            <CheckoutForm/>
-        </ClientAutofill>
+        <StoreSelector/>
+        <CheckoutForm/>
     </div>
 </template>
 
 <script>
-    import ClientAutofill from "@/components/Client/ClientAutofill";
     import StoreSelector from "@/components/Store/StoreSelector";
     import CheckoutForm from "@/components/Checkout/CheckoutForm";
     import Hero from "@/components/Hero";

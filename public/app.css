@@ -2,6 +2,7 @@
 
 #app {
     max-width: 600px;
+    color: black;
 }
 
 #app * {
@@ -190,10 +191,12 @@
     margin-right: 1rem;
 }
 
-
+.checkout-form #submit {
+    margin-left: 3rem;
+}
 
 #app .btn {
-    display: block;
+    /* display: block; */
     border: 1px;
     padding: 0.5rem 1rem;
     color: white;

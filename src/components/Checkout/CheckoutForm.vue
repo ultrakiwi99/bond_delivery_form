@@ -8,7 +8,7 @@
                   v-model="client.comment"></textarea>
         <div class="controls">
             <button @click="$router.push('/')" class="secondary">Меню</button>
-            <button id="submit" type="submit" v-show="submitEnabled">Заказать</button>
+            <button id="submit" type="submit" class="btn" v-show="submitEnabled">Заказать</button>
         </div>
     </form>
 </template>

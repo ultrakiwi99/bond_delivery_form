@@ -1,12 +1,9 @@
-<template>
-    <div>
-        <slot/>
-    </div>
-</template>
-
 <script>
     export default {
         name: "ClientAutofill",
+        render() {
+            return null
+        },
         created() {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -51,6 +48,7 @@
             formApiResponse(clientInfo, response) {
                 clientInfo.name = clientInfo.name ? clientInfo.name : response.name;
                 clientInfo.address = response.address;
+                clientInfo.phone = response.phone;
                 clientInfo.lastStore = JSON.parse(response.lastStore);
             }
         }

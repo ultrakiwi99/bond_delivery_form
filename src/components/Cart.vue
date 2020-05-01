@@ -1,6 +1,6 @@
 <template>
     <div class="cart app-section">
-        <h3>Заказ</h3>
+        <h3>Ваш заказ</h3>
         <ol class="products">
             <li :key="idx" v-for="(product,idx) in cart">
                 <div class="product-row">

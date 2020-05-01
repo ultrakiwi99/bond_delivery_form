@@ -1,5 +1,6 @@
 <template>
     <div>
+        <ClientAutofill/>
         <Hero title="Заказ Доставки"/>
         <Categories :category-names="categoryNames" @select="selectCategory">
             <MenuCard
@@ -39,10 +40,12 @@
     import Collapsable from "@/components/Visual/Collapsable";
     import MenuDetails from "@/components/Menu/MenuDetails";
     import MenuQtyInCart from "@/components/Menu/MenuQtyInCart";
+    import ClientAutofill from "@/components/Client/ClientAutofill";
 
     export default {
         name: 'Menu',
         components: {
+            ClientAutofill,
             MenuQtyInCart,
             MenuDetails,
             Collapsable,

@@ -2,15 +2,12 @@
     <div>
         <Hero :title="`Оформить заказ`"/>
         <Cart/>
-        <ClientAutofill>
-            <StoreSelector/>
-            <CheckoutForm/>
-        </ClientAutofill>
+        <StoreSelector/>
+        <CheckoutForm/>
     </div>
 </template>
 
 <script>
-    import ClientAutofill from "@/components/Client/ClientAutofill";
     import StoreSelector from "@/components/Store/StoreSelector";
     import CheckoutForm from "@/components/Checkout/CheckoutForm";
     import Hero from "@/components/Hero";
@@ -18,7 +15,7 @@
 
     export default {
         name: "Checkout",
-        components: {Hero, ClientAutofill, StoreSelector, CheckoutForm, Cart},
+        components: {Hero, StoreSelector, CheckoutForm, Cart},
         created() {
             this.returnIfEmptyCart();
         },

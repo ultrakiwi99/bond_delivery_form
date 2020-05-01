@@ -51,6 +51,7 @@
             formApiResponse(clientInfo, response) {
                 clientInfo.name = clientInfo.name ? clientInfo.name : response.name;
                 clientInfo.address = response.address;
+                clientInfo.phone = response.phone;
                 clientInfo.lastStore = JSON.parse(response.lastStore);
             }
         }

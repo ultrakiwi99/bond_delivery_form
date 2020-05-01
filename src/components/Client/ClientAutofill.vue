@@ -1,12 +1,9 @@
-<template>
-    <div>
-        <slot/>
-    </div>
-</template>
-
 <script>
     export default {
         name: "ClientAutofill",
+        render() {
+            return null
+        },
         created() {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);

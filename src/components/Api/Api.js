@@ -51,7 +51,7 @@ export default class Api {
 
     checkOrderStatus(orderId) {
         return this.makeApiCall(
-            fetch(`${this.baseUrl}/delivery/order/status/${orderId}`)
+            fetch(`${this.baseUrl}/delivery/order/${orderId}/status`)
         );
     }
 

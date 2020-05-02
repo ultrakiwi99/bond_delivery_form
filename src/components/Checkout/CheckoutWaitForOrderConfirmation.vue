@@ -22,9 +22,9 @@ export default {
             }
             this.tries++;
             this.$api
-                .checkForOrderStatus(this.orderId)
-                .then((status) => {
-                    if (status === "approved") {
+                .checkOrderStatus(this.orderId)
+                .then((response) => {
+                    if (response.status === "approved") {
                         clearInterval(this.interval);
                         this.$emit("approved");
                     }
@@ -36,7 +36,7 @@ export default {
         },
     },
     beforeDestroy() {
-        clearInterval(this.startCheckingOrderStatus);
+        clearInterval(this.interval);
     },
 };
 </script>

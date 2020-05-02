@@ -64,9 +64,16 @@ export default {
 
             this.$api
                 .sendOrder(this.client, store, cart)
-                .then(() => {
+                .then((response) => {
+                    if (!response.orderId) {
+                        throw Error(
+                            "Не получен идентификтор заказа с сервера."
+                        );
+                    }
                     this.$store.dispatch("saveClientInfo");
-                    this.$router.push("/payment_success");
+                    this.$router.push(
+                        `/payment_success?orderId=${response.orderId}`
+                    );
                 })
                 .catch((error) => console.log(error));
         },

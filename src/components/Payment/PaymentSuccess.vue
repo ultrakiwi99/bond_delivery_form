@@ -1,8 +1,11 @@
 <template>
     <div class="payment-success">
         <RedirectToMenu />
-        <CheckoutWaitForOrderConfimation />
-        <PaymentCard :amount="total" v-if="total > 0" />
+        <CheckoutWaitForOrderConfimation
+            :order-id="orderId"
+            @approved="showPayment = true"
+        />
+        <PaymentCard :amount="total" v-if="showPayment && total > 0" />
         <button @click="resetCartAndGoToMenu" class="primary">
             В меню
         </button>
@@ -21,6 +24,13 @@ export default {
         PaymentCard,
         CheckoutWaitForOrderConfimation,
     },
+    created() {
+        this.orderId = parseInt(this.$route.query.orderId);
+    },
+    data: () => ({
+        orderId: null,
+        showPayment: false,
+    }),
     methods: {
         resetCartAndGoToMenu() {
             this.$store.commit("resetCart");

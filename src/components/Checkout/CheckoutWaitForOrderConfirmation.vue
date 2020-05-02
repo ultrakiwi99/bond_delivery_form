@@ -12,10 +12,7 @@ export default {
         this.interval = setInterval(this.startCheckingOrderStatus, 5000);
     },
     props: {
-        orderId: {
-            type: Number,
-            required: true,
-        },
+        orderId: Number,
     },
     data: () => ({ status: "new", interval: null, tries: 0, maxTries: 300 }),
     methods: {
@@ -24,13 +21,22 @@ export default {
                 clearInterval(this.interval);
             }
             this.tries++;
-            this.$api.checkOrderStatus(this.orderId);
+            this.$api
+                .checkForOrderStatus(this.orderId)
+                .then((status) => {
+                    if (status === "approved") {
+                        clearInterval(this.interval);
+                        this.$emit("approved");
+                    }
+                })
+                .catch((error) => {
+                    clearInterval(this.interval);
+                    console.log(error);
+                });
         },
     },
-    destroyed() {
-        if (this.interval) {
-            clearInterval(this.interval);
-        }
+    beforeDestroy() {
+        clearInterval(this.startCheckingOrderStatus);
     },
 };
 </script>

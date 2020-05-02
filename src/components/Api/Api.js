@@ -49,6 +49,12 @@ export default class Api {
         );
     }
 
+    checkOrderStatus(orderId) {
+        return this.makeApiCall(
+            fetch(`${this.baseUrl}/delivery/order/status/${orderId}`)
+        );
+    }
+
     makeApiCall(call) {
         return call
             .then((response) => response.json())

@@ -9,17 +9,28 @@
 export default {
     name: "CheckoutWaitForPaymentConfirmation",
     created() {
-        setInterval(this.startCheckingOrderStatus, 5000);
+        this.interval = setInterval(this.startCheckingOrderStatus, 5000);
     },
     props: {
-        orderId: Number,
+        orderId: {
+            type: Number,
+            required: true,
+        },
     },
-    data: () => ({ status: "new" }),
+    data: () => ({ status: "new", interval: null, tries: 0, maxTries: 300 }),
     methods: {
-        startCheckingOrderStatus() {},
+        startCheckingOrderStatus() {
+            if (this.tries >= this.maxTries) {
+                clearInterval(this.interval);
+            }
+            this.tries++;
+            this.$api.checkOrderStatus(this.orderId);
+        },
     },
     destroyed() {
-        clearInterval(this.startCheckingOrderStatus);
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
     },
 };
 </script>

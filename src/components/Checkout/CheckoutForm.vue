@@ -3,7 +3,12 @@
         <h3>Данные заказа</h3>
         <input id="name" placeholder="Ваше имя" required type="text" v-model="client.name"/>
         <input id="address" placeholder="Адрес" required type="text" v-model="client.address"/>
-        <input id="phone" placeholder="Телефон" required type="tel" v-model="client.phone"/>
+        <input id="phone"
+               placeholder="Телефон"
+               required
+               type="tel"
+               v-mask="'+7##########'"
+               v-model="client.phone"/>
         <textarea id="comment" placeholder="Комментарий" rows="3" style="width: 99%"
                   v-model="client.comment"></textarea>
         <div class="controls">

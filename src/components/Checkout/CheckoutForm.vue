@@ -71,7 +71,7 @@ export default {
                     }
                     this.$store.dispatch("saveClientInfo");
                     this.$router.push(
-                        `/payment_success?orderId=${response.orderId}`
+                        `/payment_success?createdOrderId=${response.orderId}`
                     );
                 })
                 .catch((error) => console.log(error));

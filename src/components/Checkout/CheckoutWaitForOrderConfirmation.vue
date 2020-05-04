@@ -1,7 +1,10 @@
 <template>
     <h5>
-        Ваш Заказ принят.<br />
+        Ваш Заказ принят.<br/>
         Ожидайте звонка для подтверждения.
+        <br>
+        <br>
+        <span v-if="comment && comment.length > 0">Комментарий оператора: {{ comment }}</span>
     </h5>
 </template>
 
@@ -14,7 +17,14 @@ export default {
     props: {
         orderId: Number,
     },
-    data: () => ({ status: "new", interval: null, tries: 0, maxTries: 300 }),
+    data: () => ({
+        status: "new",
+        amount: null,
+        comment: null,
+        interval: null,
+        tries: 0,
+        maxTries: 300
+    }),
     methods: {
         startCheckingOrderStatus() {
             if (this.tries >= this.maxTries) {
@@ -26,7 +36,9 @@ export default {
                 .then((response) => {
                     if (response.status === "approved") {
                         clearInterval(this.interval);
-                        this.$emit("approved");
+                        this.amount = response.amount;
+                        this.comment = response.comment;
+                        this.$emit("approved", this.amount);
                     }
                 })
                 .catch((error) => {

@@ -4,7 +4,8 @@ axios.defaults.timeout = 1800;
 
 export default class Api {
     constructor() {
-        this.baseUrl = "http://portal.coffeebon.ru:8084/api";
+        // this.baseUrl = "http://portal.coffeebon.ru:8084/api"; // Production
+        this.baseUrl = "http://localhost:8000/api";
     }
 
     sendOrder(client, store, cart) {
@@ -12,20 +13,29 @@ export default class Api {
             fetch(`${this.baseUrl}/delivery/send/mail`, {
                 method: "POST",
                 body: JSON.stringify({
-                    client: { ...client },
+                    client: {...client},
                     order: [...cart],
-                    store: { ...store },
+                    store: {...store},
                 }),
             })
         );
     }
 
-    getPaymentUrl(amount) {
+    setOrderPayed(orderId, paymentId) {
+        return this.makeApiCall(
+            fetch(`${this.baseUrl}/delivery/order/${orderId}/payed`, {
+                method: "POST",
+                body: JSON.stringify({paymentId})
+            })
+        );
+    }
+
+    getPaymentUrl(amount, orderId) {
         const queryString = this.buildQuery({
             amount: Math.round(amount * 100),
-            orderNumber: Math.round(Math.random() * 100000000),
-            successUrl: window.location.origin + "/payment_success/#/?",
-            failUrl: window.location.origin + "/payment_failed/#/?",
+            orderNumber: orderId,
+            successUrl: window.location.origin + "/#/payment_success?",
+            failUrl: window.location.origin + "/#/payment_failed?",
         });
         return this.makeApiCall(
             fetch(`${this.baseUrl}/payment/sberbank/url${queryString}`)

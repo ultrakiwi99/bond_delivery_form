@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="payment-description">
-            <button :disabled="!this.registerUrl" @click="goToPayment" class="primary">Оплатить онлайн</button>
+            <button :disabled="!this.registerUrl" @click="goToPayment" class="primary">
+                Оплатить онлайн <strong>{{amount.toFixed(2)}}</strong> р.
+            </button>
         </div>
     </div>
 </template>
@@ -11,7 +13,7 @@
         name: "PaymentCard",
         beforeMount() {
             this.$api
-                .getPaymentUrl(this.amount)
+                .getPaymentUrl(this.amount, this.orderId)
                 .then(result => {
                     this.registerUrl = result['formUrl'];
                 })
@@ -21,7 +23,8 @@
             amount: {
                 type: Number,
                 default: null
-            }
+            },
+            orderId: Number
         },
         data: () => ({
             registerUrl: null

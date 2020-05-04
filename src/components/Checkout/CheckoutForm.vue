@@ -7,7 +7,7 @@
                placeholder="Телефон"
                required
                type="tel"
-               v-mask="'+7(###)###-##-##'"
+               v-mask="'+7##########'"
                v-model="client.phone"/>
         <textarea id="comment" placeholder="Комментарий" rows="3" style="width: 99%"
                   v-model="client.comment"></textarea>

@@ -60,9 +60,11 @@ export default {
         sendOrderEmail() {
             const store = this.$store.getters.lastStore;
             const cart = this.$store.getters.cart;
+            const client = {...this.client};
+            client.lastStore = JSON.stringify(client.lastStore);
 
             this.$api
-                .sendOrder(this.client, store, cart)
+                .sendOrder(client, store, cart)
                 .then((response) => {
                     if (!response.orderId) {
                         throw Error(

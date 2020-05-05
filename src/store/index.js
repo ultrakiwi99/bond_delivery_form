@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Api from "@/components/Api/Api";
 
 Vue.use(Vuex)
 
@@ -46,7 +45,6 @@ export default new Vuex.Store({
   },
   actions: {
     saveClientInfo(context) {
-      const api = new Api();
       const client = context.getters.client;
       const lastStore = context.getters.lastStore;
 
@@ -55,8 +53,6 @@ export default new Vuex.Store({
       if (localStorage) {
         localStorage.setItem('lastClientInfo', JSON.stringify(client));
       }
-
-      api.refreshUserInfo({...client});
     }
   }
 })

@@ -4,7 +4,9 @@ axios.defaults.timeout = 1800;
 
 export default class Api {
     constructor() {
-        this.baseUrl = "http://portal.coffeebon.ru:8084/api"; // Production
+        // this.baseUrl = "http://portal.coffeebon.ru:8084/api"; // Production
+        this.baseUrl = "http://localhost:8000/api"; // Production
+
     }
 
     sendOrder(client, store, cart) {
@@ -44,15 +46,6 @@ export default class Api {
         return this.makeApiCall(
             fetch(`${this.baseUrl}/delivery/guest/${cardId}`, {
                 method: "GET",
-            })
-        );
-    }
-
-    refreshUserInfo({ card, name, phone, address, lastStore }) {
-        return this.makeApiCall(
-            fetch(`${this.baseUrl}/delivery/guest/${card}`, {
-                method: "POST",
-                body: JSON.stringify({ name, phone, address, lastStore }),
             })
         );
     }

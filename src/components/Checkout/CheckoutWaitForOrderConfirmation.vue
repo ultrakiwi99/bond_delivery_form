@@ -1,11 +1,21 @@
 <template>
-    <h5>
-        Ваш Заказ принят.<br/>
-        Ожидайте звонка для подтверждения.
-        <br>
-        <br>
-        <span v-if="comment && comment.length > 0">Комментарий оператора: {{ comment }}</span>
-    </h5>
+    <div v-if="status === 'approved'" class="wait-for-confirm">
+        <h2>Заказ подтверждён!</h2>
+        <div v-if="comment && comment.length > 0"  >
+            <h3>Комментарий оператора:</h3>
+            <p>{{ comment }}</p>
+        </div>
+    </div>
+    <div v-else class="wait-for-confirm">
+        <h3>Ваш Заказ принят</h3>
+        <p>
+            Ожидайте звонка для подтверждения.
+            <br/><br/>
+            <strong>НЕ ЗАКРЫВАЙТЕ</strong> эту страницу<br/>
+            для оплаты ОНЛАЙН. После подтверждения заказа<br/>
+            появится кнопка оплаты.
+        </p>
+    </div>
 </template>
 
 <script>
@@ -36,6 +46,7 @@ export default {
                 .then((response) => {
                     if (response.status === "approved") {
                         clearInterval(this.interval);
+                        this.status = response.status;
                         this.amount = response.amount;
                         this.comment = response.comment;
                         this.$emit("approved", this.amount);
@@ -53,4 +64,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+    .wait-for-confirm {
+        text-align: center;
+    }
+
+
+
+</style>

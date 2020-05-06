@@ -4,7 +4,7 @@ axios.defaults.timeout = 1800;
 
 export default class Api {
     constructor() {
-        this.baseUrl = "http://portal.coffeebon.ru:8084/api"; // Production
+        this.baseUrl = "https://portal.coffeebon.ru/api"; // Production
     }
 
     sendOrder(client, store, cart) {

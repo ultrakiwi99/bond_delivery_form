@@ -1,56 +1,73 @@
 <script>
-    export default {
-        name: "ClientAutofill",
-        render() {
-            return null
-        },
-        created() {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const card = urlParams.get('client_card');
-            const name = urlParams.get('client_name');
-            const phone = urlParams.get('client_phone');
+export default {
+    name: "ClientAutofill",
+    render() {
+        return null;
+    },
+    data: () => ({ savedClientInfo: null }),
+    created() {
+        const params = this.$route.query;
+        const card = params.client_card ?? null;
+        const name = params.client_name ?? null;
+        const phone = params.client_phone ?? null;
 
-            if (this.$store.getters.clientIsEmpty) {
-                let clientInfo = {...this.client, card, name, phone};
+        if (this.clientIsEmpty) {
+            this.savedClientInfo = {
+                ...this.client,
+                card,
+                name,
+                phone,
+            };
 
-                if (localStorage) {
-                    clientInfo = this.fromLocalStorage(clientInfo);
-                }
-
-                if (card) {
-                    this.$api
-                        .getGuestInfo(card)
-                        .then(client => clientInfo = this.formApiResponse(clientInfo, client))
-                        .catch(error => console.log(error));
-                }
-
-                if (clientInfo.lastStore) {
-                    this.$store.commit('updateStore', clientInfo.lastStore);
-                }
-
-                this.$store.commit('updateClient', clientInfo);
+            if (localStorage) {
+                this.updateClientFromLocalStorage();
             }
-        },
-        methods: {
-            fromLocalStorage(clientInfo) {
-                const localStorageClient = localStorage.getItem('lastClientInfo');
-                if (localStorageClient) {
-                    const localStorageClientInfo = JSON.parse(localStorageClient);
-                    clientInfo.name = localStorageClientInfo.name;
-                    clientInfo.phone = localStorageClientInfo.phone;
-                    clientInfo.address = localStorageClientInfo.address;
-                    clientInfo.lastStore = JSON.parse(localStorageClientInfo.lastStore);
-                }
 
-                return clientInfo;
-            },
-            formApiResponse(clientInfo, response) {
-                clientInfo.name = clientInfo.name ? clientInfo.name : response.name;
-                clientInfo.address = response.address;
-                clientInfo.phone = response.phone;
-                clientInfo.lastStore = JSON.parse(response.lastStore);
+            if (card) {
+                this.updateClientFromApi(card);
             }
         }
-    }
+    },
+    methods: {
+        updateClientFromLocalStorage() {
+            const localStorageClient = localStorage.getItem("lastClientInfo");
+            if (localStorageClient) {
+                const localStorageClientInfo = JSON.parse(localStorageClient);
+                this.savedClientInfo.name = localStorageClientInfo.name;
+                this.savedClientInfo.phone = localStorageClientInfo.phone;
+                this.savedClientInfo.address = localStorageClientInfo.address;
+                this.savedClientInfo.lastStore = JSON.parse(
+                    localStorageClientInfo.lastStore
+                );
+            }
+            this.commitUpdates();
+        },
+        updateClientFromApi(cardNum) {
+            this.$api
+                .getGuestInfo(cardNum)
+                .then((response) => {
+                    this.savedClientInfo.name = response.name;
+                    this.savedClientInfo.address = response.address;
+                    this.savedClientInfo.phone = response.phone;
+                    this.savedClientInfo.lastStore = JSON.parse(
+                        response.lastStore
+                    );
+                    this.commitUpdates();
+                })
+                .catch((error) => console.log(error));
+        },
+        commitUpdates() {
+            this.$store.commit("updateClient", this.savedClientInfo);
+            this.$store.commit("updateStore", this.savedClientInfo.lastStore);
+        },
+    },
+    computed: {
+        clientIsEmpty() {
+            return this.$store.getters.clientIsEmpty;
+        },
+        client() {
+            return this.$store.getters.client;
+        },
+    },
+};
 </script>

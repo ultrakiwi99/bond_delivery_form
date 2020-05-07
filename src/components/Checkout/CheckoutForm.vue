@@ -63,10 +63,6 @@ export default {
             const client = { ...this.client };
 
             client.lastStore = JSON.stringify(client.lastStore);
-            this.client.phone = this.client.phone
-                .replace("(", "")
-                .replace(")", "")
-                .replace("-", "");
 
             this.$api
                 .sendOrder(client, store, cart)

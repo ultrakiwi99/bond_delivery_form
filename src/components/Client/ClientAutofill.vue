@@ -6,26 +6,34 @@ export default {
     },
     data: () => ({ savedClientInfo: null }),
     created() {
-        const params = this.$route.query;
-        const card = params.client_card ?? null;
-        const name = params.client_name ?? null;
-        const phone = params.client_phone ?? null;
+        let card, name, phone;
 
-        if (this.clientIsEmpty) {
-            this.savedClientInfo = {
-                ...this.client,
-                card,
-                name,
-                phone,
-            };
+        if (this.$route.query.client_card) {
+            const params = this.$route.query;
+            card = params.client_card ?? null;
+            name = params.client_name ?? null;
+            phone = params.client_phone ?? null;
+        } else {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            card = urlParams.get("client_card");
+            name = urlParams.get("client_name");
+            phone = urlParams.get("client_phone");
+        }
 
-            if (localStorage) {
-                this.updateClientFromLocalStorage();
-            }
+        this.savedClientInfo = {
+            ...this.client,
+            card,
+            name,
+            phone,
+        };
 
-            if (card) {
-                this.updateClientFromApi(card);
-            }
+        if (localStorage) {
+            this.updateClientFromLocalStorage();
+        }
+
+        if (card) {
+            this.updateClientFromApi(card);
         }
     },
     methods: {

@@ -33,8 +33,14 @@ export default class Api {
         const queryString = this.buildQuery({
             amount: Math.round(amount * 100),
             orderNumber: orderId,
-            successUrl: window.location.origin + "/#/payment_success?",
-            failUrl: window.location.origin + "/#/payment_failed?",
+            successUrl:
+                window.location.origin +
+                window.location.pathname +
+                "/#/payment_success?",
+            failUrl:
+                window.location.origin +
+                window.location.pathname +
+                "/#/payment_failed?",
         });
         return this.makeApiCall(
             fetch(`${this.baseUrl}/payment/sberbank/url${queryString}`)

@@ -20,7 +20,7 @@
             placeholder="Телефон"
             required
             type="tel"
-            v-mask="'+7##########'"
+            v-mask="'+7(###)###-##-##'"
             v-model="client.phone"
         />
         <textarea
@@ -54,16 +54,19 @@ export default {
         client: {},
     }),
     methods: {
-        update(dataItemName) {
-            const payload = {};
-            payload[dataItemName] = this[dataItemName];
-            this.$store.commit("updateClient", payload);
+        updateClient() {
+            this.$store.commit("updateClient", this.client);
         },
         sendOrderEmail() {
             const store = this.$store.getters.lastStore;
             const cart = this.$store.getters.cart;
             const client = { ...this.client };
+
             client.lastStore = JSON.stringify(client.lastStore);
+            this.client.phone = this.client.phone
+                .replace("(", "")
+                .replace(")", "")
+                .replace("-", "");
 
             this.$api
                 .sendOrder(client, store, cart)
@@ -92,16 +95,16 @@ export default {
     },
     watch: {
         name() {
-            this.update("name");
+            this.updateClient();
         },
         address() {
-            this.update("address");
+            this.updateClient();
         },
         phone() {
-            this.update("phone");
+            this.updateClient();
         },
         comment() {
-            this.update("comment");
+            this.updateClient();
         },
     },
 };

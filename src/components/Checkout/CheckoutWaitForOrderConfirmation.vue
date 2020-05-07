@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div v-if="status === 'approved'" class="wait-for-confirm">
         <h2>Заказ подтверждён!</h2>
         <div v-if="comment && comment.length > 0"  >
@@ -10,12 +11,15 @@
         <h3>Ваш Заказ принят</h3>
         <p>
             Ожидайте звонка для подтверждения.
-            <br/><br/>
+        </p>
+        <div class="loader"></div>
+        <p>
             <strong>НЕ ЗАКРЫВАЙТЕ</strong> эту страницу<br/>
             для оплаты ОНЛАЙН. После подтверждения заказа<br/>
             появится кнопка оплаты.
         </p>
-        <div class="loader"></div>
+
+    </div>
     </div>
 </template>
 

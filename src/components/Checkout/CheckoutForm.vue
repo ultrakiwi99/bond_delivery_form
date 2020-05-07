@@ -17,10 +17,10 @@
         />
         <input
             id="phone"
-            placeholder="Телефон"
+            placeholder="Телефон +7(xxx)xxx-xx-xx"
             required
             type="tel"
-            v-mask="'+7(###)###-##-##'"
+            v-mask="'+#(###)###-##-##'"
             v-model="client.phone"
         />
         <textarea

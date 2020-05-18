@@ -4,6 +4,7 @@
         <Hero :title="`Оформить заказ`"/>
         <Cart/>
         <StoreSelector/>
+        <GiftSuggestion/>
         <CheckoutForm/>
     </div>
 </template>
@@ -14,10 +15,11 @@
     import Hero from "@/components/Hero";
     import Cart from "@/components/Cart";
     import RedirectToMenu from "@/components/Checkout/RedirectToMenu";
+    import GiftSuggestion from "./GiftSuggestion";
 
     export default {
         name: "Checkout",
-        components: {RedirectToMenu, Hero, StoreSelector, CheckoutForm, Cart}
+        components: {GiftSuggestion, RedirectToMenu, Hero, StoreSelector, CheckoutForm, Cart}
     }
 </script>
 

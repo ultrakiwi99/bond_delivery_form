@@ -64,6 +64,10 @@ export default {
 
             client.lastStore = JSON.stringify(client.lastStore);
 
+            if (this.$store.getters.giftSelected) {
+                client.comment = "**В ПОДАРОК**\n" + client.comment;
+            }
+
             this.$api
                 .sendOrder(client, store, cart)
                 .then((response) => {

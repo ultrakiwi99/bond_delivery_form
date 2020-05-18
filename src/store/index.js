@@ -14,7 +14,8 @@ export default new Vuex.Store({
       comment: null,
       lastStore: null
     },
-    lastStore: null
+    lastStore: null,
+    giftSelected: null
   },
   getters: {
     cart: state => state.cart,
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     client: state => state.client,
     clientIsEmpty: state => Object.values(state.client).every(entry => entry === null),
     clientIsValidToSend: state => ['name', 'phone', 'address'].every(propName => !!state.client[propName]),
-    lastStore: state => state.lastStore
+    lastStore: state => state.lastStore,
+    giftSelected: state => state.giftSelected
   },
   mutations: {
     pushToCart(state, product) {
@@ -41,6 +43,9 @@ export default new Vuex.Store({
     },
     updateStore(state, store) {
       state.lastStore = store;
+    },
+    updateGiftSelected(state,yesOrNo) {
+      state.giftSelected = yesOrNo;
     }
   },
   actions: {

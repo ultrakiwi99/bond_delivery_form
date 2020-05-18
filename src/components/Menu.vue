@@ -378,6 +378,24 @@
                                 {short: "6 штук", name: "6 штук", price: 99, selected: true},
                             ],
                             visible: false
+                        },
+                        {
+                            id: '1234-edaa-0005',
+                            name: 'Мёки сытный с курицей',
+                            comment: 'Пирожок на тонком белом тесте с начинкой из курицы.',
+                            sizes: [
+                                {short: "1 штука", name: "1 штука", price: 55, selected: true},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-edaa-0006',
+                            name: 'Мёки яблоко-корица',
+                            comment: 'Пирожок на тонком белом тесте с натуральной начинкой из яблока с добавлением корицы.',
+                            sizes: [
+                                {short: "1 штука", name: "1 штука", price: 55, selected: true},
+                            ],
+                            visible: false
                         }
                     ]
                 },

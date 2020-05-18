@@ -798,7 +798,7 @@
                     products: [
                         {
                             id: '1234-beans-0001',
-                            name: 'BRAZIL IGUASU',
+                            name: 'BRAZIL IGUASU (эспрессо, зёрна)',
                             comment: 'Классический, сбалансированный, насыщенный кофе, обладающий чистыми и понятными дескрипторами шоколада и цитрусовой кислинкой.',
                             sizes: [
                                 {short: "250 грамм", name: "250 грамм", price: 345, selected: true},
@@ -807,7 +807,7 @@
                         },
                         {
                             id: '1234-beans-0002',
-                            name: 'COLUMBIA ANDINO',
+                            name: 'COLUMBIA ANDINO (эспрессо, зёрна)',
                             comment: 'Сбалансированные цитрусовые нотки, приправленные горечью шоколада и карамели.',
                             sizes: [
                                 {short: "250 грамм", name: "250 грамм", price: 455, selected: true},
@@ -816,7 +816,7 @@
                         },
                         {
                             id: '1234-beans-0003',
-                            name: 'ETHIOPIA GUJI SIDAMO',
+                            name: 'ETHIOPIA GUJI SIDAMO (фильтр, зёрна)',
                             comment: 'Яркий насыщенный фруктово-цветочный вкус, с нежной горьковатой сладостью в послевкусии; обладает высокой оценкой SCA - 86,50 баллов.',
                             sizes: [
                                 {short: "250 грамм", name: "250 грамм", price: 565, selected: true},
@@ -825,7 +825,7 @@
                         },
                         {
                             id: '1234-beans-0004',
-                            name: 'GUATEMALA FANCY',
+                            name: 'GUATEMALA FANCY (эспрессо, зёрна)',
                             comment: 'Плотный, тельный кофе, с ярким шоколадным оттенком и апельсиновой кислинкой.',
                             sizes: [
                                 {short: "250 грамм", name: "250 грамм", price: 475, selected: true},
@@ -834,7 +834,7 @@
                         },
                         {
                             id: '1234-beans-0005',
-                            name: 'RWANDA MURAKOZE',
+                            name: 'RWANDA MURAKOZE (фильтр, зёрна)',
                             comment: 'Чистый и сладкий кофе с нотами нектарина, черного чая, молочного шоколада, миндаля и пряностей.',
                             sizes: [
                                 {short: "250 грамм", name: "250 грамм", price: 895, selected: true},

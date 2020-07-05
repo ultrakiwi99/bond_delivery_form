@@ -403,6 +403,17 @@
                     name: 'Вкусняшки',
                     products: [
                         {
+                            id: '1234-cccc-2003',
+                            name: 'Круассан французский',
+                            comment: 'Вкуснейший слоёный круассан с начинкой (или без).',
+                            sizes: [
+                                {short: "Классический", name: "Классический", price: 49, selected: true},
+                                {short: "Солёная карамель", name: "Солёная карамель", price: 59, selected: false},
+                                {short: "Шоколадный", name: "Шоколадный", price: 59, selected: false},
+                            ],
+                            visible: false
+                        },
+                        {
                             id: '1234-kkkk-0001',
                             name: 'Сердечко вафельное со сгущенкой',
                             comment: 'Вафельное сердечко с нежной варёной сгущенкой, орехами и глазурью.',
@@ -451,55 +462,35 @@
                             visible: false
                         },
                         {
-                            id: '1234-kkkk-0006',
-                            name: 'Конфета Кокосовая с Ананасом',
-                            comment: 'Кокосовая с Анонасом в Белой глазури.',
+                            id: '1234-kkkk-2001',
+                            name: 'Конфета Кокосовая 1шт',
+                            comment: 'Конфета в шокладной глазури с различными начинками.',
                             sizes: [
-                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
-                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                                {short: "Ананас", name: "Ананас", price: 35, selected: true},
+                                {short: "Клюква", name: "Клюква", price: 35, selected: false},
+                                {short: "Вишня", name: "Вишня", price: 35, selected: false},
+                                {short: "Мёд-хлопья", name: "Мёд-хлопья", price: 35, selected: false},
+                                {short: "Мёд-орех", name: "Мёд-орех", price: 35, selected: false},
                             ],
                             visible: false
                         },
                         {
-                            id: '1234-kkkk-0007',
-                            name: 'Конфета Кокосовая с Клюквой',
-                            comment: 'Конфета Кокосовая с Клюквой в тёмной глазури.',
+                            id: '1234-kkkk-2000',
+                            name: 'Конфета Кокосовая 3шт',
+                            comment: 'Набор из 3 кокосовых конфет в шокладной глазури с различными начинками.',
                             sizes: [
-                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
-                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
+                                {short: "3 шт", name: "3 шт", price: 99, selected: true},
+                            ],
+                            modifiers: [
+                                {
+                                    name: 'Начинка',
+                                    price: 0,
+                                    selected: true,
+                                    variants: { selected: [], list: ['Ананас','Клюква','Вишня','Медовые хлопья','Медовый орех']},
+                                }
                             ],
                             visible: false
                         },
-                        {
-                            id: '1234-kkkk-0008',
-                            name: 'Конфета Кокосовая с Вишней',
-                            comment: 'Конфета Кокосовая с Вишней в тёмной глазури.',
-                            sizes: [
-                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
-                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
-                            ],
-                            visible: false
-                        },
-                        {
-                            id: '1234-kkkk-0008',
-                            name: 'Конфета Медовая с Хлопьями',
-                            comment: 'Конфета Медовая с Кукурузными хлопьями в темной глазури.',
-                            sizes: [
-                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
-                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
-                            ],
-                            visible: false
-                        },
-                        {
-                            id: '1234-kkkk-0009',
-                            name: 'Конфета Медовая с Орехом',
-                            comment: 'Конфета Медовая с Орехом в тёмной глазури.',
-                            sizes: [
-                                {short: "1 шт", name: "1 шт", price: 35, selected: true},
-                                {short: "3 шт", name: "3 шт", price: 99, selected: false},
-                            ],
-                            visible: false
-                        }
 
                     ]
                 },
@@ -724,27 +715,31 @@
                             visible: false
                         },
                         {
-                            id: '1234-sss2-3348',
-                            name: 'Фруктовый лимонад',
+                            id: '1234-sss2-334g',
+                            name: 'Фруктовый лимонад GRANDE',
                             comment: '',
                             sizes: [
-                                {short: "MEDIA", name: "Средний", price: 128, selected: false},
-                                {short: "GRANDE", name: "Большой", price: 147, selected: true},
+                                {short: "Манго-Маракуйа", name: "Манго-Маракуйа", price: 147, selected: true},
+                                {short: "Клубничный Мохито", name: "Клубничный Мохито", price: 147, selected: false},
+                                {short: "Лимон-Лайм", name: "Лимон-Лайм", price: 147, selected: false},
                             ],
-                            modifiers: [
-                                {
-                                    name: 'Вкус',
-                                    price: 0,
-                                    selected: true,
-                                    variants: { selected: [], list: ['Манго-Маракуйа',	'Клубничный Мохито', 'Лимон-Лайм']}
-                                }
+                            visible: false
+                        },
+                        {
+                            id: '1234-sss2-334g',
+                            name: 'Фруктовый лимонад MEDIA',
+                            comment: '',
+                            sizes: [
+                                {short: "Манго-Маракуйа", name: "Манго-Маракуйа", price: 128, selected: true},
+                                {short: "Клубничный Мохито", name: "Клубничный Мохито", price: 128, selected: false},
+                                {short: "Лимон-Лайм", name: "Лимон-Лайм", price: 128, selected: false},
                             ],
                             visible: false
                         },
                         {
                             id: '1234-sss2-3347',
                             name: 'Сливочный Краш',
-                            comment: 'Нежный сливочный напиток со всбитыми сливками и приправами.',
+                            comment: 'Нежный сливочный напиток со взбитыми сливками и приправами.',
                             sizes: [
                                 {short: "MEDIA", name: "Средний", price: 178, selected: false},
                                 {short: "GRANDE", name: "Большой", price: 197, selected: true},

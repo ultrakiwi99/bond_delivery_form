@@ -1,6 +1,6 @@
 #!/bin/sh
 
-HOST=192.168.25.9:/www/coffeebon/delivery/
+#HOST=192.168.25.9:/www/coffeebon/delivery/
 HOST=shop.coffeebon.ru:/www/delivery/
 
 echo Upload to ${HOST}

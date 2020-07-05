@@ -343,6 +343,42 @@
                     name: 'Еда/Завтраки',
                     products: [
                         {
+                            id: '1234-sendwich-0001',
+                            name: 'Сэндвич Курица с вялеными томатами',
+                            comment: 'Двойной сендвич с сочными кусочками курицы, пряным соусом и вялеными томатами.',
+                            sizes: [
+                                {short: "1 штука", name: "1 штука", price: 159, selected: true},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-sendwich-0002',
+                            name: 'Сэндвич Ветчина-Сыр',
+                            comment: 'Двойной сендвич с тремя видами сыра, ветчиной и маринованым огурчиком.',
+                            sizes: [
+                                {short: "1 штука", name: "1 штука", price: 149, selected: true},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-sendwich-0003',
+                            name: 'Сэндвич Греческий с печеным перцем',
+                            comment: 'Невероятно вкусный сэндвич с нежным сыром фета и сладким печеным перцем и ореховым соусом (без мяса).',
+                            sizes: [
+                                {short: "1 штука", name: "1 штука", price: 99, selected: true},
+                            ],
+                            visible: false
+                        },
+                        {
+                            id: '1234-sendwich-0004',
+                            name: 'Сэндвич кура по-Итальянски',
+                            comment: 'Сочный сендвич с нежной курицей, томатами черри, специями и листом салата.',
+                            sizes: [
+                                {short: "1 штука", name: "1 штука", price: 99, selected: true},
+                            ],
+                            visible: false
+                        },
+                        {
                             id: '1234-edaa-0001',
                             name: 'Большой Кофе + Сырники с соусом',
                             comment: 'Большой Капучино или Латте + Два сырника с ягодным соусом.',
@@ -361,42 +397,6 @@
                             ],
                             visible: false
                         },
-                        {
-                            id: '1234-edaa-0003',
-                            name: 'Ролл Цезарь с копчёной курицей',
-                            comment: 'Ролл с копченой курицей, с томатами, сыром моцарелла и соусом.',
-                            sizes: [
-                                {short: "1 ролл", name: "1 ролл", price: 129, selected: true},
-                            ],
-                            visible: false
-                        },
-                        {
-                            id: '1234-edaa-0004',
-                            name: 'Пирожное картошка 6 штук',
-                            comment: 'Порция из шести шариков пирожного картошка.',
-                            sizes: [
-                                {short: "6 штук", name: "6 штук", price: 99, selected: true},
-                            ],
-                            visible: false
-                        },
-                        {
-                            id: '1234-edaa-0005',
-                            name: 'Мёки сытный с курицей',
-                            comment: 'Пирожок на тонком белом тесте с начинкой из курицы.',
-                            sizes: [
-                                {short: "1 штука", name: "1 штука", price: 55, selected: true},
-                            ],
-                            visible: false
-                        },
-                        {
-                            id: '1234-edaa-0006',
-                            name: 'Мёки яблоко-корица',
-                            comment: 'Пирожок на тонком белом тесте с натуральной начинкой из яблока с добавлением корицы.',
-                            sizes: [
-                                {short: "1 штука", name: "1 штука", price: 55, selected: true},
-                            ],
-                            visible: false
-                        }
                     ]
                 },
                 {
@@ -607,30 +607,6 @@
                             visible: false
                         },
                         {
-                            id: '1234-ffff-3342',
-                            name: 'Флэт Кортадо Бон',
-                            comment: 'Два Эспрессо, Топлёное молоко, Сироп Нуга',
-                            sizes: [
-                                {short: "MEDIA", name: "Средний", price: 188, selected: true},
-                            ],
-                            milks: [
-                                {name: "Топлёное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
-                            ],
-                            modifiers: [
-                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
-                                {
-                                    name: 'Сироп',
-                                    price: 29,
-                                    selected: false,
-                                    variants: { selected: [], list: ['Яблочный пирог ',	'Фисташки ',	'Орех Лесной',	'Ваниль',	'Пряник имбирный ',	'Карамель ',	'Карамель ореховая ',	'Шоколад ',	'Кокос ',	'Поп корн',	'Ежевика',	'Карамель соленая',	'Печенье шоколадное ',	'Мята Зелёная ',	'Банан Желтый',	'Лаванда ']}
-                                }
-                            ],
-                            visible: false
-                        },
-                        {
                             id: '1234-ffff-3343',
                             name: 'Баунти Флэт',
                             comment: 'Два Эспрессо, Молоко, Какао, Сироп кокос, Кокосовая Стружка',
@@ -735,80 +711,64 @@
                     name: 'Сезонное Меню',
                     products: [
                         {
-                            id: '1234-ssss-3346',
-                            name: 'Неправильные Пчёлы',
-                            comment: '',
+                            id: '1234-sss1-3346',
+                            name: 'Заводной апельсин',
+                            comment: 'Яркий взрывной цитрусово-кофейный напиток со льдом. Бодрит и освежает.',
                             sizes: [
                                 {short: "MEDIA", name: "Средний", price: 158, selected: false},
-                                {short: "GRANDE", name: "Большой", price: 179, selected: true},
-                            ],
-                            milks: [
-                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                                {short: "GRANDE", name: "Большой", price: 177, selected: true},
                             ],
                             modifiers: [
-                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
                                 {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
-                                {
-                                    name: 'Сироп',
-                                    price: 29,
-                                    selected: false,
-                                    variants: { selected: [], list: ['Яблочный пирог ',	'Фисташки ',	'Орех Лесной',	'Ваниль',	'Пряник имбирный ',	'Карамель ',	'Карамель ореховая ',	'Шоколад ',	'Кокос ',	'Поп корн',	'Ежевика',	'Карамель соленая',	'Печенье шоколадное ',	'Мята Зелёная ',	'Банан Желтый',	'Лаванда ']}
-                                }
                             ],
                             visible: false
                         },
                         {
-                            id: '1234-ssss-3348',
-                            name: 'Инди-Латтэ',
+                            id: '1234-sss2-3348',
+                            name: 'Фруктовый лимонад',
                             comment: '',
                             sizes: [
-                                {short: "MEDIA", name: "Средний", price: 138, selected: false},
-                                {short: "GRANDE", name: "Большой", price: 169, selected: true},
-                            ],
-                            milks: [
-                                {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
+                                {short: "MEDIA", name: "Средний", price: 128, selected: false},
+                                {short: "GRANDE", name: "Большой", price: 147, selected: true},
                             ],
                             modifiers: [
-                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
                                 {
-                                    name: 'Сироп',
-                                    price: 29,
-                                    selected: false,
-                                    variants: { selected: [], list: ['Яблочный пирог ',	'Фисташки ',	'Орех Лесной',	'Ваниль',	'Пряник имбирный ',	'Карамель ',	'Карамель ореховая ',	'Шоколад ',	'Кокос ',	'Поп корн',	'Ежевика',	'Карамель соленая',	'Печенье шоколадное ',	'Мята Зелёная ',	'Банан Желтый',	'Лаванда ']}
+                                    name: 'Вкус',
+                                    price: 0,
+                                    selected: true,
+                                    variants: { selected: [], list: ['Манго-Маракуйа',	'Клубничный Мохито', 'Лимон-Лайм']}
                                 }
                             ],
                             visible: false
                         },
                         {
-                            id: '1234-ssss-3347',
-                            name: 'Клуб Романтики',
-                            comment: '',
+                            id: '1234-sss2-3347',
+                            name: 'Сливочный Краш',
+                            comment: 'Нежный сливочный напиток со всбитыми сливками и приправами.',
                             sizes: [
                                 {short: "MEDIA", name: "Средний", price: 178, selected: false},
-                                {short: "GRANDE", name: "Большой", price: 199, selected: true},
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
                             ],
                             milks: [
                                 {name: "Обычное", price: 0}, {name: "Банановое", price: 59}, {name: "Кокосовое", price: 59}, {name: "Соевое", price: 59}, {name: "Овсяное", price: 59}
                             ],
                             modifiers: [
-                                {name: 'Взбитые сливки', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу белые (20 гр)', price: 29, selected: false, comment: ''},
-                                {name: 'Маршмеллоу цветные (20 гр)', price: 29, selected: false, comment: ''},
                                 {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
-                                {
-                                    name: 'Сироп',
-                                    price: 29,
-                                    selected: false,
-                                    variants: { selected: [], list: ['Яблочный пирог ',	'Фисташки ',	'Орех Лесной',	'Ваниль',	'Пряник имбирный ',	'Карамель ',	'Карамель ореховая ',	'Шоколад ',	'Кокос ',	'Поп корн',	'Ежевика',	'Карамель соленая',	'Печенье шоколадное ',	'Мята Зелёная ',	'Банан Желтый',	'Лаванда ']}
-                                }
                             ],
                             visible: false
-                        }
+                        },
+                        {
+                            id: '1234-sss2-3349',
+                            name: 'Кокосовая Матча',
+                            comment: 'Освежающий напиток на порошке Матча и кокосовом молоке.',
+                            sizes: [
+                                {short: "GRANDE", name: "Большой", price: 197, selected: true},
+                            ],
+                            modifiers: [
+                                {name: 'Доп. эспрессо', price: 39, selected: false, comment: ''},
+                            ],
+                            visible: false
+                        },
                     ]  
                 },
                 {

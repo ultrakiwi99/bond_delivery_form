@@ -45,32 +45,12 @@
             mapVisible: false,
             stores: [
                 {
-                    name: `м. Лесная, Большой Сампсониевский пр., 80`,
-                    link: `/delivery/img/kb23.jpg`
-                },
-                {
-                    name: `м. Комендантский пр, ул. Уточкина, 6`,
-                    link: `/delivery/img/kb34.jpg`
-                },
-                {
-                    name: `м. Беговая, ул. Туристская, 24/42`,
-                    link: `/delivery/img/kb29.jpg`
-                },
-                {
                     name: `м. Новочеркасская, Заневский пр., 20`,
                     link: `/delivery/img/kb2.jpg`
                 },
                 {
                     name: `м. Новочеркасская, Стахановцев, 10`,
                     link: `/delivery/img/kb1.jpg`
-                },
-                {
-                    name: `м. Петроградская, Аптекарский проспект., 2`,
-                    link: `/delivery/img/kb14.jpg`
-                },
-                {
-                    name: `м. Проспект Просвещения, ул. Композиторов, 12`,
-                    link: `/delivery/img/kb36.jpg`
                 },
                 {
                     name: `м. Приморская, ул. Наличная, 40`,

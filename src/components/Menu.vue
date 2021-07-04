@@ -29,6 +29,10 @@
             <Cart/>
             <button @click="$router.push('/checkout')" class="btn">Заказать</button>
         </div>
+        <div v-else class="order-help">
+            <h4>Добавьте хотя бы один напиток из меню, что бы перейти к оплате.</h4>
+            <p>Заказ не требует регистрации или авторизации в магазине.</p>
+        </div>
     </div>
 </template>
 
@@ -800,4 +804,9 @@
     .danger-text {
         color: darkred;
     }
+
+    .order-help {
+        text-align: center;
+    }
+
 </style>
